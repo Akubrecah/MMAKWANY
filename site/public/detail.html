@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mmakwany Guest House — Details</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        "primary": "#0d968b",
+        "primary-dark": "#0a7a71",
+        "accent-gold": "#D97706",
+        "background-warm": "#FFF8F0",
+      },
+      fontFamily: {
+        "sans": ["Inter", "sans-serif"],
+        "serif": ["Playfair Display", "serif"],
+      },
+    },
+  },
+}
+</script>
+<style>
+body { font-family: 'Inter', sans-serif; }
+.hero-gradient { background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.05) 100%); }
+.feature-card { transition: all 0.3s ease; }
+.feature-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(13,150,139,0.15); }
+.gallery-img { transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+.gallery-img:hover { transform: scale(1.05); }
+.fade-in { animation: fadeIn 0.6s ease-out both; }
+.fade-in-delay { animation: fadeIn 0.6s ease-out 0.2s both; }
+.fade-in-delay-2 { animation: fadeIn 0.6s ease-out 0.4s both; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+.breadcrumb-sep::after { content: '›'; margin: 0 0.5rem; color: #94a3b8; }
+.sticky-cta { backdrop-filter: blur(16px); background: rgba(255,255,255,0.92); }
+</style>
+</head>
+<body class="bg-white text-slate-900 antialiased">
+
+<!-- Navigation -->
+<header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 px-6 lg:px-20 py-4">
+<div class="max-w-7xl mx-auto flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+        <div class="size-10 bg-primary rounded-xl flex items-center justify-center text-white">
+            <span class="material-symbols-outlined !text-2xl">apartment</span>
+        </div>
+        <h2 class="text-slate-900 text-xl font-extrabold tracking-tight">Mmakwany Guest House</h2>
+    </a>
+    <nav class="hidden md:flex items-center gap-10">
+        <a class="text-slate-600 hover:text-primary transition-colors font-medium text-sm" href="room-booking.html">Stays</a>
+        <a class="text-slate-600 hover:text-primary transition-colors font-medium text-sm" href="index.html#dining">Dining</a>
+        <a class="text-slate-600 hover:text-primary transition-colors font-medium text-sm" href="index.html#events">Events</a>
+        <a class="text-slate-600 hover:text-primary transition-colors font-medium text-sm" href="points-shop.html">Rewards</a>
+    </nav>
+    <div class="flex items-center gap-3">
+        <a href="guest-dashboard.html" class="hidden sm:flex bg-primary hover:bg-primary-dark text-white px-6 py-2.5 rounded-full text-sm font-bold transition-all shadow-sm">My Bookings</a>
+        <button id="back-btn" onclick="history.back()" class="size-10 rounded-full border border-slate-200 flex items-center justify-center hover:bg-slate-50 transition-all" title="Go back">
+            <span class="material-symbols-outlined">arrow_back</span>
+        </button>
+    </div>
+</div>
+</header>
+
+<!-- Hero Section -->
+<section id="hero" class="relative h-[70vh] min-h-[500px] overflow-hidden">
+    <img id="hero-img" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700" src="" alt=""/>
+    <div class="hero-gradient absolute inset-0"></div>
+    <div class="relative z-10 h-full flex flex-col justify-end px-6 lg:px-20 pb-16 max-w-7xl mx-auto">
+        <!-- Breadcrumb -->
+        <div class="fade-in mb-4 flex items-center text-white/70 text-sm font-medium">
+            <a href="index.html" class="hover:text-white transition-colors">Home</a>
+            <span class="breadcrumb-sep"></span>
+            <span id="breadcrumb-category" class="hover:text-white transition-colors cursor-pointer"></span>
+            <span class="breadcrumb-sep"></span>
+            <span id="breadcrumb-title" class="text-white"></span>
+        </div>
+        <!-- Badge -->
+        <div id="hero-badge" class="fade-in mb-4 inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/20 px-4 py-1.5 rounded-full w-fit">
+            <span id="badge-icon" class="material-symbols-outlined text-primary !text-lg"></span>
+            <span id="badge-text" class="text-white text-xs font-bold uppercase tracking-wider"></span>
+        </div>
+        <!-- Title -->
+        <h1 id="hero-title" class="fade-in-delay font-serif text-5xl md:text-7xl font-bold text-white leading-tight mb-4"></h1>
+        <p id="hero-subtitle" class="fade-in-delay-2 text-white/80 text-lg md:text-xl max-w-2xl font-medium"></p>
+    </div>
+</section>
+
+<!-- Quick Info Bar -->
+<section class="border-b border-gray-100 bg-white sticky top-[73px] z-40 sticky-cta">
+<div class="max-w-7xl mx-auto px-6 lg:px-20 py-4 flex flex-wrap items-center justify-between gap-4">
+    <div id="quick-stats" class="flex items-center gap-6 flex-wrap"></div>
+    <div class="flex items-center gap-4">
+        <div id="price-display" class="text-right">
+            <span class="text-xs text-slate-400 font-medium block">Starting from</span>
+            <span id="price-value" class="text-2xl font-black text-accent-gold"></span>
+        </div>
+        <a id="cta-btn" href="#" class="bg-primary hover:bg-primary-dark text-white px-8 py-3 rounded-full text-sm font-bold transition-all shadow-lg shadow-primary/20 flex items-center gap-2">
+            <span class="material-symbols-outlined !text-lg" id="cta-icon"></span>
+            <span id="cta-text"></span>
+        </a>
+    </div>
+</div>
+</section>
+
+<!-- Main Content -->
+<main class="max-w-7xl mx-auto px-6 lg:px-20 py-16">
+
+    <!-- Description + Features Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-16 mb-20">
+        <!-- Description (3 col) -->
+        <div class="lg:col-span-3 space-y-8">
+            <div>
+                <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">About This Experience</h2>
+                <p id="description" class="text-slate-600 text-lg leading-relaxed"></p>
+            </div>
+
+            <!-- Highlights -->
+            <div id="highlights-section">
+                <h3 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary">star</span>
+                    What Makes It Special
+                </h3>
+                <ul id="highlights-list" class="space-y-3"></ul>
+            </div>
+        </div>
+
+        <!-- Features Sidebar (2 col) -->
+        <div class="lg:col-span-2">
+            <div class="bg-slate-50 rounded-2xl p-8 space-y-6 border border-slate-100">
+                <h3 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary">verified</span>
+                    Key Features
+                </h3>
+                <div id="features-grid" class="grid grid-cols-2 gap-4"></div>
+            </div>
+
+            <!-- Contact Card -->
+            <div class="mt-6 bg-primary/5 rounded-2xl p-6 border border-primary/10">
+                <h4 class="font-bold text-slate-900 mb-2 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary !text-lg">support_agent</span>
+                    Need Help?
+                </h4>
+                <p class="text-slate-500 text-sm mb-4">Our concierge team is available 24/7 to assist you.</p>
+                <div class="flex items-center gap-3">
+                    <a href="tel:+254700000000" class="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-full text-sm font-semibold hover:border-primary transition-colors">
+                        <span class="material-symbols-outlined !text-base text-primary">call</span>
+                        Call Now
+                    </a>
+                    <a href="mailto:info@mmakwany.co.ke" class="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-full text-sm font-semibold hover:border-primary transition-colors">
+                        <span class="material-symbols-outlined !text-base text-primary">mail</span>
+                        Email
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery Section -->
+    <div id="gallery-section" class="mb-20">
+        <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8 flex items-center gap-3">
+            <span class="material-symbols-outlined text-primary !text-3xl">photo_library</span>
+            Gallery
+        </h2>
+        <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-3 gap-4"></div>
+    </div>
+
+    <!-- Related Items -->
+    <div id="related-section" class="mb-10">
+        <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">You May Also Like</h2>
+        <div id="related-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="bg-slate-900 text-white py-12 px-6 lg:px-20">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+    <div class="flex items-center gap-3">
+        <div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+            <span class="material-symbols-outlined !text-lg">apartment</span>
+        </div>
+        <span class="font-extrabold tracking-tight">Mmakwany Guest House</span>
+    </div>
+    <p class="text-white/50 text-sm">© 2024 Mmakwany Guest House Hospitality Group. All rights reserved.</p>
+    <div class="flex gap-6">
+        <a href="index.html" class="text-white/60 hover:text-primary text-sm transition-colors">Home</a>
+        <a href="room-booking.html" class="text-white/60 hover:text-primary text-sm transition-colors">Stays</a>
+        <a href="event-halls.html" class="text-white/60 hover:text-primary text-sm transition-colors">Events</a>
+    </div>
+</div>
+</footer>
+
+<script>
+// ══════════════════════════════════════════════════════
+// CONTENT DATA
+// ══════════════════════════════════════════════════════
+const DATA = {
+    room: {
+        standard: {
+            title: "Standard Room",
+            subtitle: "Comfort meets simplicity — your home away from home",
+            badge: { icon: "hotel", text: "Popular Choice" },
+            image: "images/guest-room.jpeg",
+            price: "KES 3,500/night",
+            description: "Our Standard Room offers the perfect blend of comfort and value. Designed with warm, earthy tones and modern furnishings, each room features a plush double bed with premium linens, a flat-screen TV with satellite channels, complimentary high-speed Wi-Fi, and a private en-suite bathroom with hot shower. Wake up refreshed with natural light streaming through wide windows, and enjoy a peaceful night's rest in Mmakwany's serene environment. Ideal for solo travelers, business visitors, or couples seeking a cozy and affordable stay without compromising on quality.",
+            features: [
+                { icon: "bed", label: "Double Bed" },
+                { icon: "wifi", label: "Free Wi-Fi" },
+                { icon: "shower", label: "En-suite Bath" },
+                { icon: "tv", label: "Flat-screen TV" },
+                { icon: "local_laundry_service", label: "Laundry Service" },
+                { icon: "room_service", label: "Room Service" }
+            ],
+            highlights: [
+                "Daily housekeeping and fresh towels provided",
+                "Complimentary bottled water and tea/coffee making facilities",
+                "24-hour front desk and security for peace of mind",
+                "Located on quiet wing for undisturbed rest",
+                "Access to shared lounge and garden courtyard"
+            ],
+            gallery: ["images/guest-room.jpeg", "images/lounge.jpeg", "images/courtyard.jpeg"],
+            cta: { text: "Book This Room", icon: "calendar_month", link: "room-booking.html" },
+            category: "Rooms & Suites",
+            categoryLink: "room-booking.html",
+            stats: [
+                { icon: "square_foot", label: "22 m²" },
+                { icon: "person", label: "1–2 Guests" },
+                { icon: "bed", label: "Double Bed" }
+            ]
+        },
+        deluxe: {
+            title: "Deluxe Room",
+            subtitle: "Elevated comfort with a touch of luxury",
+            badge: { icon: "workspace_premium", text: "Best Value" },
+            image: "images/lounge.jpeg",
+            price: "KES 5,500/night",
+            description: "Step into our Deluxe Room and experience an elevated level of hospitality. These spacious rooms feature a king-size bed dressed in Egyptian cotton, a dedicated work desk, mini fridge stocked with refreshments, and a private balcony offering stunning views of the surrounding landscape. The modern en-suite bathroom comes equipped with a rain shower and premium toiletries. Whether you're unwinding after a long day of meetings or celebrating a special occasion, the Deluxe Room provides the perfect sanctuary. Guests enjoy priority check-in and complimentary breakfast.",
+            features: [
+                { icon: "king_bed", label: "King-size Bed" },
+                { icon: "balcony", label: "Private Balcony" },
+                { icon: "kitchen", label: "Mini Bar" },
+                { icon: "wifi", label: "High-speed Wi-Fi" },
+                { icon: "breakfast_dining", label: "Free Breakfast" },
+                { icon: "local_parking", label: "Free Parking" }
+            ],
+            highlights: [
+                "King-size bed with premium Egyptian cotton linens",
+                "Private balcony with garden or courtyard views",
+                "Mini fridge stocked with complimentary drinks",
+                "Priority early check-in and late checkout available",
+                "Complimentary full Kenyan breakfast each morning"
+            ],
+            gallery: ["images/lounge.jpeg", "images/guest-room.jpeg", "images/courtyard.jpeg"],
+            cta: { text: "Book This Room", icon: "calendar_month", link: "room-booking.html" },
+            category: "Rooms & Suites",
+            categoryLink: "room-booking.html",
+            stats: [
+                { icon: "square_foot", label: "35 m²" },
+                { icon: "person", label: "1–2 Guests" },
+                { icon: "king_bed", label: "King Bed" }
+            ]
+        },
+        executive: {
+            title: "Executive Suite",
+            subtitle: "Premium living with VIP treatment",
+            badge: { icon: "diamond", text: "Premium" },
+            image: "images/courtyard.jpeg",
+            price: "KES 9,000/night",
+            description: "Our finest accommodation, the Executive Suite, is designed for discerning guests who demand nothing but the best. Featuring a separate living area with plush seating, a luxurious jacuzzi bath, premium Nespresso machine, and a fully stocked mini bar, this suite offers an unparalleled experience. Enjoy VIP room service, express laundry, and a dedicated concierge. The suite boasts elegant décor inspired by Kenyan heritage, blending contemporary design with traditional warmth. Perfect for honeymoons, anniversaries, or business executives who appreciate the finer things in life.",
+            features: [
+                { icon: "bathtub", label: "Jacuzzi Bath" },
+                { icon: "living", label: "Living Area" },
+                { icon: "room_service", label: "VIP Service" },
+                { icon: "coffee_maker", label: "Nespresso" },
+                { icon: "local_bar", label: "Mini Bar" },
+                { icon: "spa", label: "Spa Access" }
+            ],
+            highlights: [
+                "Separate living area with premium lounge furniture",
+                "Luxurious jacuzzi bath with aromatherapy amenities",
+                "Dedicated personal concierge and VIP room service",
+                "Complimentary Nespresso machine and premium mini bar",
+                "Exclusive access to rooftop lounge and spa facilities"
+            ],
+            gallery: ["images/courtyard.jpeg", "images/lounge.jpeg", "images/guest-room.jpeg"],
+            cta: { text: "Book This Suite", icon: "calendar_month", link: "room-booking.html" },
+            category: "Rooms & Suites",
+            categoryLink: "room-booking.html",
+            stats: [
+                { icon: "square_foot", label: "55 m²" },
+                { icon: "person", label: "1–3 Guests" },
+                { icon: "bathtub", label: "Jacuzzi" }
+            ]
+        },
+        presidential: {
+            title: "Presidential Suite",
+            subtitle: "The pinnacle of luxury with panoramic views and bespoke service",
+            badge: { icon: "diamond", text: "Exclusive" },
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBqLlQewRmce1e9-08-Vsf267sxzpLDSKnSvSmHddhho4grJPmAPkGBrWi9aR3HoLckSimzyiiS8_RiLyCJBeUnlZEvCW00dcP9KIO8j6EG27llseQqJXiayJE7beWsvFUhLHOr2y3AZIrvLXv9A_1b_esBDkNbS2ISnjHv4fn7_-O28piUsrfG8plICzI4KEGV2EM8FRdOInk-57aUnjqAu-kyAKy6wcfemHTEJJGqe4AiPC6xqKfW9HpwraoHEtM7xE6XztPh3Qg",
+            price: "KES 50,000/night",
+            description: "The Presidential Suite represents the absolute zenith of luxury at Mmakwany Guest House. Spanning over 120 square meters, this magnificent suite features a grand master bedroom with a super king bed, separate living and dining areas, a private study, and a palatial bathroom with a freestanding soaking tub and rainfall shower. Floor-to-ceiling windows offer panoramic views, while bespoke artwork and handcrafted furniture create an atmosphere of refined elegance. Enjoy a personal butler, complimentary airport transfers, and exclusive access to all hotel amenities.",
+            features: [
+                { icon: "king_bed", label: "Super King Bed" },
+                { icon: "visibility", label: "Panoramic Views" },
+                { icon: "person_4", label: "Personal Butler" },
+                { icon: "dining", label: "Private Dining" },
+                { icon: "airport_shuttle", label: "Airport Transfer" },
+                { icon: "spa", label: "Full Spa Access" }
+            ],
+            highlights: [
+                "120 m² of opulent living space with panoramic city views",
+                "Personal butler and dedicated concierge available 24/7",
+                "Complimentary airport transfers and priority reservations",
+                "Private dining room with bespoke menu by our executive chef",
+                "Freestanding soaking tub and rainfall shower in marble bathroom"
+            ],
+            gallery: ["images/courtyard.jpeg", "images/lounge.jpeg", "images/conference.jpeg"],
+            cta: { text: "Book This Suite", icon: "calendar_month", link: "room-booking.html" },
+            category: "Rooms & Suites",
+            categoryLink: "room-booking.html",
+            stats: [
+                { icon: "square_foot", label: "120 m²" },
+                { icon: "person", label: "1–4 Guests" },
+                { icon: "king_bed", label: "Super King" }
+            ]
+        }
+    },
+    dining: {
+        "kenyan-breakfast": {
+            title: "Full Kenyan Breakfast",
+            subtitle: "Start your morning the Kenyan way",
+            badge: { icon: "restaurant", text: "Breakfast" },
+            image: "images/restaurant.jpeg",
+            price: "KES 650",
+            description: "Rise and shine with our hearty Full Kenyan Breakfast — a beloved morning tradition served fresh every day from 6:30 AM to 10:00 AM. This generous spread features perfectly scrambled or sunny-side-up eggs, two savory pork sausages, a portion of seasoned baked beans, golden buttered toast, and a glass of freshly squeezed tropical juice. Accompanied by sliced avocado and a side of fresh fruit, this breakfast provides the ideal start to fuel your day of adventures or business meetings. Served in our sunlit dining room with views of the courtyard garden.",
+            features: [
+                { icon: "egg", label: "Farm Eggs" },
+                { icon: "bakery_dining", label: "Fresh Toast" },
+                { icon: "local_drink", label: "Fresh Juice" },
+                { icon: "schedule", label: "6:30–10:00 AM" },
+                { icon: "volunteer_activism", label: "Locally Sourced" },
+                { icon: "eco", label: "Organic Options" }
+            ],
+            highlights: [
+                "Served fresh daily using locally sourced farm ingredients",
+                "Includes eggs, sausages, beans, toast, and fresh juice",
+                "Organic options available upon request",
+                "Served in our sunlit dining room with garden views",
+                "Available for room service at no extra charge"
+            ],
+            gallery: ["images/restaurant.jpeg", "images/lounge.jpeg", "images/courtyard.jpeg"],
+            cta: { text: "Reserve a Table", icon: "restaurant", link: "guest-dashboard.html" },
+            category: "Dining",
+            categoryLink: "index.html#dining",
+            stats: [
+                { icon: "schedule", label: "6:30–10:00 AM" },
+                { icon: "group", label: "Dine-in / Room Service" },
+                { icon: "eco", label: "Locally Sourced" }
+            ]
+        },
+        "chapati-stew": {
+            title: "Chapati & Beef Stew",
+            subtitle: "A Kenyan comfort classic",
+            badge: { icon: "restaurant", text: "Breakfast" },
+            image: "images/restaurant.jpeg",
+            price: "KES 450",
+            description: "Nothing says comfort like our Chapati & Beef Stew — a timeless Kenyan favorite on our breakfast menu. Our chapati is handmade daily, cooked on a traditional flat pan until it's soft, flaky, and golden. It is paired with a rich, slow-simmered beef stew loaded with tender chunks of beef, potatoes, carrots, and tomatoes, seasoned with aromatic spices including cumin, coriander, and a hint of pilipili. This dish is a testament to the warmth and hospitality of Kenyan home cooking, brought to your table with love.",
+            features: [
+                { icon: "bakery_dining", label: "Handmade Chapati" },
+                { icon: "soup_kitchen", label: "Slow-simmered" },
+                { icon: "schedule", label: "6:30–10:00 AM" },
+                { icon: "favorite", label: "Local Favorite" },
+                { icon: "restaurant", label: "Dine-in" },
+                { icon: "takeout_dining", label: "Takeaway" }
+            ],
+            highlights: [
+                "Chapati handmade fresh daily on traditional flat pans",
+                "Slow-simmered beef stew with aromatic Kenyan spices",
+                "Rich with tender beef, potatoes, carrots, and tomatoes",
+                "A true taste of authentic Kenyan home cooking",
+                "Available for dine-in and takeaway"
+            ],
+            gallery: ["images/restaurant.jpeg", "images/lounge.jpeg", "images/courtyard.jpeg"],
+            cta: { text: "Reserve a Table", icon: "restaurant", link: "guest-dashboard.html" },
+            category: "Dining",
+            categoryLink: "index.html#dining",
+            stats: [
+                { icon: "schedule", label: "6:30–10:00 AM" },
+                { icon: "local_fire_department", label: "Comfort Food" },
+                { icon: "takeout_dining", label: "Dine-in / Takeaway" }
+            ]
+        },
+        "nyama-choma": {
+            title: "Nyama Choma",
+            subtitle: "Kenya's iconic grilled meat experience",
+            badge: { icon: "outdoor_grill", text: "Main Course" },
+            image: "images/restaurant.jpeg",
+            price: "KES 1,200",
+            description: "Nyama Choma — literally 'grilled meat' in Swahili — is Kenya's most celebrated dish, and at Mmakwany, we take it to the next level. Our chefs select premium cuts of goat ribs, marinated overnight in a secret blend of herbs and slow-roasted over charcoal until perfectly smoky and tender. Served sizzling on a wooden platter alongside fresh kachumbari (tomato-onion salsa), creamy ugali, and grilled sukuma wiki (collard greens). This is more than a meal — it's a cultural experience. Best enjoyed with friends, family, and an ice-cold drink from our bar.",
+            features: [
+                { icon: "outdoor_grill", label: "Charcoal Grilled" },
+                { icon: "restaurant", label: "Premium Cuts" },
+                { icon: "timer", label: "Overnight Marinated" },
+                { icon: "group", label: "Perfect for Sharing" },
+                { icon: "local_bar", label: "Pairs with Drinks" },
+                { icon: "park", label: "Garden Dining" }
+            ],
+            highlights: [
+                "Premium goat ribs marinated overnight in secret herbs",
+                "Slow-roasted over charcoal for authentic smoky flavor",
+                "Served with kachumbari, ugali, and grilled sukuma wiki",
+                "Perfect for group dining and celebrations",
+                "Available in our garden restaurant with live music on weekends"
+            ],
+            gallery: ["images/restaurant.jpeg", "images/courtyard.jpeg", "images/lounge.jpeg"],
+            cta: { text: "Reserve a Table", icon: "restaurant", link: "guest-dashboard.html" },
+            category: "Dining",
+            categoryLink: "index.html#dining",
+            stats: [
+                { icon: "schedule", label: "12:00–10:00 PM" },
+                { icon: "group", label: "Serves 1–2" },
+                { icon: "outdoor_grill", label: "Charcoal Grilled" }
+            ]
+        },
+        "pilau": {
+            title: "Swahili Pilau",
+            subtitle: "Aromatic spiced rice, a coastal treasure",
+            badge: { icon: "restaurant", text: "Main Course" },
+            image: "images/restaurant.jpeg",
+            price: "KES 850",
+            description: "Our Swahili Pilau is a fragrant masterpiece hailing from Kenya's coast. Long-grain basmati rice is cooked with tender beef, whole spices including cardamom, cloves, cinnamon, and cumin, then slow-simmered until every grain is infused with rich, complex flavors. Topped with crispy fried onions and served alongside a refreshing tomato and cucumber salad, this dish is a celebration of the Swahili culinary tradition. The recipe has been passed down through generations and perfected by our head chef, making it one of the most requested dishes at Mmakwany.",
+            features: [
+                { icon: "rice_bowl", label: "Basmati Rice" },
+                { icon: "restaurant", label: "Tender Beef" },
+                { icon: "spa", label: "Aromatic Spices" },
+                { icon: "schedule", label: "Lunch & Dinner" },
+                { icon: "favorite", label: "Guest Favorite" },
+                { icon: "takeout_dining", label: "Takeaway OK" }
+            ],
+            highlights: [
+                "Premium basmati rice infused with whole aromatic spices",
+                "Slow-cooked tender beef with cardamom, cloves, and cinnamon",
+                "Authentic Swahili coastal recipe passed down through generations",
+                "Topped with crispy fried onions for added texture",
+                "One of the most requested dishes by returning guests"
+            ],
+            gallery: ["images/restaurant.jpeg", "images/lounge.jpeg", "images/courtyard.jpeg"],
+            cta: { text: "Reserve a Table", icon: "restaurant", link: "guest-dashboard.html" },
+            category: "Dining",
+            categoryLink: "index.html#dining",
+            stats: [
+                { icon: "schedule", label: "12:00–10:00 PM" },
+                { icon: "group", label: "Serves 1" },
+                { icon: "favorite", label: "Guest Favorite" }
+            ]
+        },
+        "tilapia": {
+            title: "Grilled Tilapia",
+            subtitle: "Fresh from Lake Victoria, grilled to perfection",
+            badge: { icon: "set_meal", text: "Main Course" },
+            image: "images/restaurant.jpeg",
+            price: "KES 950",
+            description: "Sourced directly from the pristine waters of Lake Victoria, our Grilled Tilapia is a true farm-to-table delicacy. Each whole tilapia is cleaned, seasoned with a zesty blend of lemon, garlic, and local herbs, then grilled over an open flame until the skin is crispy and the flesh is tender and flaky. Served on a bed of seasoned chips or ugali, with a side of garden-fresh kachumbari and a tangy dipping sauce. This dish captures the essence of lakeside dining and is a favorite among health-conscious guests looking for a light, protein-rich meal.",
+            features: [
+                { icon: "set_meal", label: "Whole Fish" },
+                { icon: "water", label: "Lake Victoria" },
+                { icon: "outdoor_grill", label: "Open Flame" },
+                { icon: "eco", label: "Fresh Catch" },
+                { icon: "restaurant", label: "With Chips/Ugali" },
+                { icon: "health_and_safety", label: "Protein Rich" }
+            ],
+            highlights: [
+                "Fresh tilapia sourced daily from Lake Victoria",
+                "Seasoned with lemon, garlic, and aromatic local herbs",
+                "Grilled over open flame for crispy skin and tender flesh",
+                "Served with chips or ugali and fresh kachumbari",
+                "A healthy, protein-rich choice loved by health-conscious guests"
+            ],
+            gallery: ["images/restaurant.jpeg", "images/courtyard.jpeg", "images/lounge.jpeg"],
+            cta: { text: "Reserve a Table", icon: "restaurant", link: "guest-dashboard.html" },
+            category: "Dining",
+            categoryLink: "index.html#dining",
+            stats: [
+                { icon: "schedule", label: "12:00–10:00 PM" },
+                { icon: "eco", label: "Farm-to-table" },
+                { icon: "water", label: "Lake Victoria" }
+            ]
+        },
+        "biryani": {
+            title: "Chicken Biryani",
+            subtitle: "Coastal-style biryani with rich, layered flavors",
+            badge: { icon: "restaurant", text: "Main Course" },
+            image: "images/restaurant.jpeg",
+            price: "KES 900",
+            description: "Our Chicken Biryani is a symphony of flavors inspired by the culinary traditions of Kenya's Swahili coast. Succulent chicken pieces are marinated in a yogurt-based sauce with turmeric, ginger, and garam masala, then layered with fragrant saffron-infused basmati rice and slow-cooked in a sealed pot to lock in the aromas. Each serving reveals beautifully separated grains of rice, tender chicken, and caramelized onions. Accompanied by a cooling cucumber raita and a zesty lime pickle, this biryani is a feast for all the senses.",
+            features: [
+                { icon: "restaurant", label: "Chicken" },
+                { icon: "rice_bowl", label: "Saffron Rice" },
+                { icon: "spa", label: "Garam Masala" },
+                { icon: "schedule", label: "Lunch & Dinner" },
+                { icon: "thumb_up", label: "Coastal Style" },
+                { icon: "takeout_dining", label: "Takeaway OK" }
+            ],
+            highlights: [
+                "Chicken marinated in yogurt, turmeric, ginger, and garam masala",
+                "Layered with saffron-infused basmati rice and slow-cooked",
+                "Inspired by authentic Swahili coastal culinary traditions",
+                "Served with cooling cucumber raita and lime pickle",
+                "Each pot is sealed during cooking to lock in maximum flavor"
+            ],
+            gallery: ["images/restaurant.jpeg", "images/lounge.jpeg", "images/courtyard.jpeg"],
+            cta: { text: "Reserve a Table", icon: "restaurant", link: "guest-dashboard.html" },
+            category: "Dining",
+            categoryLink: "index.html#dining",
+            stats: [
+                { icon: "schedule", label: "12:00–10:00 PM" },
+                { icon: "group", label: "Serves 1" },
+                { icon: "thumb_up", label: "Swahili Coastal" }
+            ]
+        },
+        "juice": {
+            title: "Fresh Tropical Juice",
+            subtitle: "Pure, natural refreshment from Kenya's best fruits",
+            badge: { icon: "local_drink", text: "Drinks" },
+            image: "images/restaurant.jpeg",
+            price: "KES 250",
+            description: "Quench your thirst with our Fresh Tropical Juices — blended moments before serving from the ripest seasonal fruits. Choose from vibrant mango, tangy passion fruit, refreshing watermelon, or our signature tropical mix that combines all three with a splash of lime. No added sugar, no preservatives — just pure, naturally sweet fruit. Our juices are prepared using fruits sourced from local farms in the Kenyan highlands, ensuring freshness and supporting local agriculture. Available all day from our bar or restaurant, and as a complimentary welcome drink for suite guests.",
+            features: [
+                { icon: "blender", label: "Fresh Blended" },
+                { icon: "eco", label: "No Preservatives" },
+                { icon: "water_drop", label: "No Added Sugar" },
+                { icon: "schedule", label: "All Day" },
+                { icon: "local_florist", label: "Seasonal Fruits" },
+                { icon: "volunteer_activism", label: "Local Farms" }
+            ],
+            highlights: [
+                "Freshly blended moments before serving for maximum flavor",
+                "Choose from mango, passion fruit, watermelon, or tropical mix",
+                "Zero added sugar or preservatives — naturally sweet",
+                "Fruits sourced from local farms in the Kenyan highlands",
+                "Complimentary as a welcome drink for suite guests"
+            ],
+            gallery: ["images/restaurant.jpeg", "images/courtyard.jpeg", "images/lounge.jpeg"],
+            cta: { text: "View Full Menu", icon: "restaurant_menu", link: "index.html#dining" },
+            category: "Dining",
+            categoryLink: "index.html#dining",
+            stats: [
+                { icon: "schedule", label: "All Day" },
+                { icon: "eco", label: "100% Natural" },
+                { icon: "local_florist", label: "Seasonal" }
+            ]
+        },
+        "mandazi": {
+            title: "Mandazi & Chai",
+            subtitle: "Kenya's beloved fried dough with spiced tea",
+            badge: { icon: "bakery_dining", text: "Desserts" },
+            image: "images/restaurant.jpeg",
+            price: "KES 200",
+            description: "End your meal — or start your afternoon — with our delightful Mandazi & Chai, a treasured Kenyan tradition. Our mandazi are made from scratch using a family recipe, with a hint of cardamom and coconut milk folded into the dough before being deep-fried to golden perfection. Light and fluffy on the inside, slightly crispy on the outside. Paired with our signature spiced chai — a robust blend of Kenyan tea leaves simmered with milk, ginger, cinnamon, and cloves. This combination is pure comfort in every bite and sip.",
+            features: [
+                { icon: "bakery_dining", label: "Handmade" },
+                { icon: "coffee", label: "Spiced Chai" },
+                { icon: "spa", label: "Cardamom" },
+                { icon: "schedule", label: "All Day" },
+                { icon: "favorite", label: "Traditional" },
+                { icon: "family_restroom", label: "Family Friendly" }
+            ],
+            highlights: [
+                "Handmade from scratch using a treasured family recipe",
+                "Infused with cardamom and coconut milk for unique flavor",
+                "Deep-fried to golden perfection — fluffy inside, crispy outside",
+                "Paired with spiced chai: Kenyan tea with ginger, cinnamon, cloves",
+                "A beloved Kenyan afternoon tradition available all day"
+            ],
+            gallery: ["images/restaurant.jpeg", "images/lounge.jpeg", "images/courtyard.jpeg"],
+            cta: { text: "View Full Menu", icon: "restaurant_menu", link: "index.html#dining" },
+            category: "Dining",
+            categoryLink: "index.html#dining",
+            stats: [
+                { icon: "schedule", label: "All Day" },
+                { icon: "bakery_dining", label: "Freshly Made" },
+                { icon: "coffee", label: "With Spiced Chai" }
+            ]
+        }
+    },
+    hall: {
+        "mmakwany-hall": {
+            title: "The Mmakwany Event Hall",
+            subtitle: "Your dream event, perfectly hosted",
+            badge: { icon: "celebration", text: "Premier Venue" },
+            image: "images/conference.jpeg",
+            price: "KES 45,000/day",
+            description: "The Mmakwany Event Hall is our flagship venue, a versatile and elegant space capable of hosting up to 500 guests. Whether you're planning a grand wedding reception, a milestone birthday celebration, a corporate conference, or a community gathering, our hall transforms to meet your vision. The space features state-of-the-art audio-visual equipment, professional stage lighting, a built-in sound system, and flexible seating arrangements including theater, banquet, and classroom layouts. Our dedicated events team handles every detail, from décor and catering to entertainment and logistics, ensuring your event is flawless from start to finish.",
+            features: [
+                { icon: "groups", label: "500 Capacity" },
+                { icon: "theater_comedy", label: "Theater Layout" },
+                { icon: "restaurant", label: "Banquet Setup" },
+                { icon: "surround_sound", label: "Pro Audio/AV" },
+                { icon: "restaurant_menu", label: "Full Catering" },
+                { icon: "light", label: "Stage Lighting" }
+            ],
+            highlights: [
+                "Versatile venue accommodating up to 500 guests",
+                "State-of-the-art audio-visual and professional stage lighting",
+                "Flexible layouts: theater, banquet, classroom, and custom setups",
+                "Full in-house catering with customizable menus",
+                "Dedicated events coordinator for end-to-end planning support"
+            ],
+            gallery: ["images/conference.jpeg", "images/courtyard.jpeg", "images/lounge.jpeg"],
+            cta: { text: "Configure & Get Quote", icon: "tune", link: "hall-configurator.html" },
+            category: "Events & Functions",
+            categoryLink: "index.html#events",
+            stats: [
+                { icon: "groups", label: "Up to 500" },
+                { icon: "square_foot", label: "800 m²" },
+                { icon: "event", label: "All Event Types" }
+            ]
+        }
+    },
+    amenity: {
+        pool: {
+            title: "Infinity Pool",
+            subtitle: "Unwind in our heated outdoor infinity pool with breathtaking views",
+            badge: { icon: "pool", text: "Resort Amenity" },
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAH7MbqpxeW-X5l1-h6rCpoFD-A7VUSFN4ZQi93s7yNEH-fYDUzmQ_t8YkLNR1sdQSK9tBpEta6N9-PguBzipknuQCale3A6JU61MPTHnN5M3xZhwacKkMd4CHOd8MCpmyCVLyFvCTDykRYvvk-zWVB5q6w0uY7RieV5HXFUcSw4RVa_OlgxbaifpN2InG5tFQjtu0p1lh2Fz5hE3hoKHh_WWpWMDACWoK1CKyxQpgPQAWzhr-dZAeg38VMiPGqRhYXtrDwUjGxB-w",
+            price: "Complimentary",
+            description: "Take a refreshing dip in our stunning heated infinity pool, the crown jewel of Mmakwany's resort amenities. Perched on an elevated deck, the pool offers panoramic views of the surrounding landscape while the infinity edge creates a seamless connection with the horizon. The temperature-controlled water ensures comfort year-round. Poolside loungers, parasols, and a full-service bar mean you never have to leave the water's edge. Our pool attendants are on hand with fresh towels, sunscreen, and your favorite beverages. Open daily from 6:00 AM to 10:00 PM, with a special twilight swim session accompanied by ambient lighting.",
+            features: [
+                { icon: "pool", label: "Heated Pool" },
+                { icon: "landscape", label: "Panoramic Views" },
+                { icon: "local_bar", label: "Poolside Bar" },
+                { icon: "deck", label: "Sun Loungers" },
+                { icon: "schedule", label: "6 AM – 10 PM" },
+                { icon: "child_care", label: "Kids Section" }
+            ],
+            highlights: [
+                "Heated infinity pool with panoramic landscape views",
+                "Full-service poolside bar with cocktails and fresh juices",
+                "Comfortable sun loungers with parasols and fresh towels",
+                "Dedicated children's section with shallow wading pool",
+                "Twilight swim sessions with ambient lighting until 10 PM"
+            ],
+            gallery: ["images/courtyard.jpeg", "images/lounge.jpeg", "images/restaurant.jpeg"],
+            cta: { text: "Book a Stay", icon: "calendar_month", link: "room-booking.html" },
+            category: "The Nexus Experience",
+            categoryLink: "room-booking.html",
+            stats: [
+                { icon: "schedule", label: "6 AM – 10 PM" },
+                { icon: "thermostat", label: "Heated" },
+                { icon: "all_inclusive", label: "Free for Guests" }
+            ]
+        },
+        spa: {
+            title: "Wellness Spa",
+            subtitle: "Holistic treatments and massages designed for ultimate relaxation",
+            badge: { icon: "spa", text: "Resort Amenity" },
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuD-KGfNTdw9PVf4DWmUfFEpwo76gDWiyRB5cZlZbE0r2zqUUYX9rAg91GeX_okIj0Km9HjPGFmMX25kowS8V0NeROQkIepQrjwylNERgyDEQZrzFDqny4CpXL0TilTHh-Y51YeqNZLoFppIO3xxY5HmQVzo7Ds3Hix-T98ZNGwrJAetnvP8L_n67HkzT_-w1Eo_xtjqMirYjhJ7VLiOxlXmvHR763H1_HAZjRamiTBrKPK-YdvgGXwL6Mf395cecw2qohH07ydHEFU",
+            price: "From KES 3,000",
+            description: "Step into a world of tranquility at our Wellness Spa, where ancient healing traditions meet modern therapeutic techniques. Our certified therapists offer a comprehensive menu of treatments including deep tissue massages, hot stone therapy, aromatherapy, facials using organic Kenyan botanicals, and traditional African body scrubs. The spa features private treatment rooms, a steam room, sauna, and a relaxation lounge with herbal teas. Whether you're recovering from travel fatigue or simply pampering yourself, our spa provides a holistic escape for mind, body, and soul.",
+            features: [
+                { icon: "spa", label: "Massage Therapy" },
+                { icon: "hot_tub", label: "Steam & Sauna" },
+                { icon: "face", label: "Facials" },
+                { icon: "self_improvement", label: "Meditation" },
+                { icon: "eco", label: "Organic Products" },
+                { icon: "schedule", label: "9 AM – 9 PM" }
+            ],
+            highlights: [
+                "Certified therapists trained in both modern and traditional techniques",
+                "Organic facials and body treatments using Kenyan botanicals",
+                "Private treatment rooms, steam room, and Finnish sauna",
+                "Relaxation lounge with herbal teas post-treatment",
+                "Couples treatment packages available for a shared experience"
+            ],
+            gallery: ["images/lounge.jpeg", "images/courtyard.jpeg", "images/restaurant.jpeg"],
+            cta: { text: "Book a Treatment", icon: "spa", link: "guest-dashboard.html" },
+            category: "The Nexus Experience",
+            categoryLink: "room-booking.html",
+            stats: [
+                { icon: "schedule", label: "9 AM – 9 PM" },
+                { icon: "spa", label: "10+ Treatments" },
+                { icon: "eco", label: "Organic Products" }
+            ]
+        },
+        dining: {
+            title: "Signature Dining",
+            subtitle: "Gourmet culinary journeys curated by world-class chefs",
+            badge: { icon: "restaurant", text: "Resort Amenity" },
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuB525s2IzhGf6Em6X3-Ifh-YFubwDYYjKbx5XPxwaxirxTG2UH8fn-d1sESgU-Tz2LECtBeU9WZ2N3bNB4qqQFdZe-d_L9RfkzOqZWg8nhQnMNp9f_ezVR3bU5d6_HD09q3HaYBUUZMBwraJ-OFNyd-4uID2RfXyjEnm-vSSTN9WmjfrIfwYsGUN0eB48Vp-DiOD-66CuYJvd7lvTyiSYh7hzycAWDYnZ16A0c4C4y2Lk72o_FFuuf4vUUZT_rbiBM0G20DCNtdMvg",
+            price: "From KES 1,500",
+            description: "Our Signature Dining experience goes beyond a meal — it's a culinary journey through East Africa's rich flavors. Our executive chef curates seasonal menus that celebrate Kenyan and pan-African cuisine using the finest locally sourced ingredients. The restaurant features an elegant ambiance with candlelit tables, live acoustic music on weekends, and an open kitchen where you can watch our chefs work their magic. From our famous Nyama Choma to delicate coastal seafood and inventive fusion dishes, every plate is a work of art. Pair your meal with selections from our curated wine list or signature cocktails from our resident mixologist.",
+            features: [
+                { icon: "restaurant", label: "Fine Dining" },
+                { icon: "music_note", label: "Live Music" },
+                { icon: "kitchen", label: "Open Kitchen" },
+                { icon: "wine_bar", label: "Wine Cellar" },
+                { icon: "local_bar", label: "Cocktail Bar" },
+                { icon: "schedule", label: "6 AM – 11 PM" }
+            ],
+            highlights: [
+                "Seasonal menus curated by our award-winning executive chef",
+                "Locally sourced ingredients celebrating Kenyan culinary heritage",
+                "Elegant candlelit dining with live acoustic music on weekends",
+                "Open kitchen concept for an immersive dining experience",
+                "Curated wine list and signature cocktails by resident mixologist"
+            ],
+            gallery: ["images/restaurant.jpeg", "images/lounge.jpeg", "images/courtyard.jpeg"],
+            cta: { text: "View Menu", icon: "restaurant_menu", link: "index.html#dining" },
+            category: "The Nexus Experience",
+            categoryLink: "room-booking.html",
+            stats: [
+                { icon: "schedule", label: "6 AM – 11 PM" },
+                { icon: "restaurant", label: "Pan-African" },
+                { icon: "music_note", label: "Live Music Fri–Sun" }
+            ]
+        }
+    }
+};
+
+// ══════════════════════════════════════════════════════
+// PAGE RENDERER
+// ══════════════════════════════════════════════════════
+const params = new URLSearchParams(window.location.search);
+const type = params.get('type');
+const id = params.get('id');
+
+function render() {
+    if (!type || !id || !DATA[type] || !DATA[type][id]) {
+        document.getElementById('hero-title').textContent = 'Page Not Found';
+        document.getElementById('hero-subtitle').textContent = 'The item you are looking for does not exist.';
+        document.getElementById('hero-img').src = 'images/courtyard.jpeg';
+        document.querySelector('main').innerHTML = '<div class="text-center py-20"><p class="text-slate-500 text-lg mb-6">Sorry, we couldn\'t find what you were looking for.</p><a href="index.html" class="bg-primary text-white px-8 py-3 rounded-full font-bold hover:bg-primary-dark transition-all">Back to Home</a></div>';
+        return;
+    }
+
+    const item = DATA[type][id];
+    document.title = `${item.title} — Mmakwany Guest House`;
+
+    // Hero
+    document.getElementById('hero-img').src = item.image;
+    document.getElementById('hero-img').alt = item.title;
+    document.getElementById('hero-title').textContent = item.title;
+    document.getElementById('hero-subtitle').textContent = item.subtitle;
+    document.getElementById('badge-icon').textContent = item.badge.icon;
+    document.getElementById('badge-text').textContent = item.badge.text;
+
+    // Breadcrumb
+    document.getElementById('breadcrumb-category').textContent = item.category;
+    document.getElementById('breadcrumb-category').onclick = () => window.location.href = item.categoryLink;
+    document.getElementById('breadcrumb-title').textContent = item.title;
+
+    // Quick stats
+    const statsEl = document.getElementById('quick-stats');
+    statsEl.innerHTML = item.stats.map(s => `
+        <div class="flex items-center gap-2 text-slate-600">
+            <span class="material-symbols-outlined text-primary !text-lg">${s.icon}</span>
+            <span class="text-sm font-semibold">${s.label}</span>
+        </div>
+    `).join('<span class="text-slate-200">|</span>');
+
+    // Price & CTA
+    document.getElementById('price-value').textContent = item.price;
+    document.getElementById('cta-text').textContent = item.cta.text;
+    document.getElementById('cta-icon').textContent = item.cta.icon;
+    document.getElementById('cta-btn').href = item.cta.link;
+
+    // Description
+    document.getElementById('description').textContent = item.description;
+
+    // Highlights
+    const highlightsList = document.getElementById('highlights-list');
+    highlightsList.innerHTML = item.highlights.map(h => `
+        <li class="flex items-start gap-3">
+            <span class="material-symbols-outlined text-primary !text-lg mt-0.5">check_circle</span>
+            <span class="text-slate-600">${h}</span>
+        </li>
+    `).join('');
+
+    // Features
+    const featuresGrid = document.getElementById('features-grid');
+    featuresGrid.innerHTML = item.features.map(f => `
+        <div class="feature-card flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-100 cursor-default">
+            <span class="material-symbols-outlined text-primary !text-xl">${f.icon}</span>
+            <span class="text-sm font-medium text-slate-700">${f.label}</span>
+        </div>
+    `).join('');
+
+    // Gallery
+    const galleryGrid = document.getElementById('gallery-grid');
+    galleryGrid.innerHTML = item.gallery.map((img, i) => `
+        <div class="relative rounded-2xl overflow-hidden ${i === 0 ? 'md:col-span-2 md:row-span-2 h-64 md:h-full' : 'h-48 md:h-64'}">
+            <img class="gallery-img w-full h-full object-cover cursor-pointer" src="${img}" alt="${item.title} gallery image ${i+1}"/>
+        </div>
+    `).join('');
+
+    // Related Items
+    renderRelated();
+}
+
+function renderRelated() {
+    const relatedGrid = document.getElementById('related-grid');
+    const allItems = [];
+
+    // Collect all items except current
+    for (const [t, items] of Object.entries(DATA)) {
+        for (const [itemId, item] of Object.entries(items)) {
+            if (t === type && itemId === id) continue;
+            allItems.push({ type: t, id: itemId, ...item });
+        }
+    }
+
+    // Pick 3 random related items, preferring same type
+    const sameType = allItems.filter(i => i.type === type);
+    const diffType = allItems.filter(i => i.type !== type);
+    const shuffled = [...sameType.sort(() => Math.random() - 0.5), ...diffType.sort(() => Math.random() - 0.5)].slice(0, 3);
+
+    relatedGrid.innerHTML = shuffled.map(item => `
+        <a href="detail.html?type=${item.type}&id=${item.id}" class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100">
+            <div class="relative h-48 overflow-hidden">
+                <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="${item.image}" alt="${item.title}"/>
+                <div class="absolute top-3 left-3 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-bold text-primary uppercase tracking-wider">${item.category}</div>
+            </div>
+            <div class="p-5">
+                <h4 class="font-bold text-lg text-slate-900 group-hover:text-primary transition-colors">${item.title}</h4>
+                <p class="text-slate-500 text-sm mt-1 line-clamp-2">${item.subtitle}</p>
+                <div class="flex items-center justify-between mt-4 pt-3 border-t border-slate-100">
+                    <span class="text-accent-gold font-bold">${item.price}</span>
+                    <span class="text-primary text-sm font-semibold flex items-center gap-1">View Details <span class="material-symbols-outlined !text-base">arrow_forward</span></span>
+                </div>
+            </div>
+        </a>
+    `).join('');
+}
+
+render();
+</script>
+</body>
+</html>

@@ -216,12 +216,12 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <!-- Room 1: Standard -->
         <div class="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group">
-            <div class="relative h-56 overflow-hidden">
+            <a href="detail.html?type=room&id=standard" class="block relative h-56 overflow-hidden cursor-pointer">
                 <img alt="Standard Room" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="images/guest-room.jpeg"/>
                 <div class="absolute top-4 left-4 bg-primary text-white text-xs font-bold px-3 py-1.5 rounded-full">Popular</div>
-            </div>
+            </a>
             <div class="p-6">
-                <h3 class="text-xl font-bold text-slate-900 mb-2">Standard Room</h3>
+                <a href="detail.html?type=room&id=standard" class="block"><h3 class="text-xl font-bold text-slate-900 mb-2 hover:text-primary transition-colors">Standard Room</h3></a>
                 <p class="text-slate-500 text-sm mb-4">Comfortable room with double bed, TV, Wi-Fi, and en-suite bathroom. Perfect for solo travelers or couples.</p>
                 <div class="flex items-center gap-4 text-slate-400 text-xs mb-5">
                     <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">bed</span> Double</span>
@@ -239,12 +239,12 @@
         </div>
         <!-- Room 2: Deluxe -->
         <div class="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group">
-            <div class="relative h-56 overflow-hidden">
+            <a href="detail.html?type=room&id=deluxe" class="block relative h-56 overflow-hidden cursor-pointer">
                 <img alt="Deluxe Room" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="images/lounge.jpeg"/>
                 <div class="absolute top-4 left-4 bg-accent-gold text-white text-xs font-bold px-3 py-1.5 rounded-full">Best Value</div>
-            </div>
+            </a>
             <div class="p-6">
-                <h3 class="text-xl font-bold text-slate-900 mb-2">Deluxe Room</h3>
+                <a href="detail.html?type=room&id=deluxe" class="block"><h3 class="text-xl font-bold text-slate-900 mb-2 hover:text-primary transition-colors">Deluxe Room</h3></a>
                 <p class="text-slate-500 text-sm mb-4">Spacious room with king-size bed, work desk, mini fridge, flat-screen TV, and private balcony views.</p>
                 <div class="flex items-center gap-4 text-slate-400 text-xs mb-5">
                     <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">king_bed</span> King</span>
@@ -262,12 +262,12 @@
         </div>
         <!-- Room 3: Executive Suite -->
         <div class="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group">
-            <div class="relative h-56 overflow-hidden">
+            <a href="detail.html?type=room&id=executive" class="block relative h-56 overflow-hidden cursor-pointer">
                 <img alt="Executive Suite" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="images/courtyard.jpeg"/>
                 <div class="absolute top-4 left-4 bg-slate-900 text-white text-xs font-bold px-3 py-1.5 rounded-full">Premium</div>
-            </div>
+            </a>
             <div class="p-6">
-                <h3 class="text-xl font-bold text-slate-900 mb-2">Executive Suite</h3>
+                <a href="detail.html?type=room&id=executive" class="block"><h3 class="text-xl font-bold text-slate-900 mb-2 hover:text-primary transition-colors">Executive Suite</h3></a>
                 <p class="text-slate-500 text-sm mb-4">Our finest accommodation with separate living area, jacuzzi bath, premium amenities, and VIP service.</p>
                 <div class="flex items-center gap-4 text-slate-400 text-xs mb-5">
                     <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">bathtub</span> Jacuzzi</span>
@@ -317,7 +317,7 @@
     <div id="menu-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
         <!-- Breakfast Items -->
-        <div class="menu-card relative rounded-2xl overflow-hidden bg-slate-800 group cursor-pointer" data-category="breakfast">
+        <a href="detail.html?type=dining&id=kenyan-breakfast" class="menu-card relative rounded-2xl overflow-hidden bg-slate-800 group cursor-pointer block" data-category="breakfast">
             <img alt="Full Kenyan Breakfast" class="w-full h-52 object-cover transition-transform duration-500" src="images/restaurant.jpeg"/>
             <div class="menu-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-70 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-5">
                 <span class="text-xs font-bold text-primary uppercase tracking-wider mb-1">Breakfast</span>
@@ -325,9 +325,9 @@
                 <p class="text-slate-300 text-xs mt-1">Eggs, sausage, beans, toast, fresh juice</p>
                 <p class="text-accent-gold font-bold text-xl mt-2">KES 650</p>
             </div>
-        </div>
+        </a>
 
-        <div class="menu-card relative rounded-2xl overflow-hidden bg-slate-800 group cursor-pointer" data-category="breakfast">
+        <a href="detail.html?type=dining&id=chapati-stew" class="menu-card relative rounded-2xl overflow-hidden bg-slate-800 group cursor-pointer block" data-category="breakfast">
             <img alt="Chapati & Stew" class="w-full h-52 object-cover transition-transform duration-500" src="images/restaurant.jpeg"/>
             <div class="menu-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-70 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-5">
                 <span class="text-xs font-bold text-primary uppercase tracking-wider mb-1">Breakfast</span>
@@ -335,10 +335,10 @@
                 <p class="text-slate-300 text-xs mt-1">Soft chapati with rich beef stew</p>
                 <p class="text-accent-gold font-bold text-xl mt-2">KES 450</p>
             </div>
-        </div>
+        </a>
 
         <!-- Main Course Items -->
-        <div class="menu-card relative rounded-2xl overflow-hidden bg-slate-800 group cursor-pointer" data-category="mains">
+        <a href="detail.html?type=dining&id=nyama-choma" class="menu-card relative rounded-2xl overflow-hidden bg-slate-800 group cursor-pointer block" data-category="mains">
             <img alt="Nyama Choma" class="w-full h-52 object-cover transition-transform duration-500" src="images/restaurant.jpeg"/>
             <div class="menu-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-70 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-5">
                 <span class="text-xs font-bold text-primary uppercase tracking-wider mb-1">Main Course</span>
@@ -346,9 +346,9 @@
                 <p class="text-slate-300 text-xs mt-1">Grilled goat ribs with kachumbari &amp; ugali</p>
                 <p class="text-accent-gold font-bold text-xl mt-2">KES 1,200</p>
             </div>
-        </div>
+        </a>
 
-        <div class="menu-card relative rounded-2xl overflow-hidden bg-slate-800 group cursor-pointer" data-category="mains">
+        <a href="detail.html?type=dining&id=pilau" class="menu-card relative rounded-2xl overflow-hidden bg-slate-800 group cursor-pointer block" data-category="mains">
             <img alt="Pilau Rice" class="w-full h-52 object-cover transition-transform duration-500" src="images/restaurant.jpeg"/>
             <div class="menu-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-70 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-5">
                 <span class="text-xs font-bold text-primary uppercase tracking-wider mb-1">Main Course</span>
@@ -356,9 +356,9 @@
                 <p class="text-slate-300 text-xs mt-1">Aromatic spiced rice with tender beef</p>
                 <p class="text-accent-gold font-bold text-xl mt-2">KES 850</p>
             </div>
-        </div>
+        </a>
 
-        <div class="menu-card relative rounded-2xl overflow-hidden bg-slate-800 group cursor-pointer" data-category="mains">
+        <a href="detail.html?type=dining&id=tilapia" class="menu-card relative rounded-2xl overflow-hidden bg-slate-800 group cursor-pointer block" data-category="mains">
             <img alt="Grilled Tilapia" class="w-full h-52 object-cover transition-transform duration-500" src="images/restaurant.jpeg"/>
             <div class="menu-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-70 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-5">
                 <span class="text-xs font-bold text-primary uppercase tracking-wider mb-1">Main Course</span>
@@ -366,9 +366,9 @@
                 <p class="text-slate-300 text-xs mt-1">Fresh Lake Victoria tilapia with chips</p>
                 <p class="text-accent-gold font-bold text-xl mt-2">KES 950</p>
             </div>
-        </div>
+        </a>
 
-        <div class="menu-card relative rounded-2xl overflow-hidden bg-slate-800 group cursor-pointer" data-category="mains">
+        <a href="detail.html?type=dining&id=biryani" class="menu-card relative rounded-2xl overflow-hidden bg-slate-800 group cursor-pointer block" data-category="mains">
             <img alt="Chicken Biryani" class="w-full h-52 object-cover transition-transform duration-500" src="images/restaurant.jpeg"/>
             <div class="menu-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-70 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-5">
                 <span class="text-xs font-bold text-primary uppercase tracking-wider mb-1">Main Course</span>
@@ -376,10 +376,10 @@
                 <p class="text-slate-300 text-xs mt-1">Coastal-style biryani with salad</p>
                 <p class="text-accent-gold font-bold text-xl mt-2">KES 900</p>
             </div>
-        </div>
+        </a>
 
         <!-- Drinks -->
-        <div class="menu-card relative rounded-2xl overflow-hidden bg-slate-800 group cursor-pointer" data-category="drinks">
+        <a href="detail.html?type=dining&id=juice" class="menu-card relative rounded-2xl overflow-hidden bg-slate-800 group cursor-pointer block" data-category="drinks">
             <img alt="Fresh Juices" class="w-full h-52 object-cover transition-transform duration-500" src="images/restaurant.jpeg"/>
             <div class="menu-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-70 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-5">
                 <span class="text-xs font-bold text-primary uppercase tracking-wider mb-1">Drinks</span>
@@ -387,10 +387,10 @@
                 <p class="text-slate-300 text-xs mt-1">Mango, passion, watermelon, or mixed</p>
                 <p class="text-accent-gold font-bold text-xl mt-2">KES 250</p>
             </div>
-        </div>
+        </a>
 
         <!-- Desserts -->
-        <div class="menu-card relative rounded-2xl overflow-hidden bg-slate-800 group cursor-pointer" data-category="desserts">
+        <a href="detail.html?type=dining&id=mandazi" class="menu-card relative rounded-2xl overflow-hidden bg-slate-800 group cursor-pointer block" data-category="desserts">
             <img alt="Mandazi" class="w-full h-52 object-cover transition-transform duration-500" src="images/restaurant.jpeg"/>
             <div class="menu-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-70 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-5">
                 <span class="text-xs font-bold text-primary uppercase tracking-wider mb-1">Desserts</span>
@@ -398,7 +398,7 @@
                 <p class="text-slate-300 text-xs mt-1">Traditional fried dough with spiced tea</p>
                 <p class="text-accent-gold font-bold text-xl mt-2">KES 200</p>
             </div>
-        </div>
+        </a>
 
     </div>
 
@@ -417,13 +417,17 @@
 <section id="events" class="py-20 bg-background-warm">
 <div class="max-w-7xl mx-auto px-6 lg:px-12">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        <div class="relative rounded-2xl overflow-hidden shadow-2xl">
-            <img alt="The Mmakwany Event Hall" class="w-full h-[500px] object-cover" src="images/conference.jpeg"/>
+        <a href="detail.html?type=hall&id=mmakwany-hall" class="block relative rounded-2xl overflow-hidden shadow-2xl group">
+            <img alt="The Mmakwany Event Hall" class="w-full h-[500px] object-cover group-hover:scale-105 transition-transform duration-500" src="images/conference.jpeg"/>
             <div class="absolute top-6 left-6 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-xl shadow-md flex items-center gap-2">
                 <span class="material-symbols-outlined text-primary">groups</span>
                 <span class="text-sm font-bold text-slate-900">Up to 500 Guests</span>
             </div>
-        </div>
+            <div class="absolute bottom-6 right-6 bg-primary/90 backdrop-blur-sm px-4 py-2 rounded-xl text-white text-sm font-bold flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                <span class="material-symbols-outlined !text-base">arrow_forward</span>
+                View Details
+            </div>
+        </a>
         <div>
             <p class="text-primary font-semibold text-sm uppercase tracking-[0.2em] mb-3">Events &amp; Functions</p>
             <h2 class="font-serif text-4xl md:text-5xl font-bold text-slate-900 mb-6 leading-tight">The Mmakwany Event Hall</h2>
