@@ -85,7 +85,7 @@
             </div>
             
             <div class="mt-auto">
-                <button class="flex w-full items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-red-900/20 text-red-400 hover:text-red-300 transition-colors">
+                <button id="sign-out-btn" class="flex w-full items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-red-900/20 text-red-400 hover:text-red-300 transition-colors">
                     <span class="material-symbols-outlined text-[20px]">logout</span>
                     <span class="text-sm font-medium">Sign Out</span>
                 </button>
@@ -333,8 +333,8 @@
                             <span class="material-symbols-outlined">restaurant_menu</span>
                         </div>
                         <div>
-                            <h3 class="text-white text-xl font-bold">Catering & Kitchen Orders</h3>
-                            <p class="text-xs text-gray-400">Manage food orders, kitchen queue, and inventory</p>
+                            <h3 class="text-white text-xl font-bold">Kitchen Management Portal</h3>
+                            <p class="text-xs text-gray-400">Live order tracking, status updates, and inventory control</p>
                         </div>
                     </div>
                     <div class="flex items-center gap-3">
@@ -344,6 +344,21 @@
                             New Order
                         </button>
                     </div>
+                </div>
+
+                <!-- Status Pipeline Legend -->
+                <div class="mb-5 p-3 bg-surface-dark border border-surface-highlight rounded-xl flex flex-wrap items-center gap-2">
+                    <span class="text-gray-400 text-xs font-bold uppercase tracking-wider mr-2">Pipeline:</span>
+                    <span class="px-2.5 py-1 bg-blue-500/15 text-blue-400 text-[10px] font-bold rounded-full border border-blue-500/20">● Queued</span>
+                    <span class="material-symbols-outlined text-gray-600 text-[14px]">arrow_forward</span>
+                    <span class="px-2.5 py-1 bg-yellow-500/15 text-yellow-400 text-[10px] font-bold rounded-full border border-yellow-500/20">● Prep</span>
+                    <span class="material-symbols-outlined text-gray-600 text-[14px]">arrow_forward</span>
+                    <span class="px-2.5 py-1 bg-orange-500/15 text-orange-400 text-[10px] font-bold rounded-full border border-orange-500/20">🔥 Cooking</span>
+                    <span class="material-symbols-outlined text-gray-600 text-[14px]">arrow_forward</span>
+                    <span class="px-2.5 py-1 bg-purple-500/15 text-purple-400 text-[10px] font-bold rounded-full border border-purple-500/20">● Plating</span>
+                    <span class="material-symbols-outlined text-gray-600 text-[14px]">arrow_forward</span>
+                    <span class="px-2.5 py-1 bg-emerald-500/15 text-emerald-400 text-[10px] font-bold rounded-full border border-emerald-500/20">✓ Served</span>
+                    <span class="ml-auto text-gray-500 text-[10px] italic hidden sm:block">Click status badge to advance →</span>
                 </div>
 
                 <!-- Add Order Form (hidden) -->
@@ -380,60 +395,169 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <!-- Live Orders -->
-                    <div class="bg-surface-dark border border-surface-highlight rounded-xl p-6">
+                <div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
+                    <!-- Live Orders (wider) -->
+                    <div class="lg:col-span-3 bg-surface-dark border border-surface-highlight rounded-xl p-6">
                         <h3 class="text-white text-lg font-bold mb-4 flex items-center gap-2">
                             <span class="material-symbols-outlined text-yellow-500">cooking</span> Live Kitchen Queue
+                            <span class="ml-auto text-[10px] text-gray-500 font-normal">Click status to advance</span>
                         </h3>
-                        <div class="space-y-4" id="orders-list">
-                            <div class="order-card p-4 bg-surface-highlight/20 border border-surface-highlight rounded-lg flex justify-between items-center group">
-                                <div>
-                                    <h4 class="text-white font-semibold text-sm">Order #1024 — VIP Table 2</h4>
-                                    <p class="text-xs text-gray-400">3x Lobster Thermidor, 1x Vintage Red</p>
-                                </div>
-                                <div class="flex items-center gap-2">
-                                    <span class="px-2 py-1 bg-yellow-500/20 text-yellow-500 text-xs font-bold rounded uppercase">Prep</span>
+                        <div class="space-y-3" id="orders-list">
+                            <!-- Order #1024 -->
+                            <div class="order-card p-4 bg-surface-highlight/20 border border-surface-highlight rounded-xl group hover:border-yellow-500/30 transition-all" data-status="Prep" data-created="1708200000000">
+                                <div class="flex justify-between items-start mb-3">
+                                    <div>
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <h4 class="text-white font-bold text-sm">Order #1024</h4>
+                                            <span class="text-[10px] text-gray-500">→</span>
+                                            <span class="text-primary text-xs font-medium">VIP Table 2</span>
+                                        </div>
+                                        <p class="text-xs text-gray-400">3x Lobster Thermidor, 1x Vintage Red</p>
+                                    </div>
                                     <button class="remove-order-btn opacity-0 group-hover:opacity-100 text-gray-500 hover:text-red-400 p-1 rounded hover:bg-red-900/20 transition-all" title="Remove order">
                                         <span class="material-symbols-outlined text-[16px]">close</span>
                                     </button>
+                                </div>
+                                <!-- Status + Timer Row -->
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-2">
+                                        <button class="order-status-btn px-3 py-1.5 bg-yellow-500/20 text-yellow-400 text-xs font-bold rounded-lg border border-yellow-500/20 hover:bg-yellow-500/30 transition-all cursor-pointer flex items-center gap-1.5" title="Click to advance to next stage">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-yellow-400"></span>
+                                            Prep
+                                            <span class="material-symbols-outlined text-[12px] opacity-50">arrow_forward</span>
+                                        </button>
+                                        <!-- Mini progress -->
+                                        <div class="flex gap-0.5">
+                                            <div class="w-5 h-1 rounded-full bg-blue-500"></div>
+                                            <div class="w-5 h-1 rounded-full bg-yellow-500"></div>
+                                            <div class="w-5 h-1 rounded-full bg-gray-700"></div>
+                                            <div class="w-5 h-1 rounded-full bg-gray-700"></div>
+                                            <div class="w-5 h-1 rounded-full bg-gray-700"></div>
+                                        </div>
+                                    </div>
+                                    <span class="order-timer text-[10px] text-gray-500 flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-[12px]">schedule</span>
+                                        <span class="timer-text">12 min</span>
+                                    </span>
                                 </div>
                             </div>
-                            <div class="order-card p-4 bg-surface-highlight/20 border border-surface-highlight rounded-lg flex justify-between items-center group">
-                                <div>
-                                    <h4 class="text-white font-semibold text-sm">Order #1025 — Garden</h4>
-                                    <p class="text-xs text-gray-400">50x Mini Burgers Platter</p>
-                                </div>
-                                <div class="flex items-center gap-2">
-                                    <span class="px-2 py-1 bg-blue-500/20 text-blue-500 text-xs font-bold rounded uppercase">Queued</span>
+                            <!-- Order #1025 -->
+                            <div class="order-card p-4 bg-surface-highlight/20 border border-surface-highlight rounded-xl group hover:border-blue-500/30 transition-all" data-status="Queued" data-created="1708200300000">
+                                <div class="flex justify-between items-start mb-3">
+                                    <div>
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <h4 class="text-white font-bold text-sm">Order #1025</h4>
+                                            <span class="text-[10px] text-gray-500">→</span>
+                                            <span class="text-primary text-xs font-medium">Garden</span>
+                                        </div>
+                                        <p class="text-xs text-gray-400">50x Mini Burgers Platter</p>
+                                    </div>
                                     <button class="remove-order-btn opacity-0 group-hover:opacity-100 text-gray-500 hover:text-red-400 p-1 rounded hover:bg-red-900/20 transition-all" title="Remove order">
                                         <span class="material-symbols-outlined text-[16px]">close</span>
                                     </button>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-2">
+                                        <button class="order-status-btn px-3 py-1.5 bg-blue-500/20 text-blue-400 text-xs font-bold rounded-lg border border-blue-500/20 hover:bg-blue-500/30 transition-all cursor-pointer flex items-center gap-1.5" title="Click to advance to next stage">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+                                            Queued
+                                            <span class="material-symbols-outlined text-[12px] opacity-50">arrow_forward</span>
+                                        </button>
+                                        <div class="flex gap-0.5">
+                                            <div class="w-5 h-1 rounded-full bg-blue-500"></div>
+                                            <div class="w-5 h-1 rounded-full bg-gray-700"></div>
+                                            <div class="w-5 h-1 rounded-full bg-gray-700"></div>
+                                            <div class="w-5 h-1 rounded-full bg-gray-700"></div>
+                                            <div class="w-5 h-1 rounded-full bg-gray-700"></div>
+                                        </div>
+                                    </div>
+                                    <span class="order-timer text-[10px] text-gray-500 flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-[12px]">schedule</span>
+                                        <span class="timer-text">7 min</span>
+                                    </span>
                                 </div>
                             </div>
                         </div>
                         <div id="orders-empty" class="hidden py-8 text-center">
                             <span class="material-symbols-outlined text-gray-600 text-[36px]">no_meals</span>
-                            <p class="text-gray-500 text-sm mt-2">No orders in queue</p>
+                            <p class="text-gray-500 text-sm mt-2">No orders in queue — kitchen is clear!</p>
                         </div>
                     </div>
-                    <!-- Inventory Alerts -->
-                    <div class="bg-surface-dark border border-surface-highlight rounded-xl p-6">
-                        <h3 class="text-white text-lg font-bold mb-4 flex items-center gap-2">
-                            <span class="material-symbols-outlined text-red-400">inventory</span> Inventory Alerts
-                        </h3>
-                        <div class="space-y-3">
-                            <div class="flex items-center justify-between text-sm p-3 bg-red-900/10 border border-red-900/20 rounded">
-                                <span class="text-gray-300">Sparkling Water (750ml)</span>
-                                <span class="text-red-400 font-bold">Low Stock (5 left)</span>
+
+                    <!-- Inventory Panel -->
+                    <div class="lg:col-span-2 bg-surface-dark border border-surface-highlight rounded-xl p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-white text-lg font-bold flex items-center gap-2">
+                                <span class="material-symbols-outlined text-red-400">inventory</span> Inventory
+                            </h3>
+                            <button id="add-inventory-toggle" class="text-primary hover:text-white text-xs font-bold flex items-center gap-1 px-2 py-1 rounded-lg hover:bg-surface-highlight transition-colors">
+                                <span class="material-symbols-outlined text-[14px]">add_circle</span> Add
+                            </button>
+                        </div>
+                        <div class="space-y-2" id="inventory-list">
+                            <div class="inventory-item flex items-center justify-between text-sm p-3 bg-red-900/10 border border-red-900/20 rounded-lg group" data-item="Sparkling Water (750ml)" data-qty="5" data-severity="critical">
+                                <div class="flex-1">
+                                    <span class="text-gray-300 font-medium">Sparkling Water (750ml)</span>
+                                    <div class="text-red-400 font-bold text-xs mt-0.5">Low Stock — <span class="inv-qty">5</span> left</div>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <button class="restock-btn opacity-0 group-hover:opacity-100 px-2.5 py-1 bg-emerald-600/20 text-emerald-400 text-[10px] font-bold rounded-lg border border-emerald-600/20 hover:bg-emerald-600/30 transition-all">Restock</button>
+                                </div>
                             </div>
-                            <div class="flex items-center justify-between text-sm p-3 bg-red-900/10 border border-red-900/20 rounded">
-                                <span class="text-gray-300">Napkins (Linen)</span>
-                                <span class="text-red-400 font-bold">Critical (10 left)</span>
+                            <div class="inventory-item flex items-center justify-between text-sm p-3 bg-red-900/10 border border-red-900/20 rounded-lg group" data-item="Napkins (Linen)" data-qty="10" data-severity="critical">
+                                <div class="flex-1">
+                                    <span class="text-gray-300 font-medium">Napkins (Linen)</span>
+                                    <div class="text-red-400 font-bold text-xs mt-0.5">Critical — <span class="inv-qty">10</span> left</div>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <button class="restock-btn opacity-0 group-hover:opacity-100 px-2.5 py-1 bg-emerald-600/20 text-emerald-400 text-[10px] font-bold rounded-lg border border-emerald-600/20 hover:bg-emerald-600/30 transition-all">Restock</button>
+                                </div>
                             </div>
-                            <div class="flex items-center justify-between text-sm p-3 bg-yellow-900/10 border border-yellow-900/20 rounded">
-                                <span class="text-gray-300">Red Wine (House)</span>
-                                <span class="text-yellow-400 font-bold">Low (8 bottles)</span>
+                            <div class="inventory-item flex items-center justify-between text-sm p-3 bg-yellow-900/10 border border-yellow-900/20 rounded-lg group" data-item="Red Wine (House)" data-qty="8" data-severity="low">
+                                <div class="flex-1">
+                                    <span class="text-gray-300 font-medium">Red Wine (House)</span>
+                                    <div class="text-yellow-400 font-bold text-xs mt-0.5">Low — <span class="inv-qty">8</span> bottles</div>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <button class="restock-btn opacity-0 group-hover:opacity-100 px-2.5 py-1 bg-emerald-600/20 text-emerald-400 text-[10px] font-bold rounded-lg border border-emerald-600/20 hover:bg-emerald-600/30 transition-all">Restock</button>
+                                </div>
+                            </div>
+                            <div class="inventory-item flex items-center justify-between text-sm p-3 bg-yellow-900/10 border border-yellow-900/20 rounded-lg group" data-item="Ice Cubes (bags)" data-qty="3" data-severity="low">
+                                <div class="flex-1">
+                                    <span class="text-gray-300 font-medium">Ice Cubes (bags)</span>
+                                    <div class="text-yellow-400 font-bold text-xs mt-0.5">Low — <span class="inv-qty">3</span> bags</div>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <button class="restock-btn opacity-0 group-hover:opacity-100 px-2.5 py-1 bg-emerald-600/20 text-emerald-400 text-[10px] font-bold rounded-lg border border-emerald-600/20 hover:bg-emerald-600/30 transition-all">Restock</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Add Inventory Form (hidden) -->
+                        <div id="add-inventory-form" class="hidden mt-3 p-3 bg-background-dark border border-surface-highlight rounded-xl" style="animation: fadeIn 0.3s ease-out;">
+                            <div class="grid grid-cols-2 gap-3 mb-3">
+                                <div>
+                                    <label class="text-[10px] text-gray-400 font-semibold uppercase block mb-1">Item Name *</label>
+                                    <input type="text" id="inv-name" placeholder="e.g. Olive Oil" class="w-full bg-surface-dark border border-surface-highlight rounded-lg px-2.5 py-2 text-xs text-white placeholder-gray-600 focus:border-primary focus:ring-0"/>
+                                </div>
+                                <div>
+                                    <label class="text-[10px] text-gray-400 font-semibold uppercase block mb-1">Quantity *</label>
+                                    <input type="number" id="inv-qty-input" placeholder="e.g. 12" min="0" class="w-full bg-surface-dark border border-surface-highlight rounded-lg px-2.5 py-2 text-xs text-white placeholder-gray-600 focus:border-primary focus:ring-0"/>
+                                </div>
+                            </div>
+                            <div class="flex gap-2">
+                                <button id="save-inventory-btn" class="px-3 py-1.5 bg-emerald-600 text-white text-xs font-bold rounded-lg hover:bg-emerald-700 transition-colors">Add Item</button>
+                                <button id="cancel-inventory-btn" class="px-3 py-1.5 border border-surface-highlight text-gray-400 text-xs rounded-lg hover:bg-surface-highlight hover:text-white transition-colors">Cancel</button>
+                            </div>
+                        </div>
+
+                        <!-- Restock Modal (inline, hidden) -->
+                        <div id="restock-modal" class="hidden mt-3 p-3 bg-emerald-900/20 border border-emerald-500/20 rounded-xl" style="animation: fadeIn 0.3s ease-out;">
+                            <p class="text-emerald-400 text-xs font-bold mb-2">Restock: <span id="restock-item-name"></span></p>
+                            <div class="flex gap-2">
+                                <input type="number" id="restock-qty-input" placeholder="Add qty" min="1" class="flex-1 bg-surface-dark border border-surface-highlight rounded-lg px-2.5 py-2 text-xs text-white placeholder-gray-600 focus:border-emerald-500 focus:ring-0"/>
+                                <button id="confirm-restock-btn" class="px-3 py-1.5 bg-emerald-600 text-white text-xs font-bold rounded-lg hover:bg-emerald-700">Confirm</button>
+                                <button id="cancel-restock-btn" class="px-3 py-1.5 border border-surface-highlight text-gray-400 text-xs rounded-lg hover:bg-surface-highlight hover:text-white">Cancel</button>
                             </div>
                         </div>
                     </div>
@@ -793,10 +917,18 @@
             'Busy': ['text-orange-400','bg-orange-400'],
             'Patrol': ['text-blue-400','bg-blue-400'],
         };
+        const orderStatusPipeline = ['Queued','Prep','Cooking','Plating','Served'];
+        const orderStatusStyles = {
+            'Queued':  { bg:'bg-blue-500/20',   text:'text-blue-400',   border:'border-blue-500/20',   dot:'bg-blue-400',   hoverBg:'hover:bg-blue-500/30',   barColor:'bg-blue-500' },
+            'Prep':    { bg:'bg-yellow-500/20', text:'text-yellow-400', border:'border-yellow-500/20', dot:'bg-yellow-400', hoverBg:'hover:bg-yellow-500/30', barColor:'bg-yellow-500' },
+            'Cooking': { bg:'bg-orange-500/20', text:'text-orange-400', border:'border-orange-500/20', dot:'bg-orange-400', hoverBg:'hover:bg-orange-500/30', barColor:'bg-orange-500' },
+            'Plating': { bg:'bg-purple-500/20', text:'text-purple-400', border:'border-purple-500/20', dot:'bg-purple-400', hoverBg:'hover:bg-purple-500/30', barColor:'bg-purple-500' },
+            'Served':  { bg:'bg-emerald-500/20',text:'text-emerald-400',border:'border-emerald-500/20',dot:'bg-emerald-400',hoverBg:'hover:bg-emerald-500/30',barColor:'bg-emerald-500' },
+        };
         const orderStatusColors = {
-            'Queued': ['bg-blue-500/20','text-blue-500'],
-            'Prep': ['bg-yellow-500/20','text-yellow-500'],
-            'Rush': ['bg-red-500/20','text-red-500'],
+            'Queued': ['bg-blue-500/20','text-blue-400'],
+            'Prep': ['bg-yellow-500/20','text-yellow-400'],
+            'Rush': ['bg-red-500/20','text-red-400'],
         };
         const vendorStatusColors = {
             'On Site': ['bg-emerald-500/20','text-emerald-500'],
@@ -989,7 +1121,7 @@
         });
 
         // ══════════════════════════════════════════════════════
-        // CATERING ORDERS
+        // CATERING ORDERS — Kitchen Management Portal
         // ══════════════════════════════════════════════════════
         const ordersList = document.getElementById('orders-list');
         const ordersEmpty = document.getElementById('orders-empty');
@@ -1005,7 +1137,60 @@
             ordersEmpty.classList.toggle('hidden', count > 0);
             ordersList.classList.toggle('hidden', count === 0);
         }
-        function attachRemoveOrder() {
+
+        function buildProgressBar(currentStatus) {
+            const idx = orderStatusPipeline.indexOf(currentStatus);
+            return orderStatusPipeline.map((s, i) => {
+                const style = orderStatusStyles[s];
+                const color = i <= idx ? style.barColor : 'bg-gray-700';
+                return '<div class="w-5 h-1 rounded-full ' + color + '"></div>';
+            }).join('');
+        }
+
+        function advanceOrderStatus(card) {
+            const current = card.dataset.status;
+            const idx = orderStatusPipeline.indexOf(current);
+            if (idx === -1 || idx >= orderStatusPipeline.length - 1) return;
+            
+            const next = orderStatusPipeline[idx + 1];
+            card.dataset.status = next;
+            const style = orderStatusStyles[next];
+            
+            // Update status button
+            const statusBtn = card.querySelector('.order-status-btn');
+            const label = next === 'Cooking' ? '🔥 ' + next : next;
+            const arrowHtml = next === 'Served' ? '' : '<span class="material-symbols-outlined text-[12px] opacity-50">arrow_forward</span>';
+            statusBtn.className = 'order-status-btn px-3 py-1.5 ' + style.bg + ' ' + style.text + ' text-xs font-bold rounded-lg border ' + style.border + ' ' + style.hoverBg + ' transition-all cursor-pointer flex items-center gap-1.5';
+            statusBtn.innerHTML = '<span class="w-1.5 h-1.5 rounded-full ' + style.dot + '"></span> ' + label + ' ' + arrowHtml;
+            
+            // Update progress bar
+            const progressContainer = card.querySelector('.flex.gap-0\\.5') || card.querySelectorAll('.flex.gap-0\\.5')[0];
+            const progressBars = card.querySelectorAll('.order-progress-bar');
+            if (progressBars.length > 0) {
+                progressBars[0].innerHTML = buildProgressBar(next);
+            }
+            
+            // Update card border color
+            card.className = card.className.replace(/hover:border-\w+-\d+\/\d+/g, '');
+            const borderMap = { Queued:'hover:border-blue-500/30', Prep:'hover:border-yellow-500/30', Cooking:'hover:border-orange-500/30', Plating:'hover:border-purple-500/30', Served:'hover:border-emerald-500/30' };
+            card.classList.add(borderMap[next] || '');
+            
+            toast('Order → ' + next);
+
+            // If served, auto-remove after 3s
+            if (next === 'Served') {
+                statusBtn.title = 'Order complete!';
+                statusBtn.style.cursor = 'default';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.5s';
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateX(40px)';
+                    setTimeout(() => { card.remove(); updateOrderCount(); toast('Order served & cleared ✓'); }, 500);
+                }, 3000);
+            }
+        }
+
+        function attachOrderHandlers() {
             ordersList.querySelectorAll('.remove-order-btn').forEach(btn => {
                 btn.onclick = function() {
                     const card = this.closest('.order-card');
@@ -1013,8 +1198,14 @@
                     setTimeout(() => { card.remove(); updateOrderCount(); toast('Order removed'); }, 300);
                 };
             });
+            ordersList.querySelectorAll('.order-status-btn').forEach(btn => {
+                btn.onclick = function() {
+                    const card = this.closest('.order-card');
+                    if (card.dataset.status !== 'Served') advanceOrderStatus(card);
+                };
+            });
         }
-        attachRemoveOrder();
+        attachOrderHandlers();
         updateOrderCount();
 
         addOrderToggle.addEventListener('click', () => addOrderForm.classList.toggle('hidden'));
@@ -1027,13 +1218,18 @@
             if (!dest || !items) { toast('Please fill Destination and Items', 'warning'); return; }
 
             orderCounter++;
-            const colors = orderStatusColors[priority] || orderStatusColors['Queued'];
+            const initialStatus = priority === 'Rush' ? 'Prep' : 'Queued';
+            const style = orderStatusStyles[initialStatus];
+            const rushPulse = priority === 'Rush' ? '<span class="inline-block w-2 h-2 rounded-full bg-red-500 animate-pulse ml-1"></span><span class="text-red-400 text-[10px] font-bold"> VIP</span>' : '';
+            
             const card = document.createElement('div');
-            card.className = 'order-card p-4 bg-surface-highlight/20 border border-surface-highlight rounded-lg flex justify-between items-center group';
+            card.className = 'order-card p-4 bg-surface-highlight/20 border border-surface-highlight rounded-xl group hover:border-blue-500/30 transition-all';
+            card.dataset.status = initialStatus;
+            card.dataset.created = Date.now();
             card.style.animation = 'fadeIn 0.3s ease-out';
-            card.innerHTML = '<div><h4 class="text-white font-semibold text-sm">Order #' + orderCounter + ' — ' + dest + '</h4><p class="text-xs text-gray-400">' + items + '</p></div><div class="flex items-center gap-2"><span class="px-2 py-1 ' + colors[0] + ' ' + colors[1] + ' text-xs font-bold rounded uppercase">' + priority + '</span><button class="remove-order-btn opacity-0 group-hover:opacity-100 text-gray-500 hover:text-red-400 p-1 rounded hover:bg-red-900/20 transition-all" title="Remove order"><span class="material-symbols-outlined text-[16px]">close</span></button></div>';
-            ordersList.appendChild(card);
-            attachRemoveOrder();
+            card.innerHTML = '<div class="flex justify-between items-start mb-3"><div><div class="flex items-center gap-2 mb-1"><h4 class="text-white font-bold text-sm">Order #' + orderCounter + '</h4><span class="text-[10px] text-gray-500">→</span><span class="text-primary text-xs font-medium">' + dest + '</span>' + rushPulse + '</div><p class="text-xs text-gray-400">' + items + '</p></div><button class="remove-order-btn opacity-0 group-hover:opacity-100 text-gray-500 hover:text-red-400 p-1 rounded hover:bg-red-900/20 transition-all" title="Remove order"><span class="material-symbols-outlined text-[16px]">close</span></button></div><div class="flex items-center justify-between"><div class="flex items-center gap-2"><button class="order-status-btn px-3 py-1.5 ' + style.bg + ' ' + style.text + ' text-xs font-bold rounded-lg border ' + style.border + ' ' + style.hoverBg + ' transition-all cursor-pointer flex items-center gap-1.5" title="Click to advance to next stage"><span class="w-1.5 h-1.5 rounded-full ' + style.dot + '"></span> ' + initialStatus + ' <span class="material-symbols-outlined text-[12px] opacity-50">arrow_forward</span></button><div class="order-progress-bar flex gap-0.5">' + buildProgressBar(initialStatus) + '</div></div><span class="order-timer text-[10px] text-gray-500 flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">schedule</span><span class="timer-text">just now</span></span></div>';
+            ordersList.prepend(card);
+            attachOrderHandlers();
             updateOrderCount();
 
             document.getElementById('order-destination').value = '';
@@ -1041,6 +1237,99 @@
             document.getElementById('order-priority').value = 'Queued';
             addOrderForm.classList.add('hidden');
             toast('Order #' + orderCounter + ' submitted for ' + dest);
+        });
+
+        // Timer updater
+        setInterval(() => {
+            ordersList.querySelectorAll('.order-card').forEach(card => {
+                const created = parseInt(card.dataset.created);
+                if (!created) return;
+                const diff = Math.floor((Date.now() - created) / 60000);
+                const timerSpan = card.querySelector('.timer-text');
+                if (timerSpan) timerSpan.textContent = diff < 1 ? 'just now' : diff + ' min';
+            });
+        }, 30000);
+
+        // ══════════════════════════════════════════════════════
+        // INVENTORY MANAGEMENT  
+        // ══════════════════════════════════════════════════════
+        const inventoryList = document.getElementById('inventory-list');
+        const addInvToggle = document.getElementById('add-inventory-toggle');
+        const addInvForm = document.getElementById('add-inventory-form');
+        const saveInvBtn = document.getElementById('save-inventory-btn');
+        const cancelInvBtn = document.getElementById('cancel-inventory-btn');
+        const restockModal = document.getElementById('restock-modal');
+        const restockItemName = document.getElementById('restock-item-name');
+        const restockQtyInput = document.getElementById('restock-qty-input');
+        const confirmRestockBtn = document.getElementById('confirm-restock-btn');
+        const cancelRestockBtn = document.getElementById('cancel-restock-btn');
+        let currentRestockItem = null;
+
+        // Restock flow
+        function attachRestockHandlers() {
+            inventoryList.querySelectorAll('.restock-btn').forEach(btn => {
+                btn.onclick = function() {
+                    currentRestockItem = this.closest('.inventory-item');
+                    restockItemName.textContent = currentRestockItem.dataset.item;
+                    restockQtyInput.value = '';
+                    restockModal.classList.remove('hidden');
+                    restockQtyInput.focus();
+                };
+            });
+        }
+        attachRestockHandlers();
+
+        if (cancelRestockBtn) cancelRestockBtn.addEventListener('click', () => { restockModal.classList.add('hidden'); currentRestockItem = null; });
+        if (confirmRestockBtn) confirmRestockBtn.addEventListener('click', () => {
+            const addQty = parseInt(restockQtyInput.value);
+            if (!addQty || addQty < 1 || !currentRestockItem) { toast('Enter a valid quantity', 'warning'); return; }
+            
+            const oldQty = parseInt(currentRestockItem.dataset.qty) || 0;
+            const newQty = oldQty + addQty;
+            currentRestockItem.dataset.qty = newQty;
+            currentRestockItem.querySelector('.inv-qty').textContent = newQty;
+            
+            // Update visual
+            if (newQty >= 20) {
+                currentRestockItem.className = 'inventory-item flex items-center justify-between text-sm p-3 bg-emerald-900/10 border border-emerald-900/20 rounded-lg group';
+                const statusDiv = currentRestockItem.querySelector('.flex-1 > div:last-child');
+                statusDiv.className = 'text-emerald-400 font-bold text-xs mt-0.5';
+                statusDiv.innerHTML = 'Stocked ✓ — <span class="inv-qty">' + newQty + '</span> available';
+            } else {
+                currentRestockItem.querySelector('.inv-qty').textContent = newQty;
+            }
+            
+            restockModal.classList.add('hidden');
+            currentRestockItem = null;
+            toast('Inventory restocked: +' + addQty + ' units');
+        });
+
+        // Add Inventory Item
+        if (addInvToggle) addInvToggle.addEventListener('click', () => addInvForm.classList.toggle('hidden'));
+        if (cancelInvBtn) cancelInvBtn.addEventListener('click', () => addInvForm.classList.add('hidden'));
+        if (saveInvBtn) saveInvBtn.addEventListener('click', () => {
+            const name = document.getElementById('inv-name').value.trim();
+            const qty = parseInt(document.getElementById('inv-qty-input').value);
+            if (!name || !qty) { toast('Fill in item name and quantity', 'warning'); return; }
+            
+            const severity = qty <= 5 ? 'critical' : qty <= 15 ? 'low' : 'ok';
+            const colorMap = { critical: ['bg-red-900/10','border-red-900/20','text-red-400','Low Stock'], low: ['bg-yellow-900/10','border-yellow-900/20','text-yellow-400','Low'], ok: ['bg-emerald-900/10','border-emerald-900/20','text-emerald-400','Stocked ✓'] };
+            const c = colorMap[severity];
+            
+            const item = document.createElement('div');
+            item.className = 'inventory-item flex items-center justify-between text-sm p-3 ' + c[0] + ' border ' + c[1] + ' rounded-lg group';
+            item.dataset.item = name;
+            item.dataset.qty = qty;
+            item.dataset.severity = severity;
+            item.style.animation = 'fadeIn 0.3s ease-out';
+            item.innerHTML = '<div class="flex-1"><span class="text-gray-300 font-medium">' + name + '</span><div class="' + c[2] + ' font-bold text-xs mt-0.5">' + c[3] + ' — <span class="inv-qty">' + qty + '</span> available</div></div><div class="flex items-center gap-2"><button class="restock-btn opacity-0 group-hover:opacity-100 px-2.5 py-1 bg-emerald-600/20 text-emerald-400 text-[10px] font-bold rounded-lg border border-emerald-600/20 hover:bg-emerald-600/30 transition-all">Restock</button></div>';
+            inventoryList.appendChild(item);
+            attachRestockHandlers();
+            
+            document.getElementById('inv-name').value = '';
+            document.getElementById('inv-qty-input').value = '';
+            addInvForm.classList.add('hidden');
+            toast(name + ' added to inventory');
         });
 
         // ══════════════════════════════════════════════════════
@@ -1098,6 +1387,21 @@
             toast(name + ' added as vendor');
         });
 
+        // ══════════════════════════════════════════════════════
+        // SIGN OUT
+        // ══════════════════════════════════════════════════════
+        const signOutBtn = document.getElementById('sign-out-btn');
+        if (signOutBtn) {
+            signOutBtn.addEventListener('click', () => {
+                localStorage.removeItem('mmakwanyUser');
+                window.location.href = 'login.html';
+            });
+        }
+
+        // Handle tab from URL (e.g. ?tab=catering-orders)
+        const urlParams = new URLSearchParams(window.location.search);
+        const tabParam = urlParams.get('tab');
+        if (tabParam) switchTab(tabParam);
     });
 </script>
 </body>
