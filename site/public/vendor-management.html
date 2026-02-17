@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mmakwany Guest House Vendor Management Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0d968b",
+                        "primary-dark": "#0a7a70",
+                        "background-light": "#FAFAFA", /* Warm White */
+                        "background-dark": "#102220",
+                        "surface-light": "#FFFFFF", /* Pure White */
+                        "gold": "#D97706",
+                        "danger": "#EF4444",
+                        "warning": "#F59E0B",
+                        "success": "#10B981",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "sans": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.375rem", // rounded-md
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar for table container if needed */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-100 min-h-screen flex flex-col font-display overflow-hidden">
+<!-- Top Navigation Bar -->
+<header class="w-full bg-surface-light dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 h-16 flex items-center justify-between px-6 shrink-0 z-20">
+<div class="flex items-center gap-4">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-xl">hub</span>
+</div>
+<h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">Mmakwany Guest House Vendor Hub</h1>
+</div>
+<div class="flex items-center gap-6 flex-1 justify-end">
+<!-- Search Bar -->
+<div class="relative w-full max-w-md hidden md:block">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="block w-full rounded-lg border-0 py-2 pl-10 pr-4 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100 ring-1 ring-inset ring-slate-200 dark:ring-slate-700 placeholder:text-slate-500 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6" placeholder="Search vendors, contracts, or IDs..." type="text"/>
+</div>
+<!-- Add Vendor Button -->
+<button class="bg-primary hover:bg-primary-dark text-white font-semibold py-2 px-4 rounded-lg flex items-center gap-2 transition-colors text-sm shadow-sm">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span>Add New Vendor</span>
+</button>
+<!-- User Profile -->
+<div class="size-9 rounded-full bg-slate-200 overflow-hidden ring-2 ring-white cursor-pointer relative" data-alt="User profile picture showing a smiling professional man">
+<img alt="Profile" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBx_EuuS1kpaVnSCQ7FKqOjDP4ZU5rySVkilv0A6H1XS0GbIKDZo7iN94RikY-1wbmbOuoRtjo98q-d4BR2-jGwOufpho6ybyCWciSm9SzPEbiYUeJThSo3avU4w7-rSMVPXNO8DjqhOXExEUbcFDxCEQ3uD4Qnf0GNFdrKVl3YhBTlXYf1-Lis4z6yhNA_-XnOC6Pcp4h8OttBDsSkv7uzN4ffkL5PuoEho3YnO47O7nOuSSgVVpBpl_d_w9WhukcM9clQ5YRVAQs"/>
+<span class="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full bg-success ring-2 ring-white"></span>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 flex overflow-hidden">
+<!-- Center Content: Dashboard & Table -->
+<div class="flex-1 flex flex-col min-w-0 overflow-y-auto p-6 lg:p-8 gap-8">
+<!-- 1. KPI Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Card 1 -->
+<div class="bg-surface-light dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col gap-1">
+<div class="flex justify-between items-start">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Total Active Vendors</p>
+<span class="p-1.5 bg-primary/10 rounded-md text-primary">
+<span class="material-symbols-outlined text-[20px]">storefront</span>
+</span>
+</div>
+<div class="flex items-baseline gap-2 mt-1">
+<h3 class="text-2xl font-bold text-slate-900 dark:text-white">48</h3>
+<span class="text-xs font-medium text-success flex items-center">
+<span class="material-symbols-outlined text-[16px]">arrow_upward</span> 12%
+                        </span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-light dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col gap-1">
+<div class="flex justify-between items-start">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Avg Fulfillment Rate</p>
+<span class="p-1.5 bg-blue-500/10 rounded-md text-blue-600">
+<span class="material-symbols-outlined text-[20px]">inventory_2</span>
+</span>
+</div>
+<div class="flex items-baseline gap-2 mt-1">
+<h3 class="text-2xl font-bold text-slate-900 dark:text-white">94%</h3>
+<span class="text-xs font-medium text-success flex items-center">
+<span class="material-symbols-outlined text-[16px]">arrow_upward</span> 2.1%
+                        </span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-light dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col gap-1">
+<div class="flex justify-between items-start">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Total Monthly Spend</p>
+<span class="p-1.5 bg-purple-500/10 rounded-md text-purple-600">
+<span class="material-symbols-outlined text-[20px]">payments</span>
+</span>
+</div>
+<div class="flex items-baseline gap-2 mt-1">
+<h3 class="text-2xl font-bold text-slate-900 dark:text-white">KES 3.2M</h3>
+<span class="text-xs font-medium text-slate-500">vs last month</span>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-light dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col gap-1">
+<div class="flex justify-between items-start">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Top Category</p>
+<span class="p-1.5 bg-orange-500/10 rounded-md text-orange-600">
+<span class="material-symbols-outlined text-[20px]">restaurant</span>
+</span>
+</div>
+<div class="flex items-baseline gap-2 mt-1">
+<h3 class="text-2xl font-bold text-slate-900 dark:text-white">Catering</h3>
+<span class="text-xs font-medium text-slate-500">18 Active Vendors</span>
+</div>
+</div>
+</div>
+<!-- 2. Main Vendor Table Section -->
+<div class="bg-surface-light dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col flex-1 min-h-[400px]">
+<!-- Table Header Actions -->
+<div class="px-6 py-4 border-b border-slate-200 dark:border-slate-700 flex flex-wrap items-center justify-between gap-4">
+<h2 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                        Active Vendors
+                        <span class="bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-medium px-2 py-0.5 rounded-full">48</span>
+</h2>
+<div class="flex items-center gap-3">
+<button class="text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 text-sm font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">filter_list</span> Filter
+                        </button>
+<button class="text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 text-sm font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">download</span> Export
+                        </button>
+</div>
+</div>
+<!-- Table Content -->
+<div class="overflow-x-auto">
+<table class="w-full text-left text-sm whitespace-nowrap">
+<thead class="bg-slate-50 dark:bg-slate-900/50 text-slate-500 dark:text-slate-400 border-b border-slate-200 dark:border-slate-700">
+<tr>
+<th class="px-6 py-3 font-medium" scope="col">Vendor Name</th>
+<th class="px-6 py-3 font-medium" scope="col">Category</th>
+<th class="px-6 py-3 font-medium" scope="col">Reliability</th>
+<th class="px-6 py-3 font-medium" scope="col">Active Contracts</th>
+<th class="px-6 py-3 font-medium" scope="col">Compliance Status</th>
+<th class="px-6 py-3 font-medium text-right" scope="col">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-200 dark:divide-slate-700">
+<!-- Row 1 (Selected State) -->
+<tr class="bg-primary/5 hover:bg-slate-50 dark:hover:bg-slate-700/50 cursor-pointer group transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 font-bold text-xs">
+                                            FS
+                                        </div>
+<div>
+<p class="font-medium text-slate-900 dark:text-white">FreshFoods Supplies</p>
+<p class="text-xs text-slate-500">ID: VND-2023-001</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-slate-600 dark:text-slate-300">
+<span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-md bg-slate-100 dark:bg-slate-700 text-xs font-medium">
+<span class="size-1.5 rounded-full bg-orange-500"></span> Catering
+                                    </span>
+</td>
+<td class="px-6 py-4 text-slate-600 dark:text-slate-300">
+<div class="flex items-center text-gold text-[16px]">
+<span class="material-symbols-outlined fill-current" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined fill-current" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined fill-current" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined fill-current" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined fill-current" style="font-variation-settings: 'FILL' 1">star</span>
+</div>
+</td>
+<td class="px-6 py-4 text-slate-600 dark:text-slate-300 pl-10">3</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 border border-green-200 dark:border-green-800">
+<span class="size-1.5 rounded-full bg-green-500"></span> Verified
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 cursor-pointer group transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-xs">
+                                            LL
+                                        </div>
+<div>
+<p class="font-medium text-slate-900 dark:text-white">Linen Lux</p>
+<p class="text-xs text-slate-500">ID: VND-2023-042</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-slate-600 dark:text-slate-300">
+<span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-md bg-slate-100 dark:bg-slate-700 text-xs font-medium">
+<span class="size-1.5 rounded-full bg-blue-500"></span> Housekeeping
+                                    </span>
+</td>
+<td class="px-6 py-4 text-slate-600 dark:text-slate-300">
+<div class="flex items-center text-gold text-[16px]">
+<span class="material-symbols-outlined fill-current" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined fill-current" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined fill-current" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined fill-current" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined text-slate-300">star</span>
+</div>
+</td>
+<td class="px-6 py-4 text-slate-600 dark:text-slate-300 pl-10">12</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400 border border-amber-200 dark:border-amber-800">
+<span class="size-1.5 rounded-full bg-amber-500"></span> Pending
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 cursor-pointer group transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 font-bold text-xs">
+                                            TS
+                                        </div>
+<div>
+<p class="font-medium text-slate-900 dark:text-white">TechStream Solutions</p>
+<p class="text-xs text-slate-500">ID: VND-2023-089</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-slate-600 dark:text-slate-300">
+<span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-md bg-slate-100 dark:bg-slate-700 text-xs font-medium">
+<span class="size-1.5 rounded-full bg-purple-500"></span> Technology
+                                    </span>
+</td>
+<td class="px-6 py-4 text-slate-600 dark:text-slate-300">
+<div class="flex items-center text-gold text-[16px]">
+<span class="material-symbols-outlined fill-current" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined fill-current" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined fill-current" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined fill-current" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined fill-current" style="font-variation-settings: 'FILL' 1">star</span>
+</div>
+</td>
+<td class="px-6 py-4 text-slate-600 dark:text-slate-300 pl-10">1</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 border border-green-200 dark:border-green-800">
+<span class="size-1.5 rounded-full bg-green-500"></span> Verified
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 cursor-pointer group transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-pink-100 flex items-center justify-center text-pink-600 font-bold text-xs">
+                                            DM
+                                        </div>
+<div>
+<p class="font-medium text-slate-900 dark:text-white">Decor &amp; More</p>
+<p class="text-xs text-slate-500">ID: VND-2023-015</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-slate-600 dark:text-slate-300">
+<span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-md bg-slate-100 dark:bg-slate-700 text-xs font-medium">
+<span class="size-1.5 rounded-full bg-pink-500"></span> Decor
+                                    </span>
+</td>
+<td class="px-6 py-4 text-slate-600 dark:text-slate-300">
+<div class="flex items-center text-gold text-[16px]">
+<span class="material-symbols-outlined fill-current" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined fill-current" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined fill-current" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined text-slate-300">star</span>
+<span class="material-symbols-outlined text-slate-300">star</span>
+</div>
+</td>
+<td class="px-6 py-4 text-slate-600 dark:text-slate-300 pl-10">5</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400 border border-red-200 dark:border-red-800">
+<span class="size-1.5 rounded-full bg-red-500"></span> Expired
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 cursor-pointer group transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-cyan-100 flex items-center justify-center text-cyan-600 font-bold text-xs">
+                                            CS
+                                        </div>
+<div>
+<p class="font-medium text-slate-900 dark:text-white">CleanSweep Services</p>
+<p class="text-xs text-slate-500">ID: VND-2023-099</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-slate-600 dark:text-slate-300">
+<span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-md bg-slate-100 dark:bg-slate-700 text-xs font-medium">
+<span class="size-1.5 rounded-full bg-cyan-500"></span> Cleaning
+                                    </span>
+</td>
+<td class="px-6 py-4 text-slate-600 dark:text-slate-300">
+<div class="flex items-center text-gold text-[16px]">
+<span class="material-symbols-outlined fill-current" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined fill-current" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined fill-current" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined fill-current" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined text-slate-300">star</span>
+</div>
+</td>
+<td class="px-6 py-4 text-slate-600 dark:text-slate-300 pl-10">8</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 border border-green-200 dark:border-green-800">
+<span class="size-1.5 rounded-full bg-green-500"></span> Verified
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-6 py-4 border-t border-slate-200 dark:border-slate-700 flex items-center justify-between">
+<p class="text-sm text-slate-500 dark:text-slate-400">Showing <span class="font-medium text-slate-900 dark:text-white">1</span> to <span class="font-medium text-slate-900 dark:text-white">5</span> of <span class="font-medium text-slate-900 dark:text-white">48</span> results</p>
+<div class="flex gap-2">
+<button class="px-3 py-1 border border-slate-300 dark:border-slate-600 rounded text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 disabled:opacity-50">Previous</button>
+<button class="px-3 py-1 border border-slate-300 dark:border-slate-600 rounded text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700">Next</button>
+</div>
+</div>
+</div>
+<!-- 5. Bidding & RFPs Section -->
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<h2 class="text-lg font-bold text-slate-900 dark:text-white">Active RFPs</h2>
+<a class="text-sm font-medium text-primary hover:text-primary-dark" href="#">View all</a>
+</div>
+<div class="bg-surface-light dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
+<table class="w-full text-left text-sm whitespace-nowrap">
+<thead class="bg-slate-50 dark:bg-slate-900/50 text-slate-500 dark:text-slate-400">
+<tr>
+<th class="px-6 py-3 font-medium" scope="col">RFP Title</th>
+<th class="px-6 py-3 font-medium" scope="col">Department</th>
+<th class="px-6 py-3 font-medium" scope="col">Deadline</th>
+<th class="px-6 py-3 font-medium text-right" scope="col">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-200 dark:divide-slate-700">
+<tr>
+<td class="px-6 py-4 font-medium text-slate-900 dark:text-white">2024 Annual Linen Procurement</td>
+<td class="px-6 py-4 text-slate-600 dark:text-slate-300">Housekeeping</td>
+<td class="px-6 py-4 text-danger font-medium">Oct 24, 2024 (2 Days)</td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary hover:text-primary-dark font-medium text-sm">View Bids (5)</button>
+</td>
+</tr>
+<tr>
+<td class="px-6 py-4 font-medium text-slate-900 dark:text-white">Q4 Kitchen Equipment Upgrade</td>
+<td class="px-6 py-4 text-slate-600 dark:text-slate-300">F&amp;B</td>
+<td class="px-6 py-4 text-slate-600 dark:text-slate-300">Nov 12, 2024</td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary hover:text-primary-dark font-medium text-sm">View Bids (2)</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- 4. Detailed Vendor Sidebar (Fixed Right Panel) -->
+<aside class="w-96 bg-surface-light dark:bg-slate-900 border-l border-slate-200 dark:border-slate-800 flex flex-col shrink-0 overflow-y-auto">
+<!-- Sidebar Header -->
+<div class="p-6 border-b border-slate-200 dark:border-slate-800 relative">
+<!-- Close Mobile only -->
+<button class="absolute top-4 right-4 md:hidden text-slate-400">
+<span class="material-symbols-outlined">close</span>
+</button>
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-3">
+<div class="size-14 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 font-bold text-xl border-4 border-white dark:border-slate-800 shadow-sm">
+                            FS
+                        </div>
+<div>
+<h2 class="text-xl font-bold text-slate-900 dark:text-white">FreshFoods Supplies</h2>
+<span class="inline-flex items-center gap-1 bg-gold/10 text-gold text-xs font-bold px-2 py-0.5 rounded border border-gold/20 mt-1">
+<span class="material-symbols-outlined text-[14px] fill-current" style="font-variation-settings: 'FILL' 1">verified</span>
+                                Premium Partner
+                            </span>
+</div>
+</div>
+</div>
+</div>
+<!-- Details Content -->
+<div class="p-6 space-y-8 flex-1">
+<!-- Contact Info -->
+<div class="space-y-3">
+<h3 class="text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-wider">Contact Details</h3>
+<div class="flex items-start gap-3 text-sm text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined text-slate-400 text-[20px]">mail</span>
+<span>orders@freshfoods.co.ke</span>
+</div>
+<div class="flex items-start gap-3 text-sm text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined text-slate-400 text-[20px]">call</span>
+<span>+254 712 345 678</span>
+</div>
+<div class="flex items-start gap-3 text-sm text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined text-slate-400 text-[20px]">location_on</span>
+<span>Industrial Area, Enterprise Road,<br/>Nairobi, Kenya</span>
+</div>
+<!-- Map Placeholder -->
+<div class="h-32 w-full rounded-lg bg-slate-100 dark:bg-slate-800 mt-2 bg-cover bg-center overflow-hidden border border-slate-200 dark:border-slate-700 relative" data-alt="Map view of Nairobi industrial area location" data-location="Nairobi" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCKBbJSZAW9DADhCmetMOBJF-tw7IQptqZQA8fr015IlY9crBZBG56FxhECxRwKlKgWMwBTwt1WKvxaiYa_E7SPzKII2aPZDVFjCg7kXb_oiW9QrFBigJPIGBSCykWa8fdHTaqRf5cO5nfA07TXw79nt5iPNn0hDuYHSkoymxnUnlDTpy8tDs7Qt6Kx9sIiIkp5WfKi2zMzaMadp-RypdC8HDKrCA_dbdvm8J1w008_HX8Ypey_Z5TeXgK9svp0JuD9FHM4rbJB8Tw');">
+<div class="absolute inset-0 bg-black/10 flex items-center justify-center">
+<span class="bg-white/90 text-slate-800 text-xs px-2 py-1 rounded shadow-sm font-medium">View on Map</span>
+</div>
+</div>
+</div>
+<!-- Recent Purchase Orders -->
+<div class="space-y-3">
+<h3 class="text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-wider flex justify-between items-center">
+                        Recent Orders
+                        <a class="text-primary text-xs normal-case" href="#">View All</a>
+</h3>
+<div class="space-y-3">
+<div class="flex items-center justify-between p-3 rounded-lg border border-slate-100 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50">
+<div>
+<p class="text-sm font-medium text-slate-900 dark:text-white">PO #49221</p>
+<p class="text-xs text-slate-500">Oct 18 • Daily Produce</p>
+</div>
+<span class="text-sm font-semibold text-slate-900 dark:text-white">KES 45k</span>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg border border-slate-100 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50">
+<div>
+<p class="text-sm font-medium text-slate-900 dark:text-white">PO #49104</p>
+<p class="text-xs text-slate-500">Oct 12 • Bulk Grains</p>
+</div>
+<span class="text-sm font-semibold text-slate-900 dark:text-white">KES 120k</span>
+</div>
+</div>
+</div>
+<!-- Active Contracts -->
+<div class="space-y-3">
+<h3 class="text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-wider">Active Contracts</h3>
+<div class="p-4 rounded-lg bg-slate-900 text-white relative overflow-hidden">
+<div class="relative z-10">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-bold text-sm">Main Supply Agreement</h4>
+<span class="bg-white/20 px-2 py-0.5 rounded text-[10px] font-medium">Active</span>
+</div>
+<p class="text-xs text-slate-300 mb-4">Expires: Dec 31, 2025</p>
+<div class="w-full bg-slate-700 h-1.5 rounded-full overflow-hidden">
+<div class="bg-success h-full" style="width: 65%"></div>
+</div>
+<div class="flex justify-between mt-1">
+<span class="text-[10px] text-slate-400">Start</span>
+<span class="text-[10px] text-slate-400">End</span>
+</div>
+</div>
+<!-- Abstract pattern decoration -->
+<div class="absolute -right-4 -bottom-4 size-24 bg-primary/20 rounded-full blur-xl"></div>
+</div>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="p-6 border-t border-slate-200 dark:border-slate-800 flex gap-3">
+<button class="flex-1 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-white py-2 rounded-lg text-sm font-medium transition-colors">
+                    Message
+                </button>
+<button class="flex-1 bg-primary hover:bg-primary-dark text-white py-2 rounded-lg text-sm font-medium transition-colors">
+                    Create PO
+                </button>
+</div>
+</aside>
+</main>
+<script src="site-logic.js"></script>
+</body></html>

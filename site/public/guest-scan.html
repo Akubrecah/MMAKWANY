@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mmakwany Guest House Guest Entry Scan Interface</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0d968b",
+                        "success": "#10b981",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#102220",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .scanner-guide {
+            border: 2px solid rgba(13, 150, 139, 0.5);
+            box-shadow: 0 0 0 4000px rgba(0, 0, 0, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 font-display">
+<div class="relative flex min-h-screen flex-col overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between border-b border-solid border-primary/10 bg-white px-6 py-4 md:px-12">
+<div class="flex items-center gap-3">
+<div class="text-primary">
+<svg class="size-8" fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M39.5563 34.1455V13.8546C39.5563 15.708 36.8773 17.3437 32.7927 18.3189C30.2914 18.916 27.263 19.2655 24 19.2655C20.737 19.2655 17.7086 18.916 15.2073 18.3189C11.1227 17.3437 8.44365 15.708 8.44365 13.8546V34.1455C8.44365 35.9988 11.1227 37.6346 15.2073 38.6098C17.7086 39.2069 20.737 39.5564 24 39.5564C27.263 39.5564 30.2914 39.2069 32.7927 38.6098C36.8773 37.6346 39.5563 35.9988 39.5563 34.1455Z"></path>
+</svg>
+</div>
+<div>
+<h1 class="text-xl font-bold leading-tight tracking-tight text-primary">Mmakwany Guest House</h1>
+<p class="text-xs font-medium text-slate-500 uppercase tracking-widest">Guest Entry Scan</p>
+</div>
+</div>
+<!-- Mode Selector -->
+<div class="hidden md:flex bg-slate-100 p-1 rounded-xl w-72">
+<button class="flex-1 px-4 py-2 rounded-lg bg-white shadow-sm text-sm font-semibold text-primary flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">qr_code_scanner</span>
+                    Scan Mode
+                </button>
+<button class="flex-1 px-4 py-2 rounded-lg text-sm font-semibold text-slate-500 hover:text-primary transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">search</span>
+                    Manual
+                </button>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex flex-col items-end mr-2">
+<span class="text-xs text-slate-400 font-medium">GRAND BALLROOM</span>
+<span class="text-sm font-bold text-slate-700">Staff: Alex Rivera</span>
+</div>
+<div class="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold border-2 border-primary/20">
+                    AR
+                </div>
+</div>
+</header>
+<main class="flex-1 flex flex-col md:flex-row gap-6 p-6 md:p-10 max-w-[1440px] mx-auto w-full">
+<!-- Left Side: Scanning Area -->
+<div class="flex-1 flex flex-col gap-6">
+<!-- Attendance Stats Header -->
+<div class="bg-white p-5 rounded-xl border border-primary/10 shadow-sm flex items-center justify-between">
+<div class="flex flex-col gap-1">
+<span class="text-sm font-medium text-slate-500">Current Attendance</span>
+<div class="flex items-baseline gap-2">
+<span class="text-2xl font-bold text-slate-800">145</span>
+<span class="text-slate-400 font-medium">/ 200 Guests</span>
+</div>
+</div>
+<div class="w-48 h-3 bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full w-[72.5%]"></div>
+</div>
+</div>
+<!-- Main Viewport -->
+<div class="relative flex-1 bg-black rounded-2xl overflow-hidden shadow-2xl min-h-[400px]">
+<div class="absolute inset-0 bg-cover bg-center opacity-80" data-alt="Camera viewfinder showing a close-up camera lens" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAVlG58r2ARL_pmXWzgp2z7kbScuIWxRXTdkNs77a2ECr0OMHkjNku0eogiEam4tcdptRhcBnHFtM2eNmETh1Rx7gfyX-025N5v_eQbyXShe9CuaUlYQmKeO2QDyfAfgnbakbjWDOAAZugp476MZHGgIaBn6P6_FkD1DhzISZDTHIgwX-mhTOmayUIiCajSxa-0jRvQB3EMOd6lPa_ytUdN1WyPtsijUzHrM9gIQUEEVS2z17yHtwsVcr1VYBaVKLWqyAoBn1z5jN8')"></div>
+<!-- Scanning Guide Overlay -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="scanner-guide size-64 md:size-80 rounded-2xl relative border-4 border-primary/40">
+<!-- Corner Accents -->
+<div class="absolute -top-1 -left-1 size-8 border-t-4 border-l-4 border-primary rounded-tl-lg"></div>
+<div class="absolute -top-1 -right-1 size-8 border-t-4 border-r-4 border-primary rounded-tr-lg"></div>
+<div class="absolute -bottom-1 -left-1 size-8 border-b-4 border-l-4 border-primary rounded-bl-lg"></div>
+<div class="absolute -bottom-1 -right-1 size-8 border-b-4 border-r-4 border-primary rounded-br-lg"></div>
+<!-- Scanning Line Effect (Static simulation) -->
+<div class="absolute top-1/2 left-0 right-0 h-0.5 bg-primary/60 shadow-[0_0_15px_rgba(13,150,139,0.8)]"></div>
+</div>
+</div>
+<!-- Scan Feedback Status -->
+<div class="absolute bottom-8 left-0 right-0 flex justify-center">
+<div class="bg-white/95 backdrop-blur-md px-8 py-3 rounded-full flex items-center gap-3 shadow-xl border border-white/20">
+<span class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+</span>
+<span class="text-primary font-bold text-lg tracking-wide">READY TO SCAN</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Side: Scan Results & History -->
+<div class="w-full md:w-[400px] flex flex-col gap-6">
+<!-- Last Scanned Guest Card -->
+<div class="flex flex-col bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-100 ring-4 ring-success/10">
+<!-- Success Banner -->
+<div class="bg-success px-6 py-4 flex items-center justify-center gap-2 text-white">
+<span class="material-symbols-outlined font-bold">check_circle</span>
+<span class="font-bold text-lg tracking-wide uppercase">Access Granted</span>
+</div>
+<div class="p-8 flex flex-col items-center text-center">
+<div class="size-24 rounded-full bg-slate-50 mb-6 border-4 border-slate-100 p-1">
+<div class="size-full rounded-full bg-cover bg-center" data-alt="Professional headshot of a female guest" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC6aRcIi7Kj7OgnswlEdqrtbfYEiyY-xWaiglzY4i-VLPIUKJyQBSAyHcJOh-UqeoqN0BpEiJr8K_AefhZIq24HtmBRgMms7xXRdj_f6fBTfLwe1BjT09hifSG9_DriBrUq-_X99teFZJBDutZZHRSWZBesYKwUzxkAqQMbc59ta2OM8bwNHsf8zn6tZJvLxtJpYhgsnBBzXZAj9etGUzeMOAI_8TEWQNiNFo8nJKU4f14k01hilCJPQrf1BUn3dRHFXOF1m_cKSdg')"></div>
+</div>
+<h2 class="text-3xl font-extrabold text-slate-900 mb-1">Jane Doe</h2>
+<p class="text-primary font-semibold text-lg mb-6">Acme Corporation</p>
+<div class="w-full grid grid-cols-2 gap-4 py-6 border-y border-slate-100">
+<div class="flex flex-col gap-1">
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Location</span>
+<span class="text-sm font-bold text-slate-700">Grand Ballroom</span>
+</div>
+<div class="flex flex-col gap-1 border-l border-slate-100 pl-4">
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Entry Time</span>
+<span class="text-sm font-bold text-slate-700">14:42:05</span>
+</div>
+</div>
+<button class="mt-8 w-full py-3 bg-primary/10 text-primary font-bold rounded-xl hover:bg-primary/20 transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">person</span>
+                            View Profile
+                        </button>
+</div>
+</div>
+<!-- Quick History Mini List -->
+<div class="bg-white rounded-2xl border border-slate-100 p-6 shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-bold text-slate-700">Recent Entry</h3>
+<a class="text-xs font-bold text-primary hover:underline" href="#">View History</a>
+</div>
+<div class="space-y-4">
+<div class="flex items-center gap-3 opacity-60">
+<div class="size-8 rounded-full bg-slate-100"></div>
+<div class="flex-1">
+<p class="text-sm font-bold text-slate-800">Michael Smith</p>
+<p class="text-xs text-slate-500">14:38 • Access Granted</p>
+</div>
+<span class="material-symbols-outlined text-success text-sm">check</span>
+</div>
+<div class="flex items-center gap-3 opacity-40">
+<div class="size-8 rounded-full bg-slate-100"></div>
+<div class="flex-1">
+<p class="text-sm font-bold text-slate-800">Sarah Jenkins</p>
+<p class="text-xs text-slate-500">14:35 • Access Granted</p>
+</div>
+<span class="material-symbols-outlined text-success text-sm">check</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation -->
+<footer class="bg-white border-t border-slate-200 px-6 py-4 flex flex-wrap items-center justify-between mt-auto">
+<div class="flex items-center gap-8">
+<button class="flex items-center gap-2 text-slate-600 hover:text-primary transition-colors group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">history</span>
+<span class="text-sm font-semibold">Entry History</span>
+</button>
+<button class="flex items-center gap-2 text-slate-600 hover:text-primary transition-colors group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">help_outline</span>
+<span class="text-sm font-semibold">Help &amp; Support</span>
+</button>
+<button class="flex items-center gap-2 text-slate-600 hover:text-primary transition-colors group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">swap_horiz</span>
+<span class="text-sm font-semibold">Switch Hall</span>
+</button>
+</div>
+<div class="flex items-center gap-4 text-xs font-medium text-slate-400">
+<span class="flex items-center gap-1">
+<span class="size-2 rounded-full bg-success"></span>
+                    System Online
+                </span>
+<span>•</span>
+<span>v2.4.1 Build 882</span>
+</div>
+</footer>
+</div>
+<script src="components.js"></script>
+<script src="site-logic.js"></script>
+</body></html>

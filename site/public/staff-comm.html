@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mmakwany Guest House Staff Comm Center</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0d968b",
+                        "primary-dark": "#0a756c",
+                        "primary-light": "#e0f2f1",
+                        "background-light": "#FAFAFA",
+                        "background-dark": "#102220",
+                        "surface-light": "#FFFFFF",
+                        "border-light": "#e5e7eb",
+                        "alert-critical": "#fee2e2",
+                        "alert-critical-text": "#991b1b",
+                        "alert-warning": "#fef3c7",
+                        "alert-warning-text": "#92400e",
+                        "alert-info": "#e0f2fe",
+                        "alert-info-text": "#075985",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-100 flex flex-col h-screen overflow-hidden">
+<!-- Top Navigation Bar -->
+<header class="h-16 flex items-center justify-between border-b border-border-light bg-surface-light px-6 shrink-0 z-20 shadow-sm">
+<div class="flex items-center gap-3">
+<div class="size-8 flex items-center justify-center text-primary bg-primary-light rounded-lg">
+<span class="material-symbols-outlined">dataset</span>
+</div>
+<h1 class="text-xl font-bold tracking-tight text-slate-900">Mmakwany Guest House Hub</h1>
+</div>
+<div class="flex-1 max-w-xl px-8">
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="block w-full rounded-xl border-none bg-slate-100 py-2 pl-10 pr-3 text-sm placeholder:text-slate-500 focus:bg-white focus:ring-2 focus:ring-primary focus:ring-inset transition-all" placeholder="Search messages, files, or alerts..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="relative p-2 text-slate-500 hover:text-primary hover:bg-primary-light rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 size-2.5 bg-red-500 rounded-full border-2 border-white"></span>
+</button>
+<div class="h-8 w-px bg-slate-200"></div>
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-semibold text-slate-900">Alex Morgan</p>
+<p class="text-xs text-primary font-medium">Front Desk Lead</p>
+</div>
+<div class="relative">
+<img alt="Profile picture of Alex Morgan" class="size-10 rounded-full object-cover border-2 border-white shadow-sm" data-alt="Professional headshot of a smiling man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGhiPzFzV0wOGsDiRkNpmVN58TN7PoBMC_Rp0RibgdLw9xeJ3aDA33x2S41TUQgZYNwpSorJO8db4AHxxT1KxwaHLvQ6BRnz4Dr3Gb8KlbPpJ6GaT_VN3MX_U2_fTOBW7Yp63Beb-Ya4Kx1zXjKA3LYQMfUu9eDqlULd-e0JviW10NLlXDMZ26PY1dYQLDB9ySbwqNpv7Lpwjje2K8VGqFlwroIgkBtgdt_fq1Fd5t4-8vBACFlyGfthde0vg_pIwDY9vW8nFfZzA"/>
+<span class="absolute bottom-0 right-0 size-3 bg-green-500 border-2 border-white rounded-full"></span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex flex-1 overflow-hidden">
+<!-- Left Sidebar: Channels & DMs (20%) -->
+<aside class="w-64 flex flex-col border-r border-border-light bg-surface-light shrink-0">
+<div class="p-4 flex flex-col h-full overflow-y-auto">
+<!-- Channels -->
+<div class="mb-8">
+<div class="flex items-center justify-between px-2 mb-2">
+<h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider">Channels</h3>
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+<nav class="space-y-1">
+<a class="flex items-center justify-between px-3 py-2 text-sm font-medium bg-primary-light text-primary rounded-lg group" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px]">tag</span>
+<span>general</span>
+</div>
+</a>
+<a class="flex items-center justify-between px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-lg group transition-colors" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] text-slate-400 group-hover:text-slate-500">tag</span>
+<span>housekeeping</span>
+</div>
+<span class="bg-primary text-white text-[10px] px-1.5 py-0.5 rounded-full font-bold">3</span>
+</a>
+<a class="flex items-center justify-between px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-lg group transition-colors" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] text-slate-400 group-hover:text-slate-500">tag</span>
+<span>events</span>
+</div>
+</a>
+<a class="flex items-center justify-between px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-lg group transition-colors" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] text-slate-400 group-hover:text-slate-500">tag</span>
+<span>kitchen</span>
+</div>
+<span class="bg-primary text-white text-[10px] px-1.5 py-0.5 rounded-full font-bold">1</span>
+</a>
+</nav>
+</div>
+<!-- Direct Messages -->
+<div>
+<div class="flex items-center justify-between px-2 mb-2">
+<h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider">Direct Messages</h3>
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50 transition-colors group" href="#">
+<div class="relative shrink-0">
+<img alt="Sarah Manager" class="size-8 rounded-full object-cover" data-alt="Portrait of a female manager" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEI5sgHfCkmSW86W5njQaY_jXPB9V_3F7XPlOJrXrjO3mIzulx9_Hu5z45D-SwTe7R-FbONYiEIH3GDP1rCvYffO6LGk1YP55fI4DXx_hW-LCGT9XFaM-qvJ6qX0TdQSw5YsnU7xqRMaN4zBo-4pSsniVEQljIf0RPf1uKjlyTkiEEyYRKy1Obrbrll2HDDBV8SiSiEhOsvuVyYaL1xdhoqaG2yoGoeIZm_ZzcHsmFWWaxZIC_xOdH28grP846Rugl5gjvoY4LIVs"/>
+<span class="absolute bottom-0 right-0 size-2.5 bg-green-500 border-2 border-white rounded-full"></span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-medium text-slate-700 truncate">Sarah (Mgr)</p>
+<p class="text-xs text-slate-400 truncate">Typing...</p>
+</div>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50 transition-colors group" href="#">
+<div class="relative shrink-0">
+<img alt="John Maintenance" class="size-8 rounded-full object-cover" data-alt="Portrait of a male maintenance worker" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpnjSqVp3WxsfB9OfKirpp0r-D3rsyC1CUXXAK52i_JBpOkMAwAAArEOJdBLaSBuIcYVq5LlX9Fi58r8Xq3z2P2viXL33af9nFApWL6sH6urjj8h4L76fQRkKG4LjMkpzPHsJDS84GlxtqJzE6uLOovd4ClNqtI28VK16PA4nkq8-Xjtz4IE6d9xDwfV1Tq8VYG4Mcmn5K5fCcb6fqiY76Bk8ssBCyzscISXPRAAhgqs9tvkxc9VIo-C1Sle8XdGpZaJtn_qc1PYM"/>
+<span class="absolute bottom-0 right-0 size-2.5 bg-yellow-500 border-2 border-white rounded-full"></span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-medium text-slate-700 truncate">John (Maint)</p>
+</div>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50 transition-colors group" href="#">
+<div class="relative shrink-0">
+<img alt="Emily Guest Services" class="size-8 rounded-full object-cover" data-alt="Portrait of a female guest service agent" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhNen7HV6giEIlw4OTPBYz1MFKyNeo7bBQe8dDmYmmj8G4F32pjxrblQxBjn21RgRahueoSHozld7neolm81SSSz0wPWl2pth8EPjr2b6qbK5D-73-igsuz5kxds-hFkJuLTdBomM43xgxfyae9fi33_qC51n497pHze568cJYl1Tt0DRmY1GVYM4L8wKrz-UCDq0DM1OPCPzTBfnd7ev3UdSUksG02LAgcIw93R7iyFu997XtqlNecYypsEb9uZtxiKk_6CluW74"/>
+<span class="absolute bottom-0 right-0 size-2.5 bg-red-500 border-2 border-white rounded-full"></span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-medium text-slate-700 truncate">Emily (Concierge)</p>
+</div>
+</a>
+</nav>
+</div>
+</div>
+<!-- User Status Toggle -->
+<div class="p-4 border-t border-border-light bg-slate-50">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="size-2.5 rounded-full bg-green-500"></div>
+<span class="text-sm font-medium text-slate-700">Available</span>
+</div>
+<span class="material-symbols-outlined text-slate-400 cursor-pointer">expand_more</span>
+</div>
+</div>
+</aside>
+<!-- Center: Chat Interface (50%) -->
+<section class="flex-1 flex flex-col bg-white min-w-0">
+<!-- Chat Header -->
+<div class="h-16 flex items-center justify-between px-6 border-b border-border-light shrink-0">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400 text-[24px]">tag</span>
+<div>
+<h2 class="text-lg font-bold text-slate-900">general</h2>
+<p class="text-xs text-slate-500">Company-wide announcements and general discussion</p>
+</div>
+</div>
+<div class="flex -space-x-2 overflow-hidden">
+<img alt="Member" class="inline-block size-8 rounded-full ring-2 ring-white" data-alt="Small avatar of a team member" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsbXyLE6YNQzrK4ladSUj4UYg-8sKwiOngEPtERFccNQo3t7MK16lVjLlJPp2ir9ir3Ob-Y_J-6gyYo1R0rT8OWXTpTv1PWRHO0WcHCu76Od0hbXdHaIfEgqrmlL99ze8IsVkNknD31yN_5unT_6OAuBXzmb52V1Y1JDWfk-o6vMods34jTog_Kst4heEj53QcIEaeN8HtNwpThnt2UomkeDWd4B0LS0yZlzYE4uMcsURubZEQg_a86l6lZZoQTRp8w8E6EVmRWtg"/>
+<img alt="Member" class="inline-block size-8 rounded-full ring-2 ring-white" data-alt="Small avatar of a team member" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbhlY-MvgzEgtOHc5IVYWzVdmq1fMTaKz1z90wm0Dwyph4ZH5HATR0W0AGEGS2RTX4nAJfPxT1O_yLdInIyMhb_-jpr74mxbrd72TCvQjU4kRyozb3Qtgvjidua3pQUV16myFDzJnk8G_1-aJxZ-xYoMtkyhfnoxXFhpXE7cJYyEnBBtPr9wwrGlbTmbvNXGzSZkYjZYoc3XV1CWvuyx2h8k3fEu89j5YnoCtldDlSAxepZ11NtfBYNAgSFz5CExYGik4TL2Nx4tI"/>
+<img alt="Member" class="inline-block size-8 rounded-full ring-2 ring-white" data-alt="Small avatar of a team member" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAFJ7cosufrAu_17hBnLJNOlB5D8l9lzLF-evpYCD8rP3FlyxayZ8SEc3Umjr8QBqvwYCkMwtyjNT4QBdWzN60fBS-2dfdTGxIG9KNZxYsekL4Op9aWTtVfa2jxN5_QTphHAIXsr2XEXQtfD0nh2aYkDRR_1yBOnrfY3g3ojkDUdjHgYOk6i54ygRD2l2bnm4vD9ubSWX0mw9aUAHIWLOwJLJ1CpbKS8FWXQN9fY9cylmRcuiRbLJH2lRLgk4DmvQP1OZQ-8EWgy0"/>
+<div class="flex items-center justify-center size-8 rounded-full ring-2 ring-white bg-slate-100 text-xs font-medium text-slate-500">+12</div>
+</div>
+</div>
+<!-- Messages Area -->
+<div class="flex-1 overflow-y-auto p-6 space-y-6">
+<!-- Date Divider -->
+<div class="relative flex py-2 items-center">
+<div class="flex-grow border-t border-slate-200"></div>
+<span class="flex-shrink-0 mx-4 text-xs font-medium text-slate-400 uppercase">Today</span>
+<div class="flex-grow border-t border-slate-200"></div>
+</div>
+<!-- Message Group -->
+<div class="flex gap-4 group">
+<div class="shrink-0">
+<img alt="Sarah" class="size-10 rounded-full object-cover" data-alt="Portrait of Sarah" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEIHpesnUVy1stqcaugP9i-WME7N88F2CrnEcOwAl9iemMzRa7mrAGa9OtLsWasXCaj8FPe7VhFBg7CGYfqI9jAYjx7Tak78D-V7meL2FdTNIzJfOGBC5NGZyPMbF17qFwWmbg5op9wspke6LbCTj4B1zrm7hOfg5EpjLR973g387A4a1OZVII9nHbhoYay41_DeXxDXlprquwiIlpPeBKT-L7B-KEBfgbvANDXOe6DLYujVy955wJeKHGeMuzofFuSXgx3TPjoa0"/>
+</div>
+<div class="flex-1 max-w-3xl">
+<div class="flex items-baseline gap-2">
+<span class="text-sm font-bold text-slate-900">Sarah (Mgr)</span>
+<span class="text-xs text-slate-400">10:42 AM</span>
+</div>
+<p class="text-slate-700 mt-1 leading-relaxed">Team, VIP guest Mr. Yamamoto has just arrived. Please ensure Room 304 is pristine. I've uploaded the special request list for his stay.</p>
+<!-- Attachment -->
+<div class="mt-3 flex items-center gap-3 p-3 bg-slate-50 border border-slate-200 rounded-lg max-w-sm cursor-pointer hover:bg-slate-100 transition-colors">
+<div class="size-10 rounded bg-red-100 flex items-center justify-center text-red-600">
+<span class="material-symbols-outlined">picture_as_pdf</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-medium text-slate-900 truncate">Yamamoto_Preferences.pdf</p>
+<p class="text-xs text-slate-500">245 KB</p>
+</div>
+<span class="material-symbols-outlined text-slate-400 hover:text-primary">download</span>
+</div>
+</div>
+</div>
+<!-- Reply Thread -->
+<div class="flex gap-4 group">
+<div class="shrink-0">
+<img alt="John" class="size-10 rounded-full object-cover" data-alt="Portrait of John" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBm331JkX2p3E9JcMkRIRrv96KNZhhcLX-rcqDAVEC2Kup3jlu5b0YVsNh7xGQsPamfS7Yz1GJDWGBd7ZmvCyVT2TcuU3TQw9If0Fep_zrj61eJc0Q_6XF_oAeFQHsraO2S3ldJRXQrdJg2Z2BVXgNMqa9DiapQxbkemMmevMELuZHZnvl2MSyZ3TXOx8cqAOEPfx5jkwnOUPG2qxx0F4C0fRw8IN_mSgV22qqjEuZJpSv3cFCNfoUafX4-VaunC8l3rQh4BnwrFwY"/>
+</div>
+<div class="flex-1 max-w-3xl">
+<div class="flex items-baseline gap-2">
+<span class="text-sm font-bold text-slate-900">John (Maint)</span>
+<span class="text-xs text-slate-400">10:45 AM</span>
+</div>
+<p class="text-slate-700 mt-1 leading-relaxed">Checking the AC unit in 304 now. Should be done in 10 mins.</p>
+</div>
+</div>
+<!-- Another Message -->
+<div class="flex gap-4 group">
+<div class="shrink-0">
+<img alt="Emily" class="size-10 rounded-full object-cover" data-alt="Portrait of Emily" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTR4N6eldLAXkBJUdXfDh1tPZG5yvV2xxIc9Ql3ABuX6bXbR7HveSTXNfqExyPy-AUYu_x4u_j7ZY6x0eCHMQ9t4XrjDbn77Bl7iFV59WlmPzhxFn-3R9RxFkAyuIHillDonhCpghAEzGaWDr5lwg54Jk4LUUlYG4eTqc9mNkxtvvwPdwg83kW7I2bkQI78d_SAH5dS6RDjXSMjPR9UemJCVjMtvJ0Bsdp6L6I_7Czx4cBwBXr4enKiwY6_OY_1vutHETqnzBg7jE"/>
+</div>
+<div class="flex-1 max-w-3xl">
+<div class="flex items-baseline gap-2">
+<span class="text-sm font-bold text-slate-900">Emily (Concierge)</span>
+<span class="text-xs text-slate-400">10:48 AM</span>
+</div>
+<p class="text-slate-700 mt-1 leading-relaxed">His luggage is already on the cart. Waiting for the green light.</p>
+</div>
+</div>
+</div>
+<!-- Input Area -->
+<div class="p-6 bg-white shrink-0">
+<!-- Quick Responses -->
+<div class="flex gap-2 mb-3 overflow-x-auto pb-2 scrollbar-hide">
+<button class="flex-shrink-0 px-4 py-1.5 rounded-full bg-primary-light text-primary text-xs font-semibold hover:bg-primary hover:text-white transition-colors">On my way</button>
+<button class="flex-shrink-0 px-4 py-1.5 rounded-full bg-primary-light text-primary text-xs font-semibold hover:bg-primary hover:text-white transition-colors">Copy that</button>
+<button class="flex-shrink-0 px-4 py-1.5 rounded-full bg-primary-light text-primary text-xs font-semibold hover:bg-primary hover:text-white transition-colors">Task completed</button>
+<button class="flex-shrink-0 px-4 py-1.5 rounded-full bg-primary-light text-primary text-xs font-semibold hover:bg-primary hover:text-white transition-colors">Need assistance</button>
+</div>
+<!-- Input Box -->
+<div class="relative flex items-end gap-2 bg-slate-50 border border-slate-200 rounded-2xl p-2 focus-within:ring-2 focus-within:ring-primary focus-within:border-primary transition-all shadow-sm">
+<button class="p-2 text-slate-400 hover:text-slate-600 rounded-full hover:bg-slate-200 transition-colors">
+<span class="material-symbols-outlined">add_circle</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-slate-600 rounded-full hover:bg-slate-200 transition-colors hidden sm:block">
+<span class="material-symbols-outlined">sentiment_satisfied</span>
+</button>
+<div aria-multiline="true" class="flex-1 min-h-[44px] py-2.5 max-h-32 overflow-y-auto outline-none text-slate-700 text-sm" contenteditable="true" placeholder="Message #general" role="textbox"></div>
+<button class="p-2 bg-primary text-white rounded-xl hover:bg-primary-dark shadow-md transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+<div class="text-xs text-slate-400 mt-2 text-right">
+<strong>Enter</strong> to send, <strong>Shift + Enter</strong> for new line
+                </div>
+</div>
+</section>
+<!-- Right Sidebar: Critical Alerts (30%) -->
+<aside class="w-96 bg-slate-50 border-l border-border-light flex flex-col shrink-0">
+<div class="p-5 border-b border-border-light flex items-center justify-between bg-white">
+<h2 class="text-base font-bold text-slate-900 flex items-center gap-2">
+<span class="material-symbols-outlined text-red-500">warning</span>
+                    Critical Alerts
+                </h2>
+<span class="text-xs font-semibold text-slate-500 bg-slate-100 px-2 py-1 rounded-md">Live Feed</span>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-4">
+<!-- Critical Alert Card -->
+<div class="bg-white rounded-xl p-4 shadow-sm border-l-4 border-red-500 relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-2">
+<span class="bg-red-100 text-red-700 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide">Urgent</span>
+<span class="text-xs text-slate-400">5 min ago</span>
+</div>
+<button class="text-slate-300 hover:text-slate-500">
+<span class="material-symbols-outlined text-[20px]">more_horiz</span>
+</button>
+</div>
+<h3 class="font-bold text-slate-900 mb-1">Plumbing Leak - Room 304</h3>
+<p class="text-sm text-slate-600 mb-4">Water leak reported in bathroom. Guest has been moved. Needs immediate maintenance.</p>
+<div class="flex gap-2">
+<button class="flex-1 bg-red-50 text-red-700 text-xs font-bold py-2 rounded-lg hover:bg-red-100 transition-colors">Acknowledge</button>
+<button class="flex-1 bg-white border border-slate-200 text-slate-700 text-xs font-bold py-2 rounded-lg hover:bg-slate-50 transition-colors">Details</button>
+</div>
+</div>
+<!-- Info Alert Card -->
+<div class="bg-white rounded-xl p-4 shadow-sm border-l-4 border-primary relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-2">
+<span class="bg-primary-light text-primary text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide">VIP Guest</span>
+<span class="text-xs text-slate-400">10 min ago</span>
+</div>
+</div>
+<h3 class="font-bold text-slate-900 mb-1">Mr. Yamamoto Check-in</h3>
+<p class="text-sm text-slate-600 mb-4">VIP Arrival confirmed at front desk. Alert concierge and housekeeping.</p>
+<div class="flex gap-2">
+<button class="flex-1 bg-primary text-white text-xs font-bold py-2 rounded-lg hover:bg-primary-dark transition-colors">View Profile</button>
+</div>
+</div>
+<!-- Warning Alert Card -->
+<div class="bg-white rounded-xl p-4 shadow-sm border-l-4 border-amber-400 relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-2">
+<span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide">Task Update</span>
+<span class="text-xs text-slate-400">45 min ago</span>
+</div>
+</div>
+<h3 class="font-bold text-slate-900 mb-1">Event Layout Change</h3>
+<p class="text-sm text-slate-600 mb-4">Hall B setup modified for evening gala. 20 extra chairs needed.</p>
+<div class="flex gap-2">
+<button class="flex-1 bg-slate-100 text-slate-700 text-xs font-bold py-2 rounded-lg hover:bg-slate-200 transition-colors">Mark Done</button>
+</div>
+</div>
+<!-- System Notification -->
+<div class="bg-slate-100 rounded-xl p-3 flex items-start gap-3 opacity-75">
+<span class="material-symbols-outlined text-slate-400 mt-0.5">update</span>
+<div>
+<p class="text-xs font-bold text-slate-700">System Maintenance</p>
+<p class="text-xs text-slate-500">Scheduled for tonight at 02:00 AM.</p>
+</div>
+</div>
+</div>
+</aside>
+</main>
+<script src="site-logic.js"></script>
+</body></html>

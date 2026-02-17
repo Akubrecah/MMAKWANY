@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mmakwany Guest House Financial Report Generator</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0d968b",
+                        "primary-dark": "#0a756c",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#102220",
+                        "paper-light": "#ffffff",
+                        "paper-dark": "#1a2e2c",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+        /* Custom scrollbar for sidebar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .paper-shadow {
+            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.1);
+        }
+        /* A4 aspect ratio helper */
+        .aspect-a4 {
+            aspect-ratio: 210 / 297;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-100 font-display h-screen flex overflow-hidden selection:bg-primary/30">
+<!-- Left Configuration Sidebar (30%) -->
+<aside class="w-[350px] flex-shrink-0 bg-white dark:bg-paper-dark border-r border-slate-200 dark:border-slate-700 flex flex-col h-full z-20 shadow-lg relative">
+<!-- Header -->
+<div class="p-6 border-b border-slate-100 dark:border-slate-700/50">
+<div class="flex items-center gap-2 mb-1">
+<div class="w-8 h-8 rounded bg-primary flex items-center justify-center text-white">
+<span class="material-icons text-xl">dataset</span>
+</div>
+<h1 class="font-bold text-lg text-slate-900 dark:text-white tracking-tight">Mmakwany Guest House</h1>
+</div>
+<p class="text-xs text-slate-500 font-medium uppercase tracking-wider ml-10">Report Generator</p>
+</div>
+<!-- Scrollable Config Content -->
+<div class="flex-1 overflow-y-auto p-6 space-y-8">
+<!-- Date Range Selector -->
+<section>
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-sm font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+<span class="material-icons text-primary text-base">calendar_today</span>
+                        Reporting Period
+                    </h3>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label class="block text-xs font-medium text-slate-500 mb-1.5">Month</label>
+<select class="w-full bg-slate-50 dark:bg-background-dark border border-slate-200 dark:border-slate-700 rounded-lg py-2.5 px-3 text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all">
+<option>October</option>
+<option>September</option>
+<option>August</option>
+</select>
+</div>
+<div>
+<label class="block text-xs font-medium text-slate-500 mb-1.5">Year</label>
+<select class="w-full bg-slate-50 dark:bg-background-dark border border-slate-200 dark:border-slate-700 rounded-lg py-2.5 px-3 text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all">
+<option>2023</option>
+<option>2022</option>
+</select>
+</div>
+</div>
+</section>
+<!-- Departments -->
+<section>
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-sm font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+<span class="material-icons text-primary text-base">domain</span>
+                        Departments
+                    </h3>
+<button class="text-[10px] font-medium text-primary hover:text-primary-dark">Select All</button>
+</div>
+<div class="space-y-3">
+<label class="flex items-center p-3 border border-slate-200 dark:border-slate-700 rounded-lg hover:border-primary/50 hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors group">
+<input checked="" class="w-4 h-4 text-primary rounded border-slate-300 focus:ring-primary focus:ring-offset-0" type="checkbox"/>
+<div class="ml-3 flex-1">
+<span class="block text-sm font-medium text-slate-700 dark:text-slate-200 group-hover:text-primary transition-colors">Room Revenue</span>
+<span class="block text-xs text-slate-400">Accommodations &amp; Suites</span>
+</div>
+</label>
+<label class="flex items-center p-3 border border-slate-200 dark:border-slate-700 rounded-lg hover:border-primary/50 hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors group">
+<input checked="" class="w-4 h-4 text-primary rounded border-slate-300 focus:ring-primary focus:ring-offset-0" type="checkbox"/>
+<div class="ml-3 flex-1">
+<span class="block text-sm font-medium text-slate-700 dark:text-slate-200 group-hover:text-primary transition-colors">Events &amp; Banquets</span>
+<span class="block text-xs text-slate-400">Weddings, Corporate</span>
+</div>
+</label>
+<label class="flex items-center p-3 border border-slate-200 dark:border-slate-700 rounded-lg hover:border-primary/50 hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors group">
+<input checked="" class="w-4 h-4 text-primary rounded border-slate-300 focus:ring-primary focus:ring-offset-0" type="checkbox"/>
+<div class="ml-3 flex-1">
+<span class="block text-sm font-medium text-slate-700 dark:text-slate-200 group-hover:text-primary transition-colors">Food &amp; Beverage</span>
+<span class="block text-xs text-slate-400">Restaurants, Bar, Room Service</span>
+</div>
+</label>
+</div>
+</section>
+<!-- Metrics Toggles -->
+<section>
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-sm font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+<span class="material-icons text-primary text-base">insights</span>
+                        Include Metrics
+                    </h3>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<span class="text-sm text-slate-600 dark:text-slate-300">Net Revenue Analysis</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm text-slate-600 dark:text-slate-300">VAT Breakdown</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm text-slate-600 dark:text-slate-300">Operating Costs</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm text-slate-600 dark:text-slate-300">YoY Growth Indicators</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</section>
+</div>
+<!-- Sticky Footer Action -->
+<div class="p-6 bg-slate-50 dark:bg-background-dark/50 border-t border-slate-200 dark:border-slate-700">
+<button class="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold py-3 px-4 rounded-xl shadow-lg shadow-primary/25 transition-all transform active:scale-95">
+<span class="material-icons">description</span>
+                Generate Final Report
+            </button>
+</div>
+</aside>
+<!-- Main Live Preview Area (70%) -->
+<main class="flex-1 flex flex-col relative overflow-hidden bg-slate-100 dark:bg-background-dark">
+<!-- Toolbar / Export Bar -->
+<div class="w-full h-16 bg-white dark:bg-paper-dark border-b border-slate-200 dark:border-slate-700 flex items-center justify-between px-8 z-10 shrink-0">
+<div class="flex items-center gap-4 text-sm text-slate-500">
+<span class="flex items-center gap-1.5 px-3 py-1 bg-green-50 text-green-700 rounded-full border border-green-100 text-xs font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                    Live Preview
+                </span>
+<span class="text-slate-300">|</span>
+<span>Last updated: Just now</span>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary hover:bg-primary/5 rounded-lg transition-colors">
+<span class="material-icons text-base">picture_as_pdf</span>
+                    PDF
+                </button>
+<button class="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary hover:bg-primary/5 rounded-lg transition-colors">
+<span class="material-icons text-base">table_view</span>
+                    Excel
+                </button>
+<button class="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary hover:bg-primary/5 rounded-lg transition-colors">
+<span class="material-icons text-base">email</span>
+                    Email
+                </button>
+<div class="w-px h-6 bg-slate-200 dark:bg-slate-700 mx-1"></div>
+<button class="p-2 text-slate-400 hover:text-primary rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+<span class="material-icons">fullscreen</span>
+</button>
+</div>
+</div>
+<!-- Document Canvas Container -->
+<div class="flex-1 overflow-auto p-8 flex justify-center items-start">
+<!-- A4 Paper Simulation -->
+<div class="bg-white text-slate-900 w-full max-w-[800px] min-h-[1130px] p-12 paper-shadow rounded-sm relative flex flex-col mx-auto transition-all duration-300 origin-top scale-[0.85] lg:scale-100 xl:scale-100">
+<!-- Document Header -->
+<header class="flex justify-between items-end border-b-2 border-slate-100 pb-6 mb-8">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<div class="w-6 h-6 rounded bg-primary flex items-center justify-center text-white">
+<span class="material-icons text-sm">dataset</span>
+</div>
+<span class="font-bold text-lg text-slate-800 tracking-tight">Mmakwany Guest House</span>
+</div>
+<h1 class="text-3xl font-display font-bold text-slate-900 leading-tight">Financial<br/>Performance</h1>
+</div>
+<div class="text-right">
+<div class="text-sm font-semibold text-primary uppercase tracking-wider mb-1">Monthly Report</div>
+<div class="text-4xl font-light text-slate-300">10 / 23</div>
+</div>
+</header>
+<!-- Document Content -->
+<div class="space-y-10 flex-1">
+<!-- Executive Summary Cards -->
+<section class="grid grid-cols-3 gap-6">
+<div class="p-4 bg-slate-50 rounded-lg border border-slate-100">
+<div class="text-xs font-medium text-slate-500 uppercase mb-1">Total Revenue</div>
+<div class="text-2xl font-bold text-slate-800">$2,450,000</div>
+<div class="flex items-center gap-1 mt-2 text-xs font-medium text-green-600">
+<span class="material-icons text-xs">arrow_upward</span>
+                                12.5% vs Last Year
+                            </div>
+</div>
+<div class="p-4 bg-slate-50 rounded-lg border border-slate-100">
+<div class="text-xs font-medium text-slate-500 uppercase mb-1">Gross Profit</div>
+<div class="text-2xl font-bold text-slate-800">$1,102,500</div>
+<div class="flex items-center gap-1 mt-2 text-xs font-medium text-slate-400">
+                                45% Margin
+                            </div>
+</div>
+<div class="p-4 bg-slate-50 rounded-lg border border-slate-100">
+<div class="text-xs font-medium text-slate-500 uppercase mb-1">Op. Expenses</div>
+<div class="text-2xl font-bold text-slate-800">$945,000</div>
+<div class="flex items-center gap-1 mt-2 text-xs font-medium text-red-500">
+<span class="material-icons text-xs">arrow_upward</span>
+                                2.1% Increase
+                            </div>
+</div>
+</section>
+<!-- Charts Section -->
+<section class="grid grid-cols-2 gap-8">
+<div>
+<h3 class="text-sm font-bold text-slate-800 mb-4 flex items-center gap-2">
+<span class="w-1 h-4 bg-primary rounded-full"></span>
+                                Departmental Revenue
+                            </h3>
+<!-- Placeholder for Bar Chart -->
+<div class="aspect-[4/3] bg-white rounded-lg border border-slate-100 p-2 relative">
+<canvas id="barChart"></canvas>
+<img alt="hidden ref" class="absolute inset-0 opacity-0" data-alt="Stacked bar chart showing revenue streams for Rooms, Events, and F&amp;B over three weeks" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InRyYW5zcGFyZW50Ii8+PC9zdmc+"/>
+</div>
+</div>
+<div>
+<h3 class="text-sm font-bold text-slate-800 mb-4 flex items-center gap-2">
+<span class="w-1 h-4 bg-primary rounded-full"></span>
+                                Expense Breakdown
+                            </h3>
+<!-- Placeholder for Pie Chart -->
+<div class="aspect-[4/3] bg-white rounded-lg border border-slate-100 p-2 relative flex items-center justify-center">
+<canvas id="doughnutChart"></canvas>
+<img alt="hidden ref" class="absolute inset-0 opacity-0" data-alt="Donut chart displaying expense distribution across marketing, operations, and payroll" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InRyYW5zcGFyZW50Ii8+PC9zdmc+"/>
+</div>
+</div>
+</section>
+<!-- Detailed Table -->
+<section>
+<h3 class="text-sm font-bold text-slate-800 mb-4 flex items-center gap-2">
+<span class="w-1 h-4 bg-primary rounded-full"></span>
+                            Detailed Performance
+                        </h3>
+<div class="border border-slate-200 rounded-lg overflow-hidden">
+<table class="w-full text-sm text-left">
+<thead class="bg-slate-50 text-slate-500 font-medium">
+<tr>
+<th class="px-4 py-3">Department</th>
+<th class="px-4 py-3 text-right">Revenue</th>
+<th class="px-4 py-3 text-right">Target</th>
+<th class="px-4 py-3 text-right">Variance</th>
+<th class="px-4 py-3 text-right">YoY Growth</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100">
+<tr>
+<td class="px-4 py-3 font-medium text-slate-700">Rooms Division</td>
+<td class="px-4 py-3 text-right font-mono">$1,250,000</td>
+<td class="px-4 py-3 text-right font-mono text-slate-500">$1,200,000</td>
+<td class="px-4 py-3 text-right font-mono text-green-600">+4.1%</td>
+<td class="px-4 py-3 text-right">
+<div class="w-16 h-1 bg-slate-200 rounded-full ml-auto overflow-hidden">
+<div class="h-full bg-primary w-[75%]"></div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="px-4 py-3 font-medium text-slate-700">Food &amp; Beverage</td>
+<td class="px-4 py-3 text-right font-mono">$850,000</td>
+<td class="px-4 py-3 text-right font-mono text-slate-500">$800,000</td>
+<td class="px-4 py-3 text-right font-mono text-green-600">+6.2%</td>
+<td class="px-4 py-3 text-right">
+<div class="w-16 h-1 bg-slate-200 rounded-full ml-auto overflow-hidden">
+<div class="h-full bg-primary w-[85%]"></div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="px-4 py-3 font-medium text-slate-700">Events &amp; Banquets</td>
+<td class="px-4 py-3 text-right font-mono">$350,000</td>
+<td class="px-4 py-3 text-right font-mono text-slate-500">$400,000</td>
+<td class="px-4 py-3 text-right font-mono text-red-500">-12.5%</td>
+<td class="px-4 py-3 text-right">
+<div class="w-16 h-1 bg-slate-200 rounded-full ml-auto overflow-hidden">
+<div class="h-full bg-red-400 w-[45%]"></div>
+</div>
+</td>
+</tr>
+</tbody>
+<tfoot class="bg-slate-50 font-semibold text-slate-800">
+<tr>
+<td class="px-4 py-3">Total</td>
+<td class="px-4 py-3 text-right font-mono">$2,450,000</td>
+<td class="px-4 py-3 text-right font-mono text-slate-500">$2,400,000</td>
+<td class="px-4 py-3 text-right font-mono text-green-600">+2.1%</td>
+<td class="px-4 py-3"></td>
+</tr>
+</tfoot>
+</table>
+</div>
+</section>
+</div>
+<!-- Footer of Document -->
+<footer class="border-t border-slate-100 pt-6 mt-8 flex justify-between items-center text-xs text-slate-400">
+<div>Generated by Mmakwany Guest House Financial Suite</div>
+<div>Page 1 of 1</div>
+</footer>
+</div>
+</div>
+</main>
+<!-- Init Charts -->
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Bar Chart Config
+            const ctxBar = document.getElementById('barChart').getContext('2d');
+            new Chart(ctxBar, {
+                type: 'bar',
+                data: {
+                    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                    datasets: [
+                        { label: 'Rooms', data: [300, 450, 320, 400], backgroundColor: '#0d968b', borderRadius: 4 },
+                        { label: 'F&B', data: [200, 250, 220, 280], backgroundColor: '#1F2937', borderRadius: 4 },
+                        { label: 'Events', data: [100, 50, 150, 120], backgroundColor: '#9CA3AF', borderRadius: 4 }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'bottom', labels: { usePointStyle: true, boxWidth: 6 } } },
+                    scales: {
+                        x: { grid: { display: false } },
+                        y: { beginAtZero: true, grid: { borderDash: [2, 4] } }
+                    }
+                }
+            });
+
+            // Doughnut Chart Config
+            const ctxDoughnut = document.getElementById('doughnutChart').getContext('2d');
+            new Chart(ctxDoughnut, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Payroll', 'Utilities', 'Marketing', 'Supplies'],
+                    datasets: [{
+                        data: [45, 15, 25, 15],
+                        backgroundColor: ['#0d968b', '#1F2937', '#64748B', '#CBD5E1'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: { legend: { position: 'right', labels: { usePointStyle: true, boxWidth: 6 } } }
+                }
+            });
+        });
+    </script>
+<script src="site-logic.js"></script>
+</body></html>

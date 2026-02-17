@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mmakwany Guest House Housekeeping Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0d968b",
+                        "primary-dark": "#0b7a71",
+                        "primary-light": "#e0f2f1",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#102220",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem", 
+                        "lg": "0.5rem", 
+                        "xl": "0.75rem", 
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white min-h-screen flex flex-col">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 bg-white dark:bg-[#1a2e2c] border-b border-slate-200 dark:border-slate-800 px-6 py-4 shadow-sm">
+<div class="max-w-[1400px] mx-auto flex items-center justify-between">
+<!-- Logo area -->
+<div class="flex items-center gap-3">
+<div class="bg-primary/10 p-2 rounded-lg text-primary">
+<span class="material-symbols-outlined text-3xl">cleaning_services</span>
+</div>
+<div>
+<h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">Mmakwany Guest House</h1>
+<p class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Housekeeping</p>
+</div>
+</div>
+<!-- Nav Links (Desktop) -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-slate-500 dark:text-slate-400 hover:text-primary font-medium transition-colors" href="#">Overview</a>
+<a class="text-primary font-semibold transition-colors" href="#">Tasks</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-primary font-medium transition-colors" href="#">Schedule</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-primary font-medium transition-colors" href="#">Messages</a>
+</nav>
+<!-- User / Actions -->
+<div class="flex items-center gap-4">
+<div class="hidden sm:flex flex-col items-end mr-2">
+<span class="text-sm font-semibold">Sarah Jenkins</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">Shift: 08:00 - 16:00</span>
+</div>
+<div class="size-10 rounded-full bg-slate-200 overflow-hidden border-2 border-white shadow-sm relative group">
+<img alt="Profile picture of Sarah Jenkins, housekeeping staff" class="w-full h-full object-cover" data-alt="Profile picture of Sarah Jenkins, housekeeping staff" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmbQeFpaQ36lddqCgbACtjZndyLrHSkZ5FqVNTAjzVLOcLcbUQpC2fagVSxg75B4trn7P_vtl3bqLzZiKBhhfraZu5hmpcztKL6CP1mMaR8OKFIrnn2jfbKC1Zl1Zfh5szH8aU27w3e_wyj0gvSKyTX5HQmhdhIMwqXeBifNdc1GIqEkUsPI8qdl4gjUhtPlyKm6RjBP0UQWvYBz4SaXqaotw2qLfrXtygHyA8Fhdtf0kClJb6wJvKuXG8etwbC87buDbJrMTEqvE"/>
+</div>
+<button class="size-10 flex items-center justify-center rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 transition-colors relative">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-300">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-red-500 rounded-full border border-white"></span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow p-6 md:p-8 max-w-[1400px] mx-auto w-full">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 h-full">
+<!-- Left Column: Dashboard (9 cols) -->
+<div class="lg:col-span-9 flex flex-col gap-8">
+<!-- Welcome & Date -->
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+<div>
+<h2 class="text-3xl font-bold text-slate-900 dark:text-white">Good Morning, Sarah!</h2>
+<p class="text-slate-500 dark:text-slate-400 mt-1">Here is your cleaning schedule for today.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-[#1a2e2c] border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-medium hover:bg-slate-50 transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[20px]">print</span>
+                            Print List
+                        </button>
+</div>
+</div>
+<!-- Status Overview Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Card 1 -->
+<div class="bg-white dark:bg-[#1a2e2c] p-6 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm flex flex-col justify-between group hover:border-primary/50 transition-all">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg text-blue-600 dark:text-blue-400">
+<span class="material-symbols-outlined">cleaning_services</span>
+</div>
+<span class="flex items-center gap-1 text-xs font-semibold text-green-600 bg-green-50 px-2 py-1 rounded-full">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +2
+                            </span>
+</div>
+<div>
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">Rooms to Clean</p>
+<p class="text-4xl font-bold text-slate-900 dark:text-white">12</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-white dark:bg-[#1a2e2c] p-6 rounded-xl border-l-4 border-l-orange-500 border-y border-r border-slate-100 dark:border-slate-800 shadow-sm flex flex-col justify-between group hover:shadow-md transition-all">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 bg-orange-50 dark:bg-orange-900/20 rounded-lg text-orange-600 dark:text-orange-400">
+<span class="material-symbols-outlined icon-filled">star</span>
+</div>
+<span class="text-xs font-semibold text-orange-700 bg-orange-100 px-2 py-1 rounded-full">High Priority</span>
+</div>
+<div>
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">Priority / VIP</p>
+<p class="text-4xl font-bold text-slate-900 dark:text-white">3</p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-white dark:bg-[#1a2e2c] p-6 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm flex flex-col justify-between group hover:border-primary/50 transition-all">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 bg-red-50 dark:bg-red-900/20 rounded-lg text-red-600 dark:text-red-400">
+<span class="material-symbols-outlined">meeting_room</span>
+</div>
+</div>
+<div>
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">Dirty / Vacant</p>
+<p class="text-4xl font-bold text-slate-900 dark:text-white">5</p>
+</div>
+</div>
+</div>
+<!-- Filters & Controls -->
+<div class="flex flex-wrap items-center justify-between gap-4 bg-white dark:bg-[#1a2e2c] p-2 rounded-lg border border-slate-100 dark:border-slate-800 shadow-sm">
+<div class="flex gap-2 overflow-x-auto no-scrollbar">
+<button class="px-4 py-2 bg-slate-100 dark:bg-slate-700 text-slate-900 dark:text-white rounded-md text-sm font-semibold">All Rooms</button>
+<button class="px-4 py-2 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-md text-sm font-medium transition-colors">Pending</button>
+<button class="px-4 py-2 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-md text-sm font-medium transition-colors">In-Progress</button>
+<button class="px-4 py-2 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-md text-sm font-medium transition-colors">Inspected</button>
+</div>
+<div class="flex items-center gap-2 px-2">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[20px]">search</span>
+<input class="pl-10 pr-4 py-2 bg-slate-50 dark:bg-slate-800 border-none rounded-md text-sm focus:ring-2 focus:ring-primary w-40 md:w-64" placeholder="Search room..." type="text"/>
+</div>
+</div>
+</div>
+<!-- Task List Table -->
+<div class="bg-white dark:bg-[#1a2e2c] rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden flex-grow flex flex-col">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-700">
+<th class="py-4 px-6 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Room Info</th>
+<th class="py-4 px-6 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Status</th>
+<th class="py-4 px-6 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Task Type</th>
+<th class="py-4 px-6 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<!-- Row 1 -->
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="py-4 px-6 align-middle">
+<div class="flex items-center gap-4">
+<div class="bg-slate-100 dark:bg-slate-700 p-3 rounded-lg text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined">bed</span>
+</div>
+<div>
+<p class="text-lg font-bold text-slate-900 dark:text-white">304</p>
+<p class="text-sm text-slate-500 dark:text-slate-400">King Suite</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 align-middle">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-orange-100 text-orange-700 border border-orange-200">
+<span class="size-1.5 rounded-full bg-orange-500"></span>
+                                            VIP / Priority
+                                        </span>
+<div class="mt-1 text-xs text-slate-400">Occ: Vacant</div>
+</td>
+<td class="py-4 px-6 align-middle">
+<div class="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+<span class="material-symbols-outlined text-primary">sanitizer</span>
+<span class="text-sm font-medium">Deep Clean</span>
+</div>
+</td>
+<td class="py-4 px-6 align-middle text-right">
+<div class="flex items-center justify-end gap-3">
+<button class="flex items-center gap-2 px-5 py-2.5 bg-primary hover:bg-primary-dark text-white rounded-lg shadow-sm font-semibold transition-all transform active:scale-95">
+<span class="material-symbols-outlined">play_arrow</span>
+                                                Start
+                                            </button>
+<button class="flex items-center justify-center size-10 text-slate-400 hover:text-green-600 hover:bg-green-50 rounded-lg border border-transparent hover:border-green-100 transition-all" title="Mark Ready">
+<span class="material-symbols-outlined">check_circle</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors bg-blue-50/30 dark:bg-blue-900/10">
+<td class="py-4 px-6 align-middle">
+<div class="flex items-center gap-4">
+<div class="bg-blue-100 dark:bg-blue-900/40 p-3 rounded-lg text-blue-600 dark:text-blue-300">
+<span class="material-symbols-outlined icon-filled">hourglass_top</span>
+</div>
+<div>
+<p class="text-lg font-bold text-slate-900 dark:text-white">201</p>
+<p class="text-sm text-slate-500 dark:text-slate-400">Queen Deluxe</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 align-middle">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-700 border border-blue-200">
+<span class="size-1.5 rounded-full bg-blue-500 animate-pulse"></span>
+                                            In-Progress
+                                        </span>
+<div class="mt-1 text-xs text-slate-400">Occ: Occupied</div>
+</td>
+<td class="py-4 px-6 align-middle">
+<div class="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+<span class="material-symbols-outlined text-slate-400">change_circle</span>
+<span class="text-sm font-medium">Stay-over</span>
+</div>
+</td>
+<td class="py-4 px-6 align-middle text-right">
+<div class="flex items-center justify-end gap-3">
+<button class="flex items-center gap-2 px-5 py-2.5 bg-green-600 hover:bg-green-700 text-white rounded-lg shadow-sm font-semibold transition-all transform active:scale-95">
+<span class="material-symbols-outlined">check</span>
+                                                Finish
+                                            </button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="py-4 px-6 align-middle">
+<div class="flex items-center gap-4">
+<div class="bg-slate-100 dark:bg-slate-700 p-3 rounded-lg text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined">bed</span>
+</div>
+<div>
+<p class="text-lg font-bold text-slate-900 dark:text-white">105</p>
+<p class="text-sm text-slate-500 dark:text-slate-400">Twin Standard</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 align-middle">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-200">
+<span class="size-1.5 rounded-full bg-slate-500"></span>
+                                            Pending
+                                        </span>
+<div class="mt-1 text-xs text-slate-400">Occ: Vacant</div>
+</td>
+<td class="py-4 px-6 align-middle">
+<div class="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+<span class="material-symbols-outlined text-slate-400">dry_cleaning</span>
+<span class="text-sm font-medium">Turndown</span>
+</div>
+</td>
+<td class="py-4 px-6 align-middle text-right">
+<div class="flex items-center justify-end gap-3">
+<button class="flex items-center gap-2 px-5 py-2.5 bg-white border border-slate-200 hover:bg-primary hover:text-white hover:border-primary text-slate-700 rounded-lg shadow-sm font-semibold transition-all transform active:scale-95">
+<span class="material-symbols-outlined">play_arrow</span>
+                                                Start
+                                            </button>
+<button class="flex items-center justify-center size-10 text-slate-400 hover:text-green-600 hover:bg-green-50 rounded-lg border border-transparent hover:border-green-100 transition-all" title="Mark Ready">
+<span class="material-symbols-outlined">check_circle</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors opacity-60">
+<td class="py-4 px-6 align-middle">
+<div class="flex items-center gap-4">
+<div class="bg-green-50 dark:bg-green-900/30 p-3 rounded-lg text-green-600 dark:text-green-400">
+<span class="material-symbols-outlined icon-filled">check</span>
+</div>
+<div>
+<p class="text-lg font-bold text-slate-900 dark:text-white strike-through decoration-slate-400">402</p>
+<p class="text-sm text-slate-500 dark:text-slate-400">King Suite</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 align-middle">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-700 border border-green-200">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+                                            Ready
+                                        </span>
+<div class="mt-1 text-xs text-slate-400">Occ: Vacant</div>
+</td>
+<td class="py-4 px-6 align-middle">
+<div class="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+<span class="material-symbols-outlined text-slate-400">sanitizer</span>
+<span class="text-sm font-medium">Deep Clean</span>
+</div>
+</td>
+<td class="py-4 px-6 align-middle text-right">
+<span class="text-xs text-slate-400 font-medium italic">Completed 10:45 AM</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Right Column: Sidebar (3 cols) -->
+<div class="lg:col-span-3 flex flex-col gap-6">
+<!-- Inventory Widget -->
+<div class="bg-white dark:bg-[#1a2e2c] rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col">
+<div class="p-5 border-b border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/30 flex justify-between items-center">
+<h3 class="font-bold text-slate-800 dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-orange-500">inventory_2</span>
+                            Inventory Alerts
+                        </h3>
+<span class="size-2 bg-red-500 rounded-full animate-pulse"></span>
+</div>
+<div class="p-4 flex flex-col gap-3">
+<!-- Alert Item 1 -->
+<div class="flex gap-3 p-3 bg-red-50 dark:bg-red-900/10 rounded-lg border border-red-100 dark:border-red-900/20">
+<div class="text-red-500 mt-1">
+<span class="material-symbols-outlined text-[20px]">warning</span>
+</div>
+<div>
+<p class="text-sm font-bold text-red-700 dark:text-red-400">Low Stock: Towels</p>
+<p class="text-xs text-red-600/80 dark:text-red-400/70 mt-0.5">Floor 3 Closet - <span class="font-semibold">3 remaining</span></p>
+<button class="mt-2 text-xs font-semibold text-red-700 dark:text-red-400 underline decoration-red-300 hover:text-red-900">Request Restock</button>
+</div>
+</div>
+<!-- Alert Item 2 -->
+<div class="flex gap-3 p-3 bg-orange-50 dark:bg-orange-900/10 rounded-lg border border-orange-100 dark:border-orange-900/20">
+<div class="text-orange-500 mt-1">
+<span class="material-symbols-outlined text-[20px]">soap</span>
+</div>
+<div>
+<p class="text-sm font-bold text-orange-700 dark:text-orange-400">Shampoo Bottles</p>
+<p class="text-xs text-orange-600/80 dark:text-orange-400/70 mt-0.5">Cart 2 - <span class="font-semibold">Running Low</span></p>
+</div>
+</div>
+<!-- Info Item -->
+<div class="flex gap-3 p-3 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-100 dark:border-slate-700">
+<div class="text-primary mt-1">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-700 dark:text-slate-300">Linens Restocked</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Confirmed by Warehouse at 07:30 AM</p>
+</div>
+</div>
+</div>
+<div class="p-3 border-t border-slate-100 dark:border-slate-800 text-center">
+<button class="text-xs font-semibold text-primary hover:text-primary-dark w-full py-1">View Full Inventory</button>
+</div>
+</div>
+<!-- Quick Actions / Notes -->
+<div class="bg-primary text-white rounded-xl shadow-lg p-6 relative overflow-hidden group">
+<div class="absolute -right-6 -top-6 size-24 bg-white/10 rounded-full group-hover:scale-110 transition-transform"></div>
+<div class="absolute -left-6 -bottom-6 size-20 bg-black/10 rounded-full group-hover:scale-110 transition-transform"></div>
+<h3 class="font-bold text-lg mb-2 relative z-10">Need Assistance?</h3>
+<p class="text-sm text-white/90 mb-4 relative z-10">Contact supervisor or maintenance immediately.</p>
+<div class="grid grid-cols-2 gap-2 relative z-10">
+<button class="bg-white/20 hover:bg-white/30 backdrop-blur-sm py-2 rounded-lg text-xs font-semibold transition-colors flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-[20px]">build</span>
+                            Maintenance
+                        </button>
+<button class="bg-white/20 hover:bg-white/30 backdrop-blur-sm py-2 rounded-lg text-xs font-semibold transition-colors flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-[20px]">support_agent</span>
+                            Supervisor
+                        </button>
+</div>
+</div>
+<!-- Shift Status -->
+<div class="bg-white dark:bg-[#1a2e2c] rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm p-5">
+<p class="text-xs font-semibold uppercase text-slate-400 mb-3 tracking-wider">Current Shift</p>
+<div class="flex items-center justify-between mb-2">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">Time Remaining</span>
+<span class="text-sm font-bold text-slate-900 dark:text-white">4h 12m</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-700 rounded-full h-2 mb-4">
+<div class="bg-primary h-2 rounded-full" style="width: 45%"></div>
+</div>
+<button class="w-full py-2 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                        End Shift
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<script src="site-logic.js"></script>
+</body></html>

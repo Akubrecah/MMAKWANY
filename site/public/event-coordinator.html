@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Mmakwany Event Coordinator Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#10b748",
+                        "primary-dark": "#0d9239",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#111813",
+                        "surface-dark": "#1a241d",
+                        "surface-highlight": "#28392e",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "sans": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #111813; }
+        ::-webkit-scrollbar-thumb { background: #28392e; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #10b748; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.3s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="bg-background-dark text-white overflow-hidden">
+
+<div class="relative flex h-screen w-full overflow-hidden">
+    
+    <!-- SIDEBAR -->
+    <aside class="flex w-64 flex-col border-r border-surface-highlight bg-background-dark z-20 hidden md:flex">
+        <div class="flex flex-col h-full justify-between p-4">
+            <div class="flex flex-col gap-6">
+                <!-- User Profile -->
+                <div class="flex items-center gap-3 pb-6 border-b border-surface-highlight">
+                    <div class="bg-center bg-no-repeat bg-cover rounded-full h-10 w-10 relative" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDENav95mJyrE4L5xYjSLWyJWbut-2NmMvblwMOTHUW4Ht_7255EXGMV5pap2OWllmsnr85DQixPXLz-MWhOqixT4_KcO4ND9VVvyx8K7Cs1GhahTlL2ePrb8ie3jqedUrYqBo_Mi1vI1O1blEqzhxfA2NURKgxyyPgQ09Wa2wQon7bNJopzLJQwDXaLE1HIDVzQw0kf54eChzFRa5wRVnLzg3eotA5Y3xG9adKWt1byizu3kWHCpFPt1NQIYkFp0LM2TXaj_vXvvQ");'>
+                        <div class="absolute bottom-0 right-0 h-2.5 w-2.5 rounded-full bg-primary border-2 border-background-dark"></div>
+                    </div>
+                    <div class="flex flex-col">
+                        <h1 class="text-white text-sm font-semibold leading-tight">Elena R.</h1>
+                        <p class="text-gray-400 text-xs font-normal">Event Coordinator</p>
+                    </div>
+                </div>
+                
+                <!-- Navigation -->
+                <nav class="flex flex-col gap-2" id="sidebar-nav">
+                    <button class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-lg bg-surface-highlight text-white group transition-all duration-200" data-target="daily-schedule">
+                        <span class="material-symbols-outlined text-primary group-hover:text-white transition-colors text-[24px]">calendar_month</span>
+                        <span class="text-sm font-medium">Daily Schedule</span>
+                    </button>
+                    <button class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-surface-highlight/50 text-gray-300 hover:text-white group transition-all duration-200" data-target="logistics">
+                        <span class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors text-[24px]">local_shipping</span>
+                        <span class="text-sm font-medium">Logistics</span>
+                    </button>
+                    <button class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-surface-highlight/50 text-gray-300 hover:text-white group transition-all duration-200" data-target="catering-orders">
+                        <span class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors text-[24px]">restaurant_menu</span>
+                        <span class="text-sm font-medium">Catering Orders</span>
+                    </button>
+                    <button class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-surface-highlight/50 text-gray-300 hover:text-white group transition-all duration-200" data-target="staffing">
+                        <span class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors text-[24px]">groups</span>
+                        <span class="text-sm font-medium">Staffing</span>
+                    </button>
+                    <button class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-surface-highlight/50 text-gray-300 hover:text-white group transition-all duration-200" data-target="vendor-portal">
+                        <span class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors text-[24px]">storefront</span>
+                        <span class="text-sm font-medium">Vendor Portal</span>
+                    </button>
+                </nav>
+            </div>
+            
+            <div class="mt-auto">
+                <button class="flex w-full items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-red-900/20 text-red-400 hover:text-red-300 transition-colors">
+                    <span class="material-symbols-outlined text-[20px]">logout</span>
+                    <span class="text-sm font-medium">Sign Out</span>
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 flex flex-col h-full overflow-hidden relative">
+        
+        <!-- Top Bar -->
+        <header class="flex items-center justify-between border-b border-surface-highlight bg-background-dark/95 backdrop-blur-sm px-6 py-3 shrink-0 z-10">
+            <div class="flex items-center gap-6">
+                <div class="flex items-center gap-3 text-white">
+                    <div class="h-8 w-8 rounded bg-gradient-to-br from-primary to-emerald-800 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-white text-[20px]">event_seat</span>
+                    </div>
+                    <h2 class="text-lg font-bold tracking-tight">Event Operations</h2>
+                </div>
+                <!-- Venue Switcher -->
+                <div class="hidden sm:flex h-9 items-center justify-center rounded-lg bg-surface-highlight p-1">
+                    <label class="cursor-pointer h-full px-4 rounded-md bg-background-dark shadow-sm text-white text-xs font-semibold flex items-center transition-all">
+                        <input checked="" class="hidden" name="venue" type="radio" value="main"/>
+                        <span>Main Wing</span>
+                    </label>
+                    <label class="cursor-pointer h-full px-4 rounded-md hover:bg-surface-highlight text-gray-400 hover:text-white text-xs font-medium flex items-center transition-all">
+                        <input class="hidden" name="venue" type="radio" value="garden"/>
+                        <span>Garden Wing</span>
+                    </label>
+                </div>
+            </div>
+            <div class="flex items-center gap-3">
+                <button class="hidden md:flex items-center justify-center h-9 px-4 bg-primary hover:bg-primary-dark text-white text-xs font-bold rounded-lg transition-colors shadow-[0_0_15px_rgba(16,183,72,0.3)]">
+                    <span class="material-symbols-outlined text-[16px] mr-2">add</span>
+                    New Incident
+                </button>
+                <button class="relative flex items-center justify-center h-9 w-9 rounded-lg hover:bg-surface-highlight text-gray-300 transition-colors">
+                    <span class="material-symbols-outlined text-[20px]">notifications</span>
+                    <span class="absolute top-2 right-2 h-2 w-2 rounded-full bg-red-500 border border-background-dark"></span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Dynamic Content Area -->
+        <div class="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8 space-y-6" id="content-area">
+
+            <!-- 1. DAILY SCHEDULE (Default View) -->
+            <div id="daily-schedule" class="tab-content active space-y-6">
+                <!-- Hero Card -->
+                <section class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <div class="lg:col-span-8 bg-surface-dark border border-surface-highlight rounded-xl p-6 relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+                        <div class="relative z-10 flex flex-col h-full justify-between gap-6">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <span class="flex h-2 w-2 rounded-full bg-red-500 animate-pulse"></span>
+                                        <span class="text-red-400 text-xs font-bold uppercase tracking-wider">Live Now</span>
+                                    </div>
+                                    <h1 class="text-white text-3xl md:text-4xl font-black tracking-tight mb-2">UN Global Summit</h1>
+                                    <p class="text-emerald-100/70 text-base font-medium flex items-center gap-2">
+                                        <span class="material-symbols-outlined text-[18px]">podium</span>
+                                        Current Session: Keynote Speech (Main Hall)
+                                    </p>
+                                </div>
+                                <button class="text-gray-400 hover:text-white transition-colors">
+                                    <span class="material-symbols-outlined">more_horiz</span>
+                                </button>
+                            </div>
+                            <div class="flex flex-wrap items-end gap-8 border-t border-surface-highlight/50 pt-6 mt-2">
+                                <div class="flex flex-col">
+                                    <span class="text-gray-400 text-xs font-medium uppercase tracking-wider mb-1">Next Milestone</span>
+                                    <span class="text-white text-lg font-bold">Lunch Break</span>
+                                </div>
+                                <div class="flex items-baseline gap-1">
+                                    <div class="bg-surface-highlight rounded px-2 py-1">
+                                        <span class="text-white text-3xl font-mono font-bold">00</span>
+                                    </div>
+                                    <span class="text-gray-500 font-bold">:</span>
+                                    <div class="bg-surface-highlight rounded px-2 py-1">
+                                        <span class="text-white text-3xl font-mono font-bold">14</span>
+                                    </div>
+                                    <span class="text-gray-500 font-bold">:</span>
+                                    <div class="bg-primary rounded px-2 py-1 shadow-[0_0_15px_rgba(16,183,72,0.4)]">
+                                        <span class="text-white text-3xl font-mono font-bold">35</span>
+                                    </div>
+                                    <span class="text-gray-400 text-xs ml-2 font-medium">until break</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Mini Map -->
+                    <div class="lg:col-span-4 bg-surface-dark border border-surface-highlight rounded-xl p-4 flex flex-col h-full min-h-[300px]">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-white text-sm font-semibold">Live Venue Map</h3>
+                            <span class="flex items-center gap-1 text-[10px] text-gray-400 uppercase tracking-widest border border-surface-highlight px-2 py-0.5 rounded-full">
+                                <span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Live
+                            </span>
+                        </div>
+                        <div class="flex-1 bg-[#161e18] rounded-lg relative overflow-hidden border border-surface-highlight/30">
+                            <!-- SVG Map Placeholder -->
+                            <svg class="w-full h-full absolute inset-0 text-gray-700" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+                                <pattern id="grid" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/></pattern>
+                                <rect width="100%" height="100%" fill="url(#grid)"/>
+                                <rect x="50" y="50" width="200" height="150" fill="currentColor" fill-opacity="0.2" stroke="#ef4444" stroke-width="2" stroke-dasharray="4 2" rx="4"/>
+                                <text x="150" y="125" fill="#ef4444" font-size="12" font-weight="bold" text-anchor="middle" font-family="Inter">MAIN HALL</text>
+                                <text x="150" y="140" fill="#ef4444" font-size="10" text-anchor="middle" font-family="Inter">IN SESSION</text>
+                                <rect x="260" y="50" width="90" height="200" fill="currentColor" fill-opacity="0.2" stroke="#10b748" stroke-width="2" rx="4"/>
+                                <text x="305" y="140" fill="#10b748" font-size="10" font-weight="bold" text-anchor="middle" transform="rotate(90, 305, 140)" font-family="Inter">FOYER AREA</text>
+                            </svg>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Schedule Timeline -->
+                <div class="bg-surface-dark border border-surface-highlight rounded-xl p-6">
+                    <h3 class="text-white text-lg font-bold mb-6 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">schedule</span> Full Day Timeline
+                    </h3>
+                    <div class="relative pl-6 border-l border-surface-highlight space-y-8">
+                        <!-- Past Item -->
+                        <div class="relative group">
+                            <span class="absolute -left-[29px] top-1.5 h-3 w-3 rounded-full bg-gray-500 border-2 border-surface-dark"></span>
+                            <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 mb-1">
+                                <span class="text-sm font-mono text-gray-500">08:00 AM</span>
+                                <span class="text-gray-500 font-medium line-through">Registration & Welcome Coffee</span>
+                            </div>
+                            <p class="text-xs text-gray-600">Completed. 450 attendees checked in.</p>
+                        </div>
+                        <!-- Current Item -->
+                        <div class="relative group">
+                            <span class="absolute -left-[31px] top-1.5 h-4 w-4 rounded-full bg-red-500 border-2 border-surface-dark animate-pulse"></span>
+                            <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 mb-1">
+                                <span class="text-sm font-mono text-red-400 font-bold">10:00 AM</span>
+                                <span class="text-white font-bold text-lg">Keynote Speech - Opening Ceremony</span>
+                            </div>
+                            <p class="text-xs text-emerald-100/60 bg-emerald-900/10 border border-emerald-900/30 p-2 rounded max-w-md mt-2">
+                                Speaker: Hon. Minister of Tourism. Main Hall at full capacity.
+                            </p>
+                        </div>
+                        <!-- Future Item -->
+                        <div class="relative group opacity-60 hover:opacity-100 transition-opacity">
+                            <span class="absolute -left-[29px] top-1.5 h-3 w-3 rounded-full bg-primary border-2 border-surface-dark"></span>
+                            <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 mb-1">
+                                <span class="text-sm font-mono text-primary font-bold">12:30 PM</span>
+                                <span class="text-white font-semibold">Networking Lunch</span>
+                            </div>
+                            <p class="text-xs text-gray-400">Buffet setup in Foyer & Garden Wing. Start prepping at 11:45.</p>
+                        </div>
+                        <!-- Future Item -->
+                        <div class="relative group opacity-60 hover:opacity-100 transition-opacity">
+                            <span class="absolute -left-[29px] top-1.5 h-3 w-3 rounded-full bg-surface-highlight border-2 border-surface-dark"></span>
+                            <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 mb-1">
+                                <span class="text-sm font-mono text-gray-400">02:00 PM</span>
+                                <span class="text-white font-semibold">Breakout Sessions (Rooms A, B, C)</span>
+                            </div>
+                            <p class="text-xs text-gray-400">Tech team to verify projectors in all breakout rooms.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. LOGISTICS -->
+            <div id="logistics" class="tab-content">
+                <div class="bg-surface-dark border border-surface-highlight rounded-xl p-6 flex flex-col gap-6">
+                    <div class="flex justify-between items-center pb-4 border-b border-surface-highlight">
+                        <div class="flex items-center gap-3">
+                            <div class="p-2 bg-primary/10 rounded-lg text-primary">
+                                <span class="material-symbols-outlined">fact_check</span>
+                            </div>
+                            <div>
+                                <h3 class="text-white text-xl font-bold">Logistics & Operations</h3>
+                                <p class="text-xs text-gray-400">Manage tasks, equipment, and setups</p>
+                            </div>
+                        </div>
+                        <span id="checklist-counter" class="px-3 py-1 bg-surface-highlight rounded-full text-xs font-semibold text-white">4/6 Completed</span>
+                    </div>
+
+                    <!-- Checklist Container -->
+                    <div class="flex flex-col gap-2" id="logistics-list">
+                        <!-- Items populated by JS/HTML below -->
+                        <label class="group flex items-center gap-3 p-3 rounded-lg bg-surface-highlight/10 hover:bg-surface-highlight/30 cursor-pointer transition-colors border border-transparent hover:border-surface-highlight">
+                            <div class="relative flex items-center justify-center">
+                                <input checked class="peer h-5 w-5 cursor-pointer appearance-none rounded border border-gray-500 bg-transparent checked:border-primary checked:bg-primary transition-all" type="checkbox"/>
+                                <span class="material-symbols-outlined absolute pointer-events-none opacity-0 peer-checked:opacity-100 text-white text-[16px]">check</span>
+                            </div>
+                            <span class="text-gray-500 line-through text-sm font-medium flex-1">Stage Setup Verification</span>
+                        </label>
+
+                        <label class="group flex items-center gap-3 p-3 rounded-lg bg-surface-highlight/10 hover:bg-surface-highlight/30 cursor-pointer transition-colors border border-transparent hover:border-surface-highlight">
+                            <div class="relative flex items-center justify-center">
+                                <input checked class="peer h-5 w-5 cursor-pointer appearance-none rounded border border-gray-500 bg-transparent checked:border-primary checked:bg-primary transition-all" type="checkbox"/>
+                                <span class="material-symbols-outlined absolute pointer-events-none opacity-0 peer-checked:opacity-100 text-white text-[16px]">check</span>
+                            </div>
+                            <span class="text-gray-500 line-through text-sm font-medium flex-1">Mic & Audio Sound Check</span>
+                        </label>
+
+                        <label class="group flex items-start gap-3 p-3 rounded-lg bg-orange-900/10 border border-orange-900/30 hover:bg-orange-900/20 cursor-pointer transition-colors">
+                            <div class="relative flex items-center justify-center mt-0.5">
+                                <input class="peer h-5 w-5 cursor-pointer appearance-none rounded border border-orange-500 bg-transparent checked:border-primary checked:bg-primary transition-all" type="checkbox"/>
+                                <span class="material-symbols-outlined absolute pointer-events-none opacity-0 peer-checked:opacity-100 text-white text-[16px]">check</span>
+                            </div>
+                            <div class="flex flex-col flex-1">
+                                <span class="text-white text-sm font-semibold task-text">VIP Arrival Coordination</span>
+                                <span class="text-orange-400 text-xs font-normal mt-0.5 urgency-tag">Pending arrival at North Gate (5m)</span>
+                            </div>
+                        </label>
+
+                        <label class="group flex items-center gap-3 p-3 rounded-lg bg-surface-highlight/10 hover:bg-surface-highlight/30 cursor-pointer transition-colors border border-transparent hover:border-surface-highlight">
+                            <div class="relative flex items-center justify-center">
+                                <input class="peer h-5 w-5 cursor-pointer appearance-none rounded border border-gray-500 bg-transparent checked:border-primary checked:bg-primary transition-all" type="checkbox"/>
+                                <span class="material-symbols-outlined absolute pointer-events-none opacity-0 peer-checked:opacity-100 text-white text-[16px]">check</span>
+                            </div>
+                            <span class="text-white text-sm font-medium flex-1 task-text">Clear Buffet Area for Lunch</span>
+                        </label>
+
+                        <label class="group flex items-center gap-3 p-3 rounded-lg bg-surface-highlight/10 hover:bg-surface-highlight/30 cursor-pointer transition-colors border border-transparent hover:border-surface-highlight">
+                            <div class="relative flex items-center justify-center">
+                                <input class="peer h-5 w-5 cursor-pointer appearance-none rounded border border-gray-500 bg-transparent checked:border-primary checked:bg-primary transition-all" type="checkbox"/>
+                                <span class="material-symbols-outlined absolute pointer-events-none opacity-0 peer-checked:opacity-100 text-white text-[16px]">check</span>
+                            </div>
+                            <span class="text-white text-sm font-medium flex-1 task-text">Tech Support - Projector B Check</span>
+                        </label>
+                    </div>
+                    
+                    <button class="mt-2 flex items-center gap-2 text-primary hover:text-white transition-colors self-start px-3 py-2 rounded-lg hover:bg-surface-highlight" id="add-task-btn">
+                        <span class="material-symbols-outlined text-lg">add_circle</span>
+                        <span class="text-sm font-bold">Add Task</span>
+                    </button>
+                    
+                    <!-- Hidden input for new task -->
+                    <div id="new-task-input-container" class="hidden flex gap-2 mt-2">
+                        <input type="text" id="new-task-input" placeholder="Enter new task..." class="flex-1 bg-background-dark border border-surface-highlight rounded-lg px-3 py-2 text-sm text-white focus:border-primary focus:ring-0">
+                        <button id="save-new-task" class="px-4 py-2 bg-primary text-white text-sm font-bold rounded-lg hover:bg-primary-dark">Save</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. CATERING ORDERS -->
+            <div id="catering-orders" class="tab-content">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- Live Orders -->
+                    <div class="bg-surface-dark border border-surface-highlight rounded-xl p-6">
+                        <h3 class="text-white text-lg font-bold mb-4 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-accent-gold">cooking</span> Live Kitchen Queue
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="p-4 bg-surface-highlight/20 border border-surface-highlight rounded-lg flex justify-between items-center">
+                                <div>
+                                    <h4 class="text-white font-semibold text-sm">Order #1024 - VIP Table 2</h4>
+                                    <p class="text-xs text-gray-400">3x Lobster Thermidor, 1x Vintage Red</p>
+                                </div>
+                                <span class="px-2 py-1 bg-yellow-500/20 text-yellow-500 text-xs font-bold rounded uppercase">Prep</span>
+                            </div>
+                            <div class="p-4 bg-surface-highlight/20 border border-surface-highlight rounded-lg flex justify-between items-center">
+                                <div>
+                                    <h4 class="text-white font-semibold text-sm">Order #1025 - Garden</h4>
+                                    <p class="text-xs text-gray-400">50x Mini Burgers Platter</p>
+                                </div>
+                                <span class="px-2 py-1 bg-blue-500/20 text-blue-500 text-xs font-bold rounded uppercase">Queued</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Menu Shortages -->
+                    <div class="bg-surface-dark border border-surface-highlight rounded-xl p-6">
+                        <h3 class="text-white text-lg font-bold mb-4 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-red-400">inventory</span> Inventory Alerts
+                        </h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between text-sm p-3 bg-red-900/10 border border-red-900/20 rounded">
+                                <span class="text-gray-300">Sparkling Water (750ml)</span>
+                                <span class="text-red-400 font-bold">Low Stock (5 left)</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm p-3 bg-red-900/10 border border-red-900/20 rounded">
+                                <span class="text-gray-300">Napkins (Linen)</span>
+                                <span class="text-red-400 font-bold">Critical (10 left)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. STAFFING -->
+            <div id="staffing" class="tab-content">
+                <div class="bg-surface-dark border border-surface-highlight rounded-xl p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-white text-xl font-bold">Staff Deployment Roster</h3>
+                        <div class="flex gap-2">
+                            <button class="px-3 py-1.5 text-xs font-medium bg-surface-highlight rounded-lg text-white">All (12)</button>
+                            <button class="px-3 py-1.5 text-xs font-medium hover:bg-surface-highlight rounded-lg text-gray-400">Waiters (6)</button>
+                            <button class="px-3 py-1.5 text-xs font-medium hover:bg-surface-highlight rounded-lg text-gray-400">Security (4)</button>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <!-- Staff Card 1 -->
+                        <div class="p-4 bg-surface-highlight/30 border border-surface-highlight rounded-xl hover:border-primary/50 transition-colors">
+                            <div class="flex items-center gap-3 mb-3">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvP-BeRzJBfgsL3S7RQQ7k01yjUXonfsk8xuDtiluu5V5yt15kROF6zYfREoYU2A5sM5WWz1YtsmkPCTTl8ggX9NrOewR__hz2m-8jtmPHQV-RaFaePtzfrGQD8qHe3ctK6GKVCt1r2e7zNrTFH99WZdrLTQurcYDoP4L-JcMFy2LcYN0Yr6lwucqM2cAm1kjP3Xif3bLqbMSWK0GfWLTIWAyC1qo4SAd-WKzO06hZPpruXL1Ykl_PVCVnv-3r4B8XSJdv7k5d8So" class="w-10 h-10 rounded-full object-cover">
+                                <div>
+                                    <h4 class="text-white font-bold text-sm">Mike T.</h4>
+                                    <p class="text-xs text-primary">AV Specialist</p>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-gray-400">Location: <span class="text-white">Main Hall</span></span>
+                                <span class="text-emerald-400 font-bold">Active</span>
+                            </div>
+                        </div>
+
+                        <!-- Staff Card 2 -->
+                        <div class="p-4 bg-surface-highlight/30 border border-surface-highlight rounded-xl hover:border-primary/50 transition-colors">
+                            <div class="flex items-center gap-3 mb-3">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeSsDaWRrZ-KgwUra-rVI14pKrDyagu_OYSvf9a73kaLOQekjcSek71ajt1GtFVw5KlZZz5DVW53sZxC9pCfUj8foQdoZCrBQdsmJmi5gOW84aAnO5IGE6wFcQyFDsqw62gcP_prDd0z3zZus12Sp9OGduGJKLNKyZyJZuqGeFIuh_7Pz4CWrptMgm53Pm8NofhA2L5r1I6hxHsj3T-5eEX4A59diB0U47oHNoAOqww5EFABgOv-wffH5XFN0m7XYlaJYyvfv1RwI" class="w-10 h-10 rounded-full object-cover">
+                                <div>
+                                    <h4 class="text-white font-bold text-sm">Sarah J.</h4>
+                                    <p class="text-xs text-orange-400">Catering Lead</p>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-gray-400">Location: <span class="text-white">Garden</span></span>
+                                <span class="text-orange-400 font-bold">Busy</span>
+                            </div>
+                        </div>
+
+                         <!-- Staff Card 3 -->
+                        <div class="p-4 bg-surface-highlight/30 border border-surface-highlight rounded-xl hover:border-primary/50 transition-colors">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center text-xs font-bold">DP</div>
+                                <div>
+                                    <h4 class="text-white font-bold text-sm">David P.</h4>
+                                    <p class="text-xs text-blue-400">Security</p>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-gray-400">Location: <span class="text-white">Gate B</span></span>
+                                <span class="text-blue-400 font-bold">Patrol</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. VENDOR PORTAL -->
+            <div id="vendor-portal" class="tab-content">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                     <!-- Vendor List -->
+                    <div class="lg:col-span-2 bg-surface-dark border border-surface-highlight rounded-xl p-6">
+                        <h3 class="text-white text-lg font-bold mb-4">External Vendor Status</h3>
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="text-xs text-gray-400 border-b border-surface-highlight">
+                                    <th class="py-3 font-medium">Vendor</th>
+                                    <th class="py-3 font-medium">Service</th>
+                                    <th class="py-3 font-medium">Status</th>
+                                    <th class="py-3 font-medium">Contact</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sm">
+                                <tr class="border-b border-surface-highlight/50">
+                                    <td class="py-3 text-white font-semibold">SoundPro KE</td>
+                                    <td class="py-3 text-gray-400">Audio/Visual</td>
+                                    <td class="py-3"><span class="px-2 py-0.5 bg-emerald-500/20 text-emerald-500 rounded text-xs">On Site</span></td>
+                                    <td class="py-3 text-primary cursor-pointer hover:underline">Call</td>
+                                </tr> 
+                                <tr class="border-b border-surface-highlight/50">
+                                    <td class="py-3 text-white font-semibold">FreshBlooms</td>
+                                    <td class="py-3 text-gray-400">Florist</td>
+                                    <td class="py-3"><span class="px-2 py-0.5 bg-emerald-500/20 text-emerald-500 rounded text-xs">Completed</span></td>
+                                    <td class="py-3 text-primary cursor-pointer hover:underline">Msg</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 text-white font-semibold">SecureEvents Ltd</td>
+                                    <td class="py-3 text-gray-400">Extra Security</td>
+                                    <td class="py-3"><span class="px-2 py-0.5 bg-blue-500/20 text-blue-500 rounded text-xs">Patrolling</span></td>
+                                    <td class="py-3 text-primary cursor-pointer hover:underline">Radio</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Extra padding for floating bar -->
+            <div class="h-20"></div>
+
+        </div>
+
+        <!-- Sticky Floating Action Bar -->
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex items-center gap-4 bg-surface-highlight/90 backdrop-blur-md px-6 py-3 rounded-full border border-white/10 shadow-2xl animate-fade-in-up">
+            <span class="text-xs font-bold text-gray-400 uppercase tracking-widest mr-2 hidden sm:block">Quick Comms</span>
+            <button class="flex items-center gap-2 text-white bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-full text-xs font-bold transition-all hover:scale-105 active:scale-95">
+                <span class="material-symbols-outlined text-[18px]">mic</span>
+                Floor Manager
+            </button>
+            <div class="w-px h-6 bg-white/20"></div>
+            <button class="flex items-center gap-2 text-background-dark bg-primary hover:bg-white px-4 py-2 rounded-full text-xs font-bold transition-all hover:scale-105 active:scale-95">
+                <span class="material-symbols-outlined text-[18px]">restaurant</span>
+                Lead Chef
+            </button>
+        </div>
+    </main>
+</div>
+
+<!-- SCRIPTS -->
+<script src="site-logic.js"></script>
+<script>
+    // Inline script for Tab Switching logic
+    document.addEventListener('DOMContentLoaded', () => {
+        const navBtns = document.querySelectorAll('.nav-btn');
+        const contents = document.querySelectorAll('.tab-content');
+        
+        // Function to switch tabs
+        function switchTab(targetId) {
+            // Update buttons
+            navBtns.forEach(btn => {
+                const isActive = btn.dataset.target === targetId;
+                if (isActive) {
+                    btn.classList.add('bg-surface-highlight', 'text-white');
+                    btn.classList.remove('text-gray-300', 'hover:bg-surface-highlight/50');
+                    btn.querySelector('.material-symbols-outlined').classList.add('text-primary');
+                    btn.querySelector('.material-symbols-outlined').classList.remove('text-gray-400');
+                } else {
+                    btn.classList.remove('bg-surface-highlight', 'text-white');
+                    btn.classList.add('text-gray-300', 'hover:bg-surface-highlight/50');
+                    btn.querySelector('.material-symbols-outlined').classList.remove('text-primary');
+                    btn.querySelector('.material-symbols-outlined').classList.add('text-gray-400');
+                }
+            });
+
+            // Update content visibility
+            contents.forEach(content => {
+                if (content.id === targetId) {
+                    content.classList.add('active');
+                } else {
+                    content.classList.remove('active');
+                }
+            });
+            
+            // Show toast
+            const title = targetId.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+            if (window.showToast) window.showToast(`Switched to ${title}`, 'info');
+        }
+
+        // Add event listeners
+        navBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                switchTab(btn.dataset.target);
+            });
+        });
+
+        // Initialize Logistics Logic (Counter & Add Task)
+        const checkboxes = document.querySelectorAll('#logistics-list input[type="checkbox"]');
+        const counterSpan = document.getElementById('checklist-counter');
+        const addTaskBtn = document.getElementById('add-task-btn');
+        const taskInputContainer = document.getElementById('new-task-input-container');
+        const saveTaskBtn = document.getElementById('save-new-task');
+        const taskInput = document.getElementById('new-task-input');
+        const listContainer = document.getElementById('logistics-list');
+
+        function updateCounter() {
+            const total = document.querySelectorAll('#logistics-list input[type="checkbox"]').length;
+            const checked = document.querySelectorAll('#logistics-list input[type="checkbox"]:checked').length;
+            if (counterSpan) counterSpan.textContent = `${checked}/${total} Completed`;
+        }
+        
+        // Checkbox listeners
+        function attachCheckboxListeners() {
+            document.querySelectorAll('#logistics-list input[type="checkbox"]').forEach(cb => {
+                // Remove old listeners to avoid dupes (simple way is re-querying or just adding to new ones)
+                // For this simple script, we'll just ensure onchange calls update
+                cb.onchange = function() {
+                    const label = this.closest('label');
+                    const textSpan = label.querySelector('.task-text') || label.querySelector('span.text-gray-500, span.text-white');
+                    if (this.checked) {
+                        textSpan.classList.add('line-through', 'text-gray-500');
+                        textSpan.classList.remove('text-white', 'font-medium');
+                        // Remove urgent styling if present
+                        if (label.classList.contains('bg-orange-900/10')) {
+                            label.classList.remove('bg-orange-900/10', 'border-orange-900/30');
+                            label.classList.add('bg-surface-highlight/10');
+                            const urgentTag = label.querySelector('.urgency-tag');
+                            if(urgentTag) urgentTag.style.display = 'none';
+                        }
+                    } else {
+                        textSpan.classList.remove('line-through', 'text-gray-500');
+                        textSpan.classList.add('text-white', 'font-medium');
+                    }
+                    updateCounter();
+                }
+            });
+        }
+        
+        attachCheckboxListeners();
+
+        // Add Task Logic
+        if (addTaskBtn) {
+            addTaskBtn.addEventListener('click', () => {
+                taskInputContainer.classList.remove('hidden');
+                taskInput.focus();
+            });
+        }
+        
+        if (saveTaskBtn) {
+            saveTaskBtn.addEventListener('click', () => {
+                const text = taskInput.value.trim();
+                if (text) {
+                    const newLabel = document.createElement('label');
+                    newLabel.className = "group flex items-center gap-3 p-3 rounded-lg bg-surface-highlight/10 hover:bg-surface-highlight/30 cursor-pointer transition-colors border border-transparent hover:border-surface-highlight animate-pulse";
+                    newLabel.innerHTML = `
+                        <div class="relative flex items-center justify-center">
+                            <input class="peer h-5 w-5 cursor-pointer appearance-none rounded border border-gray-500 bg-transparent checked:border-primary checked:bg-primary transition-all" type="checkbox"/>
+                            <span class="material-symbols-outlined absolute pointer-events-none opacity-0 peer-checked:opacity-100 text-white text-[16px]">check</span>
+                        </div>
+                        <span class="text-white text-sm font-medium flex-1 task-text">\${text}</span>
+                    `;
+                    listContainer.appendChild(newLabel);
+                    taskInput.value = '';
+                    taskInputContainer.classList.add('hidden');
+                    attachCheckboxListeners();
+                    updateCounter();
+                }
+            });
+        }
+
+        // Initialize counter on load
+        updateCounter();
+
+    });
+</script>
+</body>
+</html>

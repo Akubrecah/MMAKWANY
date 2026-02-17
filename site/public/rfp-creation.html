@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mmakwany Guest House RFP Creation Form</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0d968b",
+                        "primary-dark": "#0a756c",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#102220",
+                        "gold": "#D97706",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom range slider styling */
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: #D97706;
+            cursor: pointer;
+            margin-top: -8px; 
+            box-shadow: 0 0 2px rgba(0,0,0,0.2);
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #E5E7EB;
+            border-radius: 2px;
+        }
+        
+        /* Checkbox customization */
+        .custom-checkbox:checked {
+            background-color: #0d968b;
+            border-color: #0d968b;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#111817] font-display min-h-screen flex flex-col overflow-x-hidden">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e5e7eb] bg-white px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-4 text-[#111817]">
+<div class="size-8 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">token</span>
+</div>
+<h2 class="text-[#111817] text-xl font-bold leading-tight tracking-[-0.015em]">Mmakwany Guest House</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<nav class="hidden md:flex items-center gap-9">
+<a class="text-[#6B7280] hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Dashboard</a>
+<a class="text-primary text-sm font-medium leading-normal" href="#">RFP Management</a>
+<a class="text-[#6B7280] hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Vendors</a>
+<a class="text-[#6B7280] hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Contracts</a>
+</nav>
+<div class="flex gap-2">
+<button class="flex size-10 cursor-pointer items-center justify-center overflow-hidden rounded-full hover:bg-gray-100 transition-colors">
+<span class="material-symbols-outlined text-gray-600">notifications</span>
+</button>
+<button class="flex size-10 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-gray-100 border border-gray-200">
+<img alt="User Profile" class="size-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDukZEN7mFXsEcUfFvhYwwJGwzDkBH1Th09rV568-HOgUL0szy4M5FF4LJlasXRSRB_0kZu8Nm5rdeeFinHPNqtUEc24-L4wbKCEPEMnj-I_w-g3ccv84xJDq84VF6IFT7LIfitdUwF799JVmkEdcHPq3yZE1O6dN94aj-fEpOu6bl597Yl3lhAoHF9Ju47v2V9olON7zppRV01cLgsrE0mIdehJNgSGJLE2AYKy3yb6yYCKeveZ8sFBecdM-0RUOTob2FdavuDrM4"/>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-1 w-full max-w-[1200px] mx-auto px-4 py-8 md:px-8">
+<!-- Breadcrumbs -->
+<div class="flex flex-wrap gap-2 mb-6 text-sm">
+<a class="text-[#6B7280] hover:text-primary transition-colors font-medium" href="#">Dashboard</a>
+<span class="text-[#9CA3AF] font-medium">/</span>
+<a class="text-[#6B7280] hover:text-primary transition-colors font-medium" href="#">RFP Management</a>
+<span class="text-[#9CA3AF] font-medium">/</span>
+<span class="text-[#111817] font-semibold">New RFP</span>
+</div>
+<!-- Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+<div>
+<h1 class="text-[#111817] text-3xl md:text-4xl font-black leading-tight tracking-tight mb-2">Create New Request for Proposal</h1>
+<p class="text-[#6B7280] text-base font-normal max-w-2xl">Fill in the details below to solicit competitive bids from our preferred vendor network for upcoming projects.</p>
+</div>
+<div class="flex items-center gap-2 text-sm text-[#6B7280] bg-white px-3 py-1.5 rounded-full border border-gray-200 shadow-sm">
+<span class="material-symbols-outlined text-base">schedule</span>
+<span>Last saved: Today at 10:42 AM</span>
+</div>
+</div>
+<!-- Progress Stepper -->
+<div class="w-full mb-10 px-2 overflow-x-auto">
+<div class="min-w-[600px] flex items-center justify-between relative">
+<!-- Line background -->
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-full h-1 bg-gray-200 -z-10 rounded-full"></div>
+<!-- Active Line Progress (approx 25%) -->
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-[35%] h-1 bg-primary -z-10 rounded-full"></div>
+<!-- Step 1 -->
+<div class="flex flex-col items-center gap-2 group cursor-pointer">
+<div class="size-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm shadow-[0_0_0_4px_#fff]">1</div>
+<span class="text-primary font-bold text-sm whitespace-nowrap">Basic Info</span>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center gap-2 group cursor-pointer">
+<div class="size-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm shadow-[0_0_0_4px_#fff]">
+<span class="material-symbols-outlined text-base">edit_note</span>
+</div>
+<span class="text-primary font-bold text-sm whitespace-nowrap">Requirements</span>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center gap-2 group cursor-pointer">
+<div class="size-8 rounded-full bg-white border-2 border-gray-300 text-gray-400 flex items-center justify-center font-bold text-sm shadow-[0_0_0_4px_#fff]">3</div>
+<span class="text-gray-500 font-medium text-sm whitespace-nowrap">Timeline</span>
+</div>
+<!-- Step 4 -->
+<div class="flex flex-col items-center gap-2 group cursor-pointer">
+<div class="size-8 rounded-full bg-white border-2 border-gray-300 text-gray-400 flex items-center justify-center font-bold text-sm shadow-[0_0_0_4px_#fff]">4</div>
+<span class="text-gray-500 font-medium text-sm whitespace-nowrap">Review</span>
+</div>
+</div>
+</div>
+<!-- Main Form Container -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+<!-- Left Column: Primary Form Content -->
+<div class="lg:col-span-2 flex flex-col gap-8">
+<!-- Section 1: Basic Information -->
+<section class="bg-white rounded-xl border border-gray-100 shadow-sm p-6 md:p-8">
+<h2 class="text-xl font-bold text-[#111817] mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">info</span>
+                        1. Basic Information
+                    </h2>
+<div class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-1.5">
+<label class="block text-sm font-semibold text-[#374151]" for="rfp-title">RFP Title</label>
+<input class="w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring-primary py-2.5 px-3 text-sm" id="rfp-title" placeholder="e.g. Q4 Regional Conference Catering" type="text"/>
+</div>
+<div class="space-y-1.5">
+<label class="block text-sm font-semibold text-[#374151]" for="department">Department</label>
+<select class="w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring-primary py-2.5 px-3 text-sm bg-white" id="department">
+<option disabled="" selected="" value="">Select Department...</option>
+<option>Operations</option>
+<option>Marketing</option>
+<option>Facilities</option>
+<option>IT &amp; Systems</option>
+</select>
+</div>
+</div>
+<div class="space-y-4 pt-2">
+<div class="flex justify-between items-center">
+<label class="block text-sm font-semibold text-[#374151]">Budget Range (USD)</label>
+<span class="text-sm font-bold text-gold bg-yellow-50 px-2 py-1 rounded border border-yellow-100">$10,000 — $150,000</span>
+</div>
+<div class="relative pt-1 pb-2">
+<input class="w-full absolute pointer-events-none appearance-none bg-transparent z-20" max="500000" min="0" type="range" value="10000"/>
+<input class="w-full appearance-none bg-gray-200 h-1.5 rounded-full outline-none slider-thumb z-10" max="500000" min="0" type="range" value="150000"/>
+<div class="flex justify-between text-xs text-gray-400 font-medium mt-2">
+<span>$0</span>
+<span>$250k</span>
+<span>$500k+</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Requirements -->
+<section class="bg-white rounded-xl border border-gray-100 shadow-sm p-6 md:p-8">
+<h2 class="text-xl font-bold text-[#111817] mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">description</span>
+                        2. Requirements &amp; Scope
+                    </h2>
+<div class="space-y-6">
+<div class="space-y-1.5">
+<label class="block text-sm font-semibold text-[#374151]" for="scope">Scope of Work</label>
+<div class="w-full rounded-lg border border-gray-300 shadow-sm overflow-hidden focus-within:ring-1 focus-within:ring-primary focus-within:border-primary transition-all">
+<div class="bg-gray-50 border-b border-gray-200 px-3 py-2 flex items-center gap-2">
+<button class="p-1 hover:bg-gray-200 rounded text-gray-600"><span class="material-symbols-outlined text-[18px]">format_bold</span></button>
+<button class="p-1 hover:bg-gray-200 rounded text-gray-600"><span class="material-symbols-outlined text-[18px]">format_italic</span></button>
+<button class="p-1 hover:bg-gray-200 rounded text-gray-600"><span class="material-symbols-outlined text-[18px]">format_list_bulleted</span></button>
+<button class="p-1 hover:bg-gray-200 rounded text-gray-600"><span class="material-symbols-outlined text-[18px]">link</span></button>
+</div>
+<textarea class="w-full border-0 p-3 text-sm focus:ring-0 resize-none" id="scope" placeholder="Describe the project deliverables, requirements, and expectations in detail..." rows="6"></textarea>
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="block text-sm font-semibold text-[#374151]">Technical Specifications / Attachments</label>
+<div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-300 px-6 py-8 hover:bg-gray-50 transition-colors cursor-pointer group">
+<div class="text-center">
+<span class="material-symbols-outlined text-4xl text-gray-300 group-hover:text-primary transition-colors mb-2">cloud_upload</span>
+<div class="mt-2 flex text-sm leading-6 text-gray-600 justify-center">
+<label class="relative cursor-pointer rounded-md bg-transparent font-semibold text-primary focus-within:outline-none hover:text-primary-dark" for="file-upload">
+<span>Upload a file</span>
+<input class="sr-only" id="file-upload" name="file-upload" type="file"/>
+</label>
+<p class="pl-1">or drag and drop</p>
+</div>
+<p class="text-xs leading-5 text-gray-500">PDF, DOCX, XLSX up to 10MB</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3: Timeline -->
+<section class="bg-white rounded-xl border border-gray-100 shadow-sm p-6 md:p-8">
+<h2 class="text-xl font-bold text-[#111817] mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">calendar_month</span>
+                        3. Project Timeline
+                    </h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+<div class="space-y-1.5">
+<label class="block text-sm font-semibold text-[#374151]" for="deadline">Bid Submission Deadline</label>
+<div class="relative">
+<input class="w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring-primary py-2.5 px-3 text-sm" id="deadline" type="date"/>
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="block text-sm font-semibold text-[#374151]" for="decision">Target Decision Date</label>
+<div class="relative">
+<input class="w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring-primary py-2.5 px-3 text-sm" id="decision" type="date"/>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Sidebar (Vendor Selection & Summary) -->
+<div class="flex flex-col gap-6 sticky top-24">
+<!-- Vendor Selection Card -->
+<div class="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
+<h3 class="text-lg font-bold text-[#111817] mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">groups</span>
+                        Invited Vendors
+                    </h3>
+<div class="mb-4">
+<label class="sr-only">Search Vendors</label>
+<div class="relative">
+<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+<span class="material-symbols-outlined text-gray-400 text-lg">search</span>
+</div>
+<input class="block w-full rounded-lg border-gray-300 py-2 pl-10 pr-3 text-sm placeholder:text-gray-400 focus:border-primary focus:ring-primary" placeholder="Search vendors..." type="text"/>
+</div>
+</div>
+<div class="space-y-2 mb-4 max-h-[240px] overflow-y-auto pr-1">
+<!-- Vendor Item 1 -->
+<div class="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 border border-transparent hover:border-gray-200 transition-all cursor-pointer">
+<div class="flex items-center gap-3">
+<img alt="Apex Catering Logo" class="size-8 rounded-full" data-alt="Vendor Logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyS-0vlILRumWEUeCjinPbYPajIpvScC0s0yjo7Ucp_IfJt_lgf0LNhtC7dALRIDPDddD3i1AK5BpTSU42OFGq1MPCf2IvYrPdPwdkeVF7AIN-5XQvN3bU3FqJ7Lqa5sus-ACyP1r6Ran10cUhc1ESJLNDJNpesX8ELvwtFcc9QEahGL6HyC93-Xa1dJzXrxkuK-5ycP8kBG4BfRypLYDrBhuBTeDX2qGuZAz1YPBa3UslRJvpH-OHP8K615ErDwudOrtFh_0AtME"/>
+<div>
+<p class="text-sm font-medium text-[#111817]">Apex Catering</p>
+<p class="text-xs text-gray-500">Food &amp; Beverage</p>
+</div>
+</div>
+<input class="rounded border-gray-300 text-primary focus:ring-primary custom-checkbox size-4" type="checkbox"/>
+</div>
+<!-- Vendor Item 2 -->
+<div class="flex items-center justify-between p-2 rounded-lg bg-primary/5 border border-primary/20 transition-all cursor-pointer">
+<div class="flex items-center gap-3">
+<img alt="Lumina AV Logo" class="size-8 rounded-full" data-alt="Vendor Logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3GPLKuDFD5ABGcCtFj5YV5x54YbtEhCDwqU4jWJxcCTCjCkAxd1v7mbpJpZA4VoljXgF5-uyZcuCqgE7x-U-cV3BKxfPToVf-oirwwPr5pSvREJWfUTioNomTooiHqbWlAXZJzXm-AWD2rR7U2NJwPSAslMjgg9c5CppmMYeexLLQ3RfdsEZPaox1qxePzMP4OSjf3C4xlmedCOffdP05-soqfNBJlYhvUGEewzBu6ITULGs-Nr3IEzwq-jsHRYC55TWaG_NuUNA"/>
+<div>
+<p class="text-sm font-medium text-[#111817]">Lumina AV</p>
+<p class="text-xs text-gray-500">Audio Visual</p>
+</div>
+</div>
+<input checked="" class="rounded border-gray-300 text-primary focus:ring-primary custom-checkbox size-4" type="checkbox"/>
+</div>
+<!-- Vendor Item 3 -->
+<div class="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 border border-transparent hover:border-gray-200 transition-all cursor-pointer">
+<div class="flex items-center gap-3">
+<img alt="Global Logistics Logo" class="size-8 rounded-full" data-alt="Vendor Logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4nerSisXmlUktJMCmnCiYW5JQKZO7y0wnDxU1wrQArbLY6FxUsGNNr3BxmnlobLujK5l5tFDJrA9w6-CEfaPghpxYP7IgwJUNcSlgpAjW73NxnZtGqQYuFpCvzMP18D7fweCt62jDVCQC_6E6QIuQHRjgBmiCHFCmnzBw7Bbs5WyuWUZ6rqxt2CP0VvUJR_d_dKY13ZXHq9n8p8Gv5DKXfkMyeR5qaWyhunk1Z969UMkq4-G0_gp7Q6qOOPlKDGjq36oCIzj63X4"/>
+<div>
+<p class="text-sm font-medium text-[#111817]">Global Logistics</p>
+<p class="text-xs text-gray-500">Transportation</p>
+</div>
+</div>
+<input class="rounded border-gray-300 text-primary focus:ring-primary custom-checkbox size-4" type="checkbox"/>
+</div>
+</div>
+<div class="pt-4 border-t border-gray-100">
+<p class="text-xs text-gray-500 font-medium mb-2">Selected Vendors (1)</p>
+<div class="flex flex-wrap gap-2">
+<span class="inline-flex items-center rounded-full bg-primary/10 px-2 py-1 text-xs font-medium text-primary ring-1 ring-inset ring-primary/20">
+                                Lumina AV
+                                <button class="ml-1 inline-flex size-3 items-center justify-center rounded-full hover:bg-primary/20">
+<span class="sr-only">Remove</span>
+<svg class="h-2 w-2" fill="none" stroke="currentColor" viewbox="0 0 8 8"><path d="M1 1l6 6m0-6L1 7" stroke-linecap="round" stroke-width="1.5"></path></svg>
+</button>
+</span>
+</div>
+</div>
+</div>
+<!-- Action Card -->
+<div class="bg-primary/5 rounded-xl border border-primary/10 shadow-sm p-6">
+<h4 class="text-sm font-bold text-[#111817] mb-2">Ready to proceed?</h4>
+<p class="text-xs text-gray-600 mb-4">Review your details carefully. You cannot edit the RFP once it is published to vendors.</p>
+<div class="flex flex-col gap-3">
+<button class="w-full flex items-center justify-center rounded-lg h-11 px-6 bg-primary hover:bg-primary-dark transition-colors text-white text-base font-bold shadow-md shadow-primary/20">
+                           Publish RFP
+                       </button>
+<button class="w-full flex items-center justify-center rounded-lg h-11 px-6 bg-white border border-gray-300 hover:bg-gray-50 transition-colors text-[#374151] text-sm font-semibold">
+                           Save as Draft
+                       </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer spacer for visual breathing room -->
+<div class="h-20"></div>
+<script src="site-logic.js"></script>
+</body></html>

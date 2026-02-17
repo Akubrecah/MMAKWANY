@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mmakwany Guest House Gateway: Login &amp; Sign Up</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0d968b",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#102220",
+                        "warm-white": "#FAFAFA",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.75rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111817] antialiased">
+<div class="flex min-h-screen w-full flex-col lg:flex-row">
+<!-- Left Side: Hero Visual -->
+<div class="relative hidden lg:flex lg:w-1/2 xl:w-3/5 items-center justify-center overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Luxurious modern hotel lobby with high ceilings and warm lighting" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBiHMM2mWg_D91j7nB5MfA5_jQEZklNoVsEAtSBxazLXTZptK-7D5_grK851b6Z5TsnI7pCbE1NT9RTiySpXkMpmv5PxZpOXk32oeumYMPvqRK4trS0R4IT-RPcTSJfEGQ8dpbIzKpZ3z53c2Trme-yj7k_grdO1PuB6q0k3nX23AQL1D852ovtfXsWS1kwABjBdJRAeGGXg5uvDUnrLsfq19Ssygsuhi632HWrdALZ0iIRFA7Z8l3IOsPFuuoQPhw18oUV-30PcVk');">
+</div>
+<!-- Dark Overlay for Readability -->
+<div class="absolute inset-0 bg-black/40 backdrop-blur-[2px]"></div>
+<!-- Branding/Greeting Overlay -->
+<div class="relative z-10 px-12 text-white max-w-2xl">
+<div class="mb-8 flex items-center gap-3">
+<div class="size-10 bg-primary rounded-lg flex items-center justify-center shadow-lg shadow-primary/20">
+<svg class="text-white size-6" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"></path>
+</svg>
+</div>
+<span class="text-2xl font-bold tracking-tight">Mmakwany Guest House</span>
+</div>
+<h1 class="text-5xl xl:text-6xl font-black leading-tight tracking-tight mb-6">
+                    Welcome Back to <br/>Mmakwany Guest House
+                </h1>
+<p class="text-lg xl:text-xl font-light text-white/90 max-w-lg leading-relaxed">
+                    Experience seamless hospitality with your personal gateway to luxury stays and curated experiences worldwide.
+                </p>
+</div>
+<!-- Bottom badge -->
+<div class="absolute bottom-10 left-12 z-10 flex items-center gap-4 text-white/70 text-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">verified</span> Secure Connection</span>
+<span class="w-1 h-1 rounded-full bg-white/30"></span>
+<span>Premium Access</span>
+</div>
+</div>
+<!-- Right Side: Auth Container -->
+<div class="flex flex-1 flex-col justify-center bg-warm-white dark:bg-background-dark px-6 py-12 sm:px-12 lg:px-20 xl:px-32">
+<div class="mx-auto w-full max-w-[440px]">
+<!-- Mobile Branding (visible only on mobile) -->
+<div class="mb-10 lg:hidden flex items-center gap-3">
+<div class="size-8 bg-primary rounded flex items-center justify-center">
+<svg class="text-white size-5" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"></path>
+</svg>
+</div>
+<span class="text-xl font-bold text-[#111817] dark:text-white">Mmakwany Guest House</span>
+</div>
+<div class="mb-10 text-left">
+<h2 class="text-3xl font-extrabold text-[#111817] dark:text-white mb-2">Login to your account</h2>
+<p class="text-[#618986] dark:text-primary/70 font-medium">Please enter your details to continue</p>
+</div>
+<!-- Tabs -->
+<div class="mb-8 border-b border-[#dbe6e5] dark:border-white/10">
+<nav aria-label="Tabs" class="flex gap-8">
+<a aria-current="page" class="border-b-2 border-primary py-4 text-sm font-bold text-primary" href="#">
+                            Sign In
+                        </a>
+<a class="border-b-2 border-transparent py-4 text-sm font-bold text-[#618986] hover:text-primary transition-colors" href="#">
+                            Create Account
+                        </a>
+</nav>
+</div>
+<!-- Form -->
+<form action="#" class="space-y-5">
+<div>
+<label class="block text-sm font-semibold text-[#111817] dark:text-white/90 mb-2" for="email">Email Address</label>
+<div class="relative group">
+<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-[#618986] group-focus-within:text-primary">
+<span class="material-symbols-outlined text-xl">mail</span>
+</div>
+<input class="block w-full rounded-lg border border-[#dbe6e5] bg-white dark:bg-white/5 dark:border-white/10 py-3.5 pl-11 pr-4 text-[#111817] dark:text-white placeholder:text-[#a1b5b3] focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm sm:text-base" id="email" name="email" placeholder="name@company.com" required="" type="email"/>
+</div>
+</div>
+<div>
+<form id="loginForm" class="space-y-6">
+<div>
+<label class="block text-sm font-medium text-slate-700 mb-2" for="email">Email Address</label>
+<input class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all" id="email" placeholder="name@example.com" type="email" value="guest@nexusstay.com"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-slate-700 mb-2" for="password">Password</label>
+<div class="relative">
+<input class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all" id="password" placeholder="••••••••" type="password" value="password"/>
+<button class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600" type="button">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="w-4 h-4 rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-sm text-slate-600">Remember me</span>
+</label>
+<a class="text-sm font-medium text-primary hover:text-[#0b857a]" href="#">Forgot password?</a>
+</div>
+<button class="w-full py-3 bg-primary hover:bg-[#0b857a] text-white font-bold rounded-xl shadow-lg shadow-primary/20 transition-all transform active:scale-95" type="submit">
+                                Sign In
+</button>
+</form>
+<script>
+document.getElementById('loginForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('email').value;
+    localStorage.setItem('nexusUser', JSON.stringify({ email: email, name: 'John Doe' }));
+    window.location.href = 'index.html';
+});
+</script>
+<!-- Divider -->
+<div class="relative my-10">
+<div aria-hidden="true" class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-[#dbe6e5] dark:border-white/10"></div>
+</div>
+<div class="relative flex justify-center text-sm font-medium">
+<span class="bg-warm-white dark:bg-background-dark px-4 text-[#618986] dark:text-white/40">Or continue with</span>
+</div>
+</div>
+<!-- Social Auth -->
+<div class="grid grid-cols-2 gap-4">
+<button class="flex items-center justify-center gap-2 rounded-lg border border-[#dbe6e5] dark:border-white/10 bg-white dark:bg-white/5 py-3.5 px-4 text-sm font-semibold text-[#111817] dark:text-white hover:bg-gray-50 dark:hover:bg-white/10 transition-colors">
+<svg class="h-5 w-5" viewbox="0 0 24 24">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 12-4.53z" fill="#EA4335"></path>
+</svg>
+                        Google
+                    </button>
+<button class="flex items-center justify-center gap-2 rounded-lg border border-[#dbe6e5] dark:border-white/10 bg-white dark:bg-white/5 py-3.5 px-4 text-sm font-semibold text-[#111817] dark:text-white hover:bg-gray-50 dark:hover:bg-white/10 transition-colors">
+<svg class="h-5 w-5 fill-current" viewbox="0 0 24 24">
+<path d="M17.073 10.717c.012-2.152 1.76-3.185 1.841-3.235-.997-1.458-2.548-1.657-3.094-1.679-1.309-.133-2.556.772-3.22.772-.663 0-1.705-.754-2.8-.734-1.442.022-2.772.839-3.513 2.128-1.493 2.6-.381 6.448 1.07 8.541.71 1.025 1.554 2.176 2.658 2.136 1.066-.042 1.467-.687 2.754-.687 1.285 0 1.648.687 2.776.666 1.147-.022 1.884-1.042 2.585-2.067.81-1.185 1.145-2.33 1.163-2.391-.025-.011-2.234-.858-2.257-3.39zm-1.688-6.19c.59-.714.986-1.708.877-2.704-.857.035-1.897.57-2.513 1.284-.551.637-.962 1.653-.833 2.628.956.074 1.88-.494 2.469-1.208z"></path>
+</svg>
+                        Apple
+                    </button>
+</div>
+<!-- Footer -->
+<div class="mt-20 text-center">
+<p class="text-xs text-[#618986] dark:text-white/30 font-medium tracking-wide">
+                        © 2024 NexusStay Gateway. All rights reserved. <br/>
+<span class="mt-2 block">
+<a class="hover:underline" href="#">Privacy Policy</a> • <a class="hover:underline" href="#">Terms of Service</a>
+</span>
+</p>
+</div>
+</div>
+</div>
+</div>
+<script src="components.js"></script>
+<script src="site-logic.js"></script>
+</body></html>

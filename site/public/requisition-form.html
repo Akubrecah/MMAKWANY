@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>New Requisition Form Modal</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0d968b",
+                        "primary-hover": "#0b857a",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#102220",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a2c2a",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 min-h-screen flex items-center justify-center p-4">
+<!-- Modal Overlay Backdrop -->
+<div aria-hidden="true" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"></div>
+<!-- Modal Container -->
+<div class="relative w-full max-w-4xl bg-surface-light dark:bg-surface-dark rounded-xl shadow-2xl z-50 flex flex-col max-h-[95vh] overflow-hidden animate-fade-in-up">
+<!-- Header -->
+<div class="px-8 py-6 border-b border-slate-100 dark:border-slate-700 flex justify-between items-start bg-white dark:bg-surface-dark sticky top-0 z-10">
+<div class="flex flex-col gap-1">
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">Create Purchase Requisition</h2>
+<div class="flex items-center gap-2">
+<span class="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-xs font-bold text-white">1</span>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Step 1 of 2: Item Details</p>
+</div>
+</div>
+<button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Scrollable Content -->
+<div class="overflow-y-auto p-8 space-y-8 flex-1">
+<!-- Section 1: General Info -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Department Selector -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-medium text-slate-700 dark:text-slate-300">Select Department <span class="text-red-500">*</span></label>
+<div class="relative">
+<select class="w-full h-11 pl-4 pr-10 rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-primary transition-shadow appearance-none cursor-pointer">
+<option disabled="" selected="" value="">Choose a department...</option>
+<option value="housekeeping">Housekeeping</option>
+<option value="fnb">Food &amp; Beverage</option>
+<option value="maintenance">Maintenance</option>
+<option value="frontdesk">Front Desk</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-xl">expand_more</span>
+</div>
+</div>
+<!-- Priority Toggle -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-medium text-slate-700 dark:text-slate-300">Request Priority</label>
+<div class="flex bg-slate-50 dark:bg-slate-800 p-1 rounded-lg border border-slate-200 dark:border-slate-600 h-11">
+<label class="flex-1 cursor-pointer">
+<input checked="" class="peer sr-only" name="priority" type="radio"/>
+<div class="h-full flex items-center justify-center rounded-md text-sm font-medium text-slate-500 dark:text-slate-400 peer-checked:bg-white dark:peer-checked:bg-slate-700 peer-checked:text-primary peer-checked:shadow-sm transition-all">
+                                Routine
+                            </div>
+</label>
+<label class="flex-1 cursor-pointer">
+<input class="peer sr-only" name="priority" type="radio"/>
+<div class="h-full flex items-center justify-center rounded-md text-sm font-medium text-slate-500 dark:text-slate-400 peer-checked:bg-white dark:peer-checked:bg-slate-700 peer-checked:text-amber-600 peer-checked:shadow-sm transition-all">
+                                Urgent
+                            </div>
+</label>
+<label class="flex-1 cursor-pointer">
+<input class="peer sr-only" name="priority" type="radio"/>
+<div class="h-full flex items-center justify-center rounded-md text-sm font-medium text-slate-500 dark:text-slate-400 peer-checked:bg-white dark:peer-checked:bg-slate-700 peer-checked:text-red-600 peer-checked:shadow-sm transition-all">
+                                Emergency
+                            </div>
+</label>
+</div>
+</div>
+</div>
+<hr class="border-slate-100 dark:border-slate-700"/>
+<!-- Section 2: Add New Item Form -->
+<div class="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-5 border border-slate-100 dark:border-slate-700">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary">add_shopping_cart</span>
+<h3 class="text-base font-semibold text-slate-900 dark:text-white">Add Items to Requisition</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-end">
+<!-- Category -->
+<div class="md:col-span-3 flex flex-col gap-1.5">
+<label class="text-xs font-medium text-slate-500 uppercase tracking-wider">Category</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">category</span>
+<input class="w-full h-10 pl-9 pr-3 rounded-lg border border-slate-200 dark:border-slate-600 text-sm focus:ring-1 focus:ring-primary focus:border-primary bg-white dark:bg-slate-800" placeholder="Search..." type="text"/>
+</div>
+</div>
+<!-- Item Name -->
+<div class="md:col-span-4 flex flex-col gap-1.5">
+<label class="text-xs font-medium text-slate-500 uppercase tracking-wider">Item Name</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
+<input class="w-full h-10 pl-9 pr-3 rounded-lg border border-slate-200 dark:border-slate-600 text-sm focus:ring-1 focus:ring-primary focus:border-primary bg-white dark:bg-slate-800" placeholder="Search items..." type="text"/>
+</div>
+</div>
+<!-- Quantity -->
+<div class="md:col-span-2 flex flex-col gap-1.5">
+<label class="text-xs font-medium text-slate-500 uppercase tracking-wider">Qty</label>
+<input class="w-full h-10 px-3 rounded-lg border border-slate-200 dark:border-slate-600 text-sm focus:ring-1 focus:ring-primary focus:border-primary bg-white dark:bg-slate-800" min="1" type="number" value="1"/>
+</div>
+<!-- Unit Price -->
+<div class="md:col-span-2 flex flex-col gap-1.5">
+<label class="text-xs font-medium text-slate-500 uppercase tracking-wider">Est. Price</label>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">$</span>
+<input class="w-full h-10 pl-7 pr-3 rounded-lg border border-slate-200 dark:border-slate-600 text-sm focus:ring-1 focus:ring-primary focus:border-primary bg-white dark:bg-slate-800" placeholder="0.00" step="0.01" type="number"/>
+</div>
+</div>
+<!-- Add Button -->
+<div class="md:col-span-1">
+<button class="w-full h-10 flex items-center justify-center bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 hover:border-primary dark:hover:border-primary text-primary rounded-lg transition-colors shadow-sm group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Section 3: Item Table -->
+<div class="flex flex-col gap-3">
+<div class="overflow-hidden rounded-lg border border-slate-200 dark:border-slate-700">
+<table class="w-full text-left text-sm text-slate-600 dark:text-slate-400">
+<thead class="bg-slate-50 dark:bg-slate-800 text-xs font-semibold uppercase text-slate-500 dark:text-slate-400">
+<tr>
+<th class="px-4 py-3">Item Details</th>
+<th class="px-4 py-3 text-center">Qty</th>
+<th class="px-4 py-3 text-right">Unit Price</th>
+<th class="px-4 py-3 text-right">Line Total</th>
+<th class="px-4 py-3 text-center w-12">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-700 bg-white dark:bg-surface-dark">
+<!-- Row 1 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-4 py-3">
+<div class="flex flex-col">
+<span class="font-medium text-slate-900 dark:text-white">King Size Duvet Cover - White</span>
+<span class="text-xs text-slate-400">Linens &amp; Textiles</span>
+</div>
+</td>
+<td class="px-4 py-3 text-center font-medium">12</td>
+<td class="px-4 py-3 text-right">$45.00</td>
+<td class="px-4 py-3 text-right font-medium text-slate-900 dark:text-white">$540.00</td>
+<td class="px-4 py-3 text-center">
+<button class="text-slate-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-4 py-3">
+<div class="flex flex-col">
+<span class="font-medium text-slate-900 dark:text-white">Shampoo Bottles (Bulk) - 500ml</span>
+<span class="text-xs text-slate-400">Guest Amenities</span>
+</div>
+</td>
+<td class="px-4 py-3 text-center font-medium">50</td>
+<td class="px-4 py-3 text-right">$8.50</td>
+<td class="px-4 py-3 text-right font-medium text-slate-900 dark:text-white">$425.00</td>
+<td class="px-4 py-3 text-center">
+<button class="text-slate-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</td>
+</tr>
+</tbody>
+<tfoot class="bg-slate-50 dark:bg-slate-800">
+<tr>
+<td class="px-4 py-3 text-right font-medium text-slate-600 dark:text-slate-300" colspan="3">Total Estimated Cost:</td>
+<td class="px-4 py-3 text-right font-bold text-lg text-primary">$965.00</td>
+<td></td>
+</tr>
+</tfoot>
+</table>
+</div>
+</div>
+<!-- Section 4: Justification -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-medium text-slate-700 dark:text-slate-300">Justification / Business Need <span class="text-red-500">*</span></label>
+<textarea class="w-full p-3 rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-primary transition-shadow resize-none text-sm placeholder:text-slate-400" placeholder="Please describe why this purchase is necessary (e.g., replacing damaged inventory, preparation for peak season)..." rows="3"></textarea>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="px-8 py-5 bg-white dark:bg-surface-dark border-t border-slate-100 dark:border-slate-700 flex justify-end gap-3 sticky bottom-0 z-10">
+<button class="px-5 h-11 rounded-lg border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-300 font-medium hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-200">
+                Save as Draft
+            </button>
+<button class="px-6 h-11 rounded-lg bg-primary text-white font-medium hover:bg-primary-hover shadow-md shadow-primary/20 transition-all flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+                Next: Select Vendor
+                <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<script src="site-logic.js"></script>
+</body></html>

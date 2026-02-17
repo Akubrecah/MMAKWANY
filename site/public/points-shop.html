@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mmakwany Guest House Points Redemption Shop</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0d968b",
+                        "primary-dark": "#0a756c",
+                        "accent-gold": "#D97706",
+                        "background-light": "#FAFAFA",
+                        "background-dark": "#102220",
+                        "card-white": "#FFFFFF",
+                        "text-main": "#111817",
+                        "text-muted": "#618986",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem", 
+                        "lg": "1.5rem", 
+                        "xl": "2rem", 
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        "soft": "0 4px 20px -2px rgba(0, 0, 0, 0.05)",
+                        "hover": "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.01)"
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FAFAFA;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light text-text-main antialiased min-h-screen flex flex-col">
+<!-- Navbar -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-gray-100 bg-white/90 backdrop-blur-md px-6 py-4 lg:px-10 lg:py-4 transition-all duration-300">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-primary">
+<div class="size-8 flex items-center justify-center bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined text-primary">diamond</span>
+</div>
+<h2 class="text-text-main text-xl font-bold tracking-tight">Mmakwany Guest House</h2>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-text-muted hover:text-primary text-sm font-medium transition-colors" href="index.html">Events</a>
+<a class="text-text-muted hover:text-primary text-sm font-medium transition-colors" href="room-booking.html">Stays</a>
+<a class="text-text-muted hover:text-primary text-sm font-medium transition-colors" href="guest-dashboard.html">Catering</a>
+<a class="text-primary text-sm font-medium transition-colors" href="points-shop.html">Rewards</a>
+</nav>
+</div>
+<div class="flex items-center gap-4 md:gap-6">
+<div class="hidden sm:flex items-center gap-2 bg-primary/5 px-3 py-1.5 rounded-full border border-primary/10">
+<span class="material-symbols-outlined text-accent-gold text-[20px]">stars</span>
+<span class="text-sm font-semibold text-primary">2,450 pts</span>
+</div>
+<div class="flex items-center gap-3">
+<button class="relative p-2 text-text-muted hover:bg-gray-100 rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-red-500 rounded-full border-2 border-white"></span>
+</button>
+<div class="h-10 w-10 bg-center bg-no-repeat bg-cover rounded-full ring-2 ring-white shadow-sm cursor-pointer" data-alt="User profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCt6oJxaFl95TCgn57yOYRKVckKUKZ-eTGvGpu7oTEw8dkNhhSC_bvh8dMKZqu6TQ33KDSEacOHBQAfRb_8D8lw7Z9CG_XoO7Q-Kzn_30OtMTfv5RaCpJWD62QuHuZEuhydY9FxgW23CsH--xaD5mca-1YsKqn9piA-TNodkY1v5tzb5bknjMMi8A27Pp2dIXx5b5tSSpjmbOwyDr5j3cWH0qhfOsrfLKSnDVZJx-jRD4et8LPJwf7MYznExwaAAb1u9muqjLLnnh4");'></div>
+</div>
+</div>
+</header>
+<main class="flex-1 w-full max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8 py-8 md:py-12">
+<!-- Hero Section -->
+<div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-10 animate-fade-in-up">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-primary font-medium text-sm tracking-wide uppercase">
+<span class="material-symbols-outlined text-[18px]">redeem</span>
+                    Rewards Center
+                </div>
+<h1 class="text-3xl md:text-5xl font-extrabold text-text-main tracking-tight">Redeem Your Points</h1>
+<p class="text-text-muted mt-2 max-w-lg">Exchange your hard-earned points for exclusive upgrades, dining experiences, and more.</p>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-text-muted text-sm font-medium mb-1">Current Balance</span>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-accent-gold text-4xl fill-current animate-pulse">savings</span>
+<span class="text-4xl md:text-5xl font-black text-accent-gold tracking-tighter">2,450</span>
+</div>
+<div class="mt-3 flex items-center gap-3 bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-100">
+<div class="w-32 h-2 bg-gray-200 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[90%] rounded-full"></div>
+</div>
+<span class="text-xs font-semibold text-text-muted">50 pts to Silver</span>
+</div>
+</div>
+</div>
+<!-- Featured Deal Banner -->
+<div class="relative w-full rounded-2xl md:rounded-3xl overflow-hidden mb-12 group shadow-lg">
+<div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent z-10"></div>
+<img alt="Rooftop dining at sunset" class="w-full h-[300px] md:h-[400px] object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Rooftop dining experience with sunset view" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAG33tQ6_wxC69aLV7JtWWaZ1icpf-gogrO16xOhNJrHM89Kwd3KEyrWdS3O8vegS5l_TztqECMu2HU1IKIVIkW5DHujMaO6MRlVLlAEWkKhib7Sw_R8vWtZPJRlgXyXzVqQSaiJf7Ypjzwf1FSJ4j_9B5PFouysKL1F_iCQkClK7QpnPUntddcV0j54-IZIlBi11IQSVHgbhbvA3lrHGvptrMAtFy4ZPIYoPavWHuqP3jfkmQJhBJQzLYxzo8wy2QHKAqhAWmSwb0"/>
+<div class="absolute inset-0 z-20 flex flex-col justify-center px-8 md:px-16 text-white max-w-3xl">
+<span class="bg-accent-gold text-white text-xs font-bold px-3 py-1 rounded-full w-fit mb-4 uppercase tracking-wider shadow-sm">Deal of the Month</span>
+<h2 class="text-3xl md:text-5xl font-bold mb-4 leading-tight">Sunset Rooftop Dinner for Two</h2>
+<p class="text-gray-200 text-lg mb-8 max-w-xl font-light">Enjoy a curated 5-course meal with panoramic city views. Exclusively for Nexus members this month.</p>
+<div class="flex items-center gap-6">
+<button class="bg-white text-text-main hover:bg-gray-100 px-8 py-3.5 rounded-full font-bold transition-all shadow-lg active:scale-95 flex items-center gap-2">
+                        Redeem Now <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+<div class="flex flex-col">
+<span class="text-sm text-gray-300 line-through">4,500 Points</span>
+<span class="text-xl font-bold text-accent-gold">3,150 Points</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Filters -->
+<div class="flex items-center gap-3 mb-10 overflow-x-auto pb-4 hide-scrollbar">
+<button class="flex items-center gap-2 px-6 py-2.5 bg-primary text-white rounded-full text-sm font-semibold shadow-md whitespace-nowrap transition-transform hover:scale-105">
+<span class="material-symbols-outlined text-[18px]">grid_view</span> All
+            </button>
+<button class="flex items-center gap-2 px-6 py-2.5 bg-white text-text-main border border-gray-200 hover:border-primary/50 hover:bg-primary/5 rounded-full text-sm font-medium whitespace-nowrap transition-colors">
+<span class="material-symbols-outlined text-[18px]">hotel</span> Room Upgrades
+            </button>
+<button class="flex items-center gap-2 px-6 py-2.5 bg-white text-text-main border border-gray-200 hover:border-primary/50 hover:bg-primary/5 rounded-full text-sm font-medium whitespace-nowrap transition-colors">
+<span class="material-symbols-outlined text-[18px]">restaurant</span> Dining Vouchers
+            </button>
+<button class="flex items-center gap-2 px-6 py-2.5 bg-white text-text-main border border-gray-200 hover:border-primary/50 hover:bg-primary/5 rounded-full text-sm font-medium whitespace-nowrap transition-colors">
+<span class="material-symbols-outlined text-[18px]">theater_comedy</span> Event Add-ons
+            </button>
+<button class="flex items-center gap-2 px-6 py-2.5 bg-white text-text-main border border-gray-200 hover:border-primary/50 hover:bg-primary/5 rounded-full text-sm font-medium whitespace-nowrap transition-colors">
+<span class="material-symbols-outlined text-[18px]">diamond</span> Exclusive Experiences
+            </button>
+</div>
+<!-- Rewards Grid -->
+<div id="rewards-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Card 1: Affordable -->
+<div class="reward-card group bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-hover transition-all duration-300 border border-gray-100 flex flex-col h-full" data-category="experiences">
+<div class="relative overflow-hidden h-56">
+<img alt="Spa treatment room" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Relaxing spa massage setup with towels and oils" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiERheqgn_GoCvmO-bqDPbgbRkXr7_h-MU-9TmQ2ds0I-rMOcc8aAIo6UHX5QApeO2-HOVxNP7fY44ivycYUipP9v7STUuK0ILKB-NUQYj8GtRmdQWJAaSy-ykP3DnzhPa0D-euzS5rummISv-n4Ys6RLMxjdRY0wepeXHQiMiofXvnBCryvtGS2QZAhAoNZhcGww_zpdZw13DwCm0dtXLX1LAle8vUtmXVEFyOrt5AQLJwtgwnqRP-hdJOD3_o_d0kNqX6l7INMI"/>
+<div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-lg text-xs font-bold text-primary shadow-sm">
+                        Wellness
+                    </div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<h3 class="text-xl font-bold text-text-main mb-2">Free Spa Treatment</h3>
+<p class="text-text-muted text-sm mb-6 line-clamp-2 flex-grow">Indulge in a 60-minute Swedish massage at any of our partner locations. Perfect for unwinding.</p>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-50">
+<span class="text-lg font-bold text-primary">500 Points</span>
+<button class="bg-primary hover:bg-primary-dark text-white px-5 py-2 rounded-full text-sm font-semibold transition-colors shadow-md shadow-primary/20">
+                            Redeem Now
+                        </button>
+</div>
+</div>
+</div>
+<!-- Card 2: Affordable -->
+<div class="reward-card group bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-hover transition-all duration-300 border border-gray-100 flex flex-col h-full" data-category="dining">
+<div class="relative overflow-hidden h-56">
+<img alt="Fine dining plate" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Gourmet dish presentation in fine dining restaurant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9pd81djuLqTTsxUlY3TkUCNxJk6H0Nh-e1yw5wmK7nMv-Z790n2O5VkwExPKxsOSzbI4oOI8j6MEsUO-0fJY2d2gZZNKyLlKRZa_4mxdnjF8GpfnHxx2kASiKbSGWRLLfPTnqtoolxM0EZ76WxtpSRoApV_5ZecnWQjgj2E71q3jDeRGFUlq0Bo1OHINyfl77m5GZ5mFFiA6QyYP9RagWGv0kaAKcMQ02Wz5m-LXO20wwhCgaHqljYlq_p9s8KyaX9e9g58gvopY"/>
+<div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-lg text-xs font-bold text-primary shadow-sm">
+                        Dining
+                    </div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<h3 class="text-xl font-bold text-text-main mb-2">KES 2,000 Dining Credit</h3>
+<p class="text-text-muted text-sm mb-6 line-clamp-2 flex-grow">Apply this credit to your final bill at any participating hotel restaurant or bar.</p>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-50">
+<span class="text-lg font-bold text-primary">1,200 Points</span>
+<button class="bg-primary hover:bg-primary-dark text-white px-5 py-2 rounded-full text-sm font-semibold transition-colors shadow-md shadow-primary/20">
+                            Redeem Now
+                        </button>
+</div>
+</div>
+</div>
+<!-- Card 3: Affordable -->
+<div class="reward-card group bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-hover transition-all duration-300 border border-gray-100 flex flex-col h-full" data-category="events">
+<div class="relative overflow-hidden h-56">
+<img alt="Conference room projector" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Modern projector in a conference hall meeting setup" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7j18FOfG523o3ybuF0WnK-UkwjIMc2-DPFBiT3jBF_29cq58PzNLsfF0SL7gpqrZc2z3rxOxAuXfaK0oBkjyBFlDNghvimXpIZXLYmK-0Oa3Y9FLgkJjAOMi5h9gVATNGTs7P98JQdlhc_EzGcLfQfJq04AKMxNafqXtPTNL35iJpBONFzb9TbX8SqLgk1gk-iYE90ldTqlREH-EssLIV1HyYIdWzs4d_G5JZ2g1E1VTapiC8beMshAumVeGQ_Qbpl62HPpr9j-0"/>
+<div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-lg text-xs font-bold text-primary shadow-sm">
+                        Events
+                    </div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<h3 class="text-xl font-bold text-text-main mb-2">Hall Projector Upgrade</h3>
+<p class="text-text-muted text-sm mb-6 line-clamp-2 flex-grow">Upgrade your standard meeting room equipment to our premium 4K laser projector system.</p>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-50">
+<span class="text-lg font-bold text-primary">800 Points</span>
+<button class="bg-primary hover:bg-primary-dark text-white px-5 py-2 rounded-full text-sm font-semibold transition-colors shadow-md shadow-primary/20">
+                            Redeem Now
+                        </button>
+</div>
+</div>
+</div>
+<!-- Card 4: Locked (Too Expensive) -->
+<div class="reward-card group bg-white rounded-2xl overflow-hidden shadow-sm transition-all duration-300 border border-gray-100 flex flex-col h-full opacity-80 hover:opacity-100" data-category="room-upgrade">
+<div class="relative overflow-hidden h-56 grayscale-[30%] group-hover:grayscale-0 transition-all duration-500">
+<div class="absolute inset-0 bg-black/10 z-10"></div>
+<img alt="Luxury hotel suite" class="w-full h-full object-cover" data-alt="Luxurious presidential suite interior with large bed" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4je-vxAbSpZ5LrBuKJs-bhURyzBIijcHk17fm2iUFcETLbG-1SFZTpMtdodeHtcg8nFOz9cffYDXBoOfY6Gwtr9lZjh7yxLAqtzdg8G9-TyHsVkLp_BoEfEcHUiIBheQZzPqBtimpIMPUGx6Ct77_xqMskKxjwZ2wrShqTVq8PlPV5OVFGoEVSbTftkrQNfTy6rY2GF0Vm-MsJEej2EggJxqqsQKzjY2rlbWcCKGC3YdFVhLGPVwdG1LjCCu_HEbhbMfExnjKqzc"/>
+<div class="absolute top-4 left-4 bg-gray-200/90 backdrop-blur-sm px-3 py-1 rounded-lg text-xs font-bold text-gray-600 shadow-sm z-20">
+                        Room Upgrade
+                    </div>
+<div class="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+<div class="bg-black/60 text-white px-4 py-2 rounded-full backdrop-blur-md text-sm font-medium flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">lock</span> Earn 2,550 more points
+                        </div>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-grow bg-gray-50/50">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-xl font-bold text-gray-700">Presidential Suite Upgrade</h3>
+</div>
+<p class="text-gray-500 text-sm mb-6 line-clamp-2 flex-grow">Experience the pinnacle of luxury with a one-night upgrade to our finest accommodation.</p>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
+<span class="text-lg font-bold text-gray-400">5,000 Points</span>
+<button class="bg-gray-200 text-gray-400 px-5 py-2 rounded-full text-sm font-semibold cursor-not-allowed flex items-center gap-1.5" disabled="">
+<span class="material-symbols-outlined text-[16px]">lock</span> Locked
+                        </button>
+</div>
+</div>
+</div>
+<!-- Card 5: Locked (Too Expensive) -->
+<div class="reward-card group bg-white rounded-2xl overflow-hidden shadow-sm transition-all duration-300 border border-gray-100 flex flex-col h-full opacity-80 hover:opacity-100" data-category="experiences">
+<div class="relative overflow-hidden h-56 grayscale-[30%] group-hover:grayscale-0 transition-all duration-500">
+<div class="absolute inset-0 bg-black/10 z-10"></div>
+<img alt="Theme park entrance" class="w-full h-full object-cover" data-alt="Exciting theme park entrance with roller coaster background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfJGQJxGgfY_LAAIuZfR_2slGUmTY_PzVzVf2_AohdlVHi3CBN6m7Upkl4YRThQa8LkALekHHjw9CE_BrCbJTh0xJD5za-QuiAOjyl7QBF6UvHOVwbAA3BHlONfXbjniO5AQw57fNteqbLEOIR1ILDzQQkk8ZAYnjNeyWlrM6J3EdZB-qxmrGETWy-8OTj0m5LGZLDnC-VjiONp8QTzFsVymCpSKqgI9VM2VvAutuqSMjzoxnQtK0QdrHFZIEEPLWlC5SBp3SKqnc"/>
+<div class="absolute top-4 left-4 bg-gray-200/90 backdrop-blur-sm px-3 py-1 rounded-lg text-xs font-bold text-gray-600 shadow-sm z-20">
+                        Experiences
+                    </div>
+<div class="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+<div class="bg-black/60 text-white px-4 py-2 rounded-full backdrop-blur-md text-sm font-medium flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">lock</span> Earn 550 more points
+                        </div>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-grow bg-gray-50/50">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-xl font-bold text-gray-700">Weekend City Tour Package</h3>
+</div>
+<p class="text-gray-500 text-sm mb-6 line-clamp-2 flex-grow">An all-inclusive guided tour of the city's historic landmarks, including transportation.</p>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
+<span class="text-lg font-bold text-gray-400">3,000 Points</span>
+<button class="bg-gray-200 text-gray-400 px-5 py-2 rounded-full text-sm font-semibold cursor-not-allowed flex items-center gap-1.5" disabled="">
+<span class="material-symbols-outlined text-[16px]">lock</span> Locked
+                        </button>
+</div>
+</div>
+</div>
+<!-- Card 6: Affordable -->
+<div class="reward-card group bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-hover transition-all duration-300 border border-gray-100 flex flex-col h-full" data-category="dining">
+<div class="relative overflow-hidden h-56">
+<img alt="Bottle of champagne" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Chilled bottle of champagne in ice bucket" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnB8O086yWDK7vwJvR11R_JK0Nzqtpk-xth7OAPXH6-J0aoqvsdKv2DUCdtAbSzgz3lR0oJDQWvde1Inh5ZMNNVuIC9yPeMsfnGlSWr3CinSSEHhfE3jJkZLU3n02D-cUIeaUPnfC9jiivd2eBMqL83cVwSgn5yNuKiW9MOroGGM7eStoyBggY4eVYdRyX_TupyjTI5ACwGDigDZzH8V2CBzBnQbTcU_hgrzmhDGrKSThoze4zmHHlsUwnXKetSzK-hNMq8iJuL0A"/>
+<div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-lg text-xs font-bold text-primary shadow-sm">
+                        Welcome Gift
+                    </div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<h3 class="text-xl font-bold text-text-main mb-2">Welcome Champagne</h3>
+<p class="text-text-muted text-sm mb-6 line-clamp-2 flex-grow">Have a bottle of premium champagne waiting in your room upon arrival.</p>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-50">
+<span class="text-lg font-bold text-primary">1,800 Points</span>
+<button class="bg-primary hover:bg-primary-dark text-white px-5 py-2 rounded-full text-sm font-semibold transition-colors shadow-md shadow-primary/20">
+                            Redeem Now
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Simple Footer -->
+<footer class="bg-white border-t border-gray-200 py-12 mt-12">
+<div class="max-w-[1200px] mx-auto px-6 md:px-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+<div class="col-span-1 md:col-span-1">
+<div class="flex items-center gap-2 text-primary mb-4">
+<div class="size-6 flex items-center justify-center bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined text-primary text-sm">diamond</span>
+</div>
+<h2 class="text-text-main text-lg font-bold tracking-tight">Mmakwany Guest House</h2>
+</div>
+<p class="text-text-muted text-sm">Redefining luxury loyalty. Your points, your way.</p>
+</div>
+<div>
+<h4 class="font-semibold text-text-main mb-4">Discover</h4>
+<ul class="space-y-2 text-sm text-text-muted">
+<li><a class="hover:text-primary transition-colors" href="#">Destinations</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Experiences</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">New Arrivals</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-semibold text-text-main mb-4">Support</h4>
+<ul class="space-y-2 text-sm text-text-muted">
+<li><a class="hover:text-primary transition-colors" href="#">Help Center</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Terms of Service</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-semibold text-text-main mb-4">Contact</h4>
+<ul class="space-y-2 text-sm text-text-muted">
+<li>support@nexusstay.com</li>
+<li>+1 (555) 123-4567</li>
+</ul>
+</div>
+</div>
+<div class="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-text-muted">
+<p>© 2023 Mmakwany Guest House. All rights reserved.</p>
+<div class="flex gap-4 mt-4 md:mt-0">
+<a class="hover:text-primary transition-colors" href="#">Instagram</a>
+<a class="hover:text-primary transition-colors" href="#">Twitter</a>
+<a class="hover:text-primary transition-colors" href="#">Facebook</a>
+</div>
+</div>
+</div>
+</footer>
+<script src="components.js"></script>
+<script src="site-logic.js"></script>
+</body></html>

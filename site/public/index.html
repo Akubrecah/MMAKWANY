@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mmakwany Guest House — Your Home Away From Home</title>
+<meta name="description" content="Mmakwany Guest House offers premium accommodation, world-class dining, and a versatile event hall in Kenya. Book your stay today."/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "primary": "#0D9488",
+                    "primary-dark": "#0f766e",
+                    "accent-gold": "#D97706",
+                    "background-warm": "#FAFAF8",
+                },
+                fontFamily: {
+                    "sans": ["Inter", "sans-serif"],
+                    "serif": ["Playfair Display", "serif"]
+                },
+                borderRadius: {
+                    "pill": "9999px",
+                    "card": "1rem"
+                },
+            },
+        },
+    }
+</script>
+<style>
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    html { scroll-behavior: smooth; }
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
+    .delay-100 { animation-delay: 0.1s; }
+    .delay-200 { animation-delay: 0.2s; }
+    .delay-300 { animation-delay: 0.3s; }
+    .delay-400 { animation-delay: 0.4s; }
+    .menu-card:hover .menu-overlay { opacity: 1; }
+    .menu-card:hover img { transform: scale(1.08); }
+</style>
+</head>
+<body class="bg-background-warm text-slate-900 antialiased">
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- HEADER / NAVIGATION                            -->
+<!-- ═══════════════════════════════════════════════ -->
+<header class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
+<div class="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between h-16">
+    <!-- Logo -->
+    <a href="index.html" class="flex items-center gap-2.5 group">
+        <div class="w-8 h-8 text-primary">
+            <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                <path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"></path>
+            </svg>
+        </div>
+        <span class="text-xl font-bold tracking-tight text-slate-900 group-hover:text-primary transition-colors">Mmakwany</span>
+    </a>
+    <!-- Nav -->
+    <nav class="hidden md:flex items-center gap-8">
+        <a class="text-sm font-semibold text-primary" href="#home">Home</a>
+        <a class="text-sm font-medium text-slate-600 hover:text-primary transition-colors" href="#rooms">Rooms</a>
+        <a class="text-sm font-medium text-slate-600 hover:text-primary transition-colors" href="#dining">Dining</a>
+        <a class="text-sm font-medium text-slate-600 hover:text-primary transition-colors" href="#events">Events</a>
+        <a class="text-sm font-medium text-slate-600 hover:text-primary transition-colors" href="#amenities">Amenities</a>
+        <a class="text-sm font-medium text-slate-600 hover:text-primary transition-colors" href="#contact">Contact</a>
+    </nav>
+    <!-- Actions -->
+    <div class="flex items-center gap-3">
+        <a href="room-booking.html" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white text-sm font-semibold rounded-full hover:bg-primary-dark transition-colors shadow-lg shadow-primary/20">
+            Book Now
+        </a>
+        <a class="flex items-center gap-2 px-4 py-2 border border-slate-200 rounded-full hover:bg-slate-50 transition-colors" href="login.html">
+            <span class="material-symbols-outlined text-sm">person</span>
+            <span class="text-sm font-medium">Log in</span>
+        </a>
+    </div>
+</div>
+</header>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- HERO SECTION                                   -->
+<!-- ═══════════════════════════════════════════════ -->
+<section id="home" class="relative h-[85vh] min-h-[600px] overflow-hidden">
+    <img alt="Mmakwany Guest House" class="absolute inset-0 w-full h-full object-cover" src="images/courtyard.jpeg"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/70"></div>
+    <div class="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
+        <p class="text-primary font-semibold text-sm uppercase tracking-[0.3em] mb-4 animate-fade-in-up">Welcome to</p>
+        <h1 class="font-serif text-white text-5xl md:text-7xl lg:text-8xl font-bold leading-tight mb-6 animate-fade-in-up delay-100">
+            Mmakwany<br/>Guest House
+        </h1>
+        <p class="text-white/80 text-lg md:text-xl max-w-2xl mb-10 animate-fade-in-up delay-200">
+            Experience warm Kenyan hospitality with premium rooms, exquisite dining, and a perfect event venue — all under one roof.
+        </p>
+        <div class="flex flex-wrap gap-4 justify-center animate-fade-in-up delay-300">
+            <a href="room-booking.html" class="px-8 py-4 bg-primary text-white font-semibold rounded-full hover:bg-primary-dark transition-all shadow-xl shadow-primary/30 hover:scale-105">
+                Book a Room
+            </a>
+            <a href="#dining" class="px-8 py-4 bg-white/10 backdrop-blur-md text-white font-semibold rounded-full border border-white/30 hover:bg-white/20 transition-all hover:scale-105">
+                View Menu
+            </a>
+        </div>
+    </div>
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/50 animate-bounce">
+        <span class="text-xs uppercase tracking-widest font-medium">Scroll</span>
+        <span class="material-symbols-outlined">expand_more</span>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- QUICK STATS BAR                                -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="bg-white border-b border-gray-100">
+<div class="max-w-7xl mx-auto px-6 lg:px-12 py-6">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                <span class="material-symbols-outlined text-primary">hotel</span>
+            </div>
+            <div>
+                <p class="text-2xl font-bold text-slate-900">12+</p>
+                <p class="text-xs text-slate-500 font-medium">Cozy Rooms</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-xl bg-amber-50 flex items-center justify-center">
+                <span class="material-symbols-outlined text-accent-gold">restaurant</span>
+            </div>
+            <div>
+                <p class="text-2xl font-bold text-slate-900">50+</p>
+                <p class="text-xs text-slate-500 font-medium">Menu Items</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                <span class="material-symbols-outlined text-primary">celebration</span>
+            </div>
+            <div>
+                <p class="text-2xl font-bold text-slate-900">500</p>
+                <p class="text-xs text-slate-500 font-medium">Event Capacity</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-xl bg-amber-50 flex items-center justify-center">
+                <span class="material-symbols-outlined text-accent-gold">star</span>
+            </div>
+            <div>
+                <p class="text-2xl font-bold text-slate-900">4.8</p>
+                <p class="text-xs text-slate-500 font-medium">Guest Rating</p>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- ABOUT SECTION                                  -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="py-20 bg-background-warm">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div>
+            <p class="text-primary font-semibold text-sm uppercase tracking-[0.2em] mb-3">About Us</p>
+            <h2 class="font-serif text-4xl md:text-5xl font-bold text-slate-900 mb-6 leading-tight">A Warm Welcome Awaits You</h2>
+            <p class="text-slate-600 text-lg leading-relaxed mb-6">
+                Nestled in the heart of Kenya, Mmakwany Guest House is your ideal destination for comfort, great food, and memorable events. Whether you're here on business, for a celebration, or simply to unwind — we make you feel at home.
+            </p>
+            <p class="text-slate-600 leading-relaxed mb-8">
+                Our dedicated team ensures every guest receives personalized attention, from our freshly prepared Kenyan and continental dishes to our beautifully appointed rooms and our versatile event hall that can host up to 500 guests.
+            </p>
+            <a href="#rooms" class="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all">
+                Explore Our Rooms
+                <span class="material-symbols-outlined text-lg">arrow_forward</span>
+            </a>
+        </div>
+        <div class="relative">
+            <div class="rounded-2xl overflow-hidden shadow-2xl">
+                <img alt="Mmakwany Lounge" class="w-full h-[450px] object-cover" src="images/lounge.jpeg"/>
+            </div>
+            <div class="absolute -bottom-6 -left-6 bg-white p-5 rounded-xl shadow-lg border border-gray-100">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
+                        <span class="material-symbols-outlined text-white">verified</span>
+                    </div>
+                    <div>
+                        <p class="font-bold text-slate-900">Trusted Since 2018</p>
+                        <p class="text-xs text-slate-500">Thousands of happy guests</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- ROOMS SECTION                                  -->
+<!-- ═══════════════════════════════════════════════ -->
+<section id="rooms" class="py-20 bg-white">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="text-center mb-14">
+        <p class="text-primary font-semibold text-sm uppercase tracking-[0.2em] mb-3">Accommodations</p>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold text-slate-900 mb-4">Our Rooms &amp; Suites</h2>
+        <p class="text-slate-500 max-w-2xl mx-auto">Each room is designed with your comfort in mind — clean linen, hot showers, Wi-Fi, and a peaceful atmosphere.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Room 1: Standard -->
+        <div class="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group">
+            <div class="relative h-56 overflow-hidden">
+                <img alt="Standard Room" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="images/guest-room.jpeg"/>
+                <div class="absolute top-4 left-4 bg-primary text-white text-xs font-bold px-3 py-1.5 rounded-full">Popular</div>
+            </div>
+            <div class="p-6">
+                <h3 class="text-xl font-bold text-slate-900 mb-2">Standard Room</h3>
+                <p class="text-slate-500 text-sm mb-4">Comfortable room with double bed, TV, Wi-Fi, and en-suite bathroom. Perfect for solo travelers or couples.</p>
+                <div class="flex items-center gap-4 text-slate-400 text-xs mb-5">
+                    <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">bed</span> Double</span>
+                    <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">wifi</span> Wi-Fi</span>
+                    <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">shower</span> En-suite</span>
+                </div>
+                <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                    <div>
+                        <span class="text-xs text-slate-400">From</span>
+                        <p class="text-2xl font-bold text-accent-gold">KES 3,500<span class="text-sm font-normal text-slate-400">/night</span></p>
+                    </div>
+                    <a href="room-booking.html" class="px-5 py-2.5 bg-primary text-white text-sm font-semibold rounded-xl hover:bg-primary-dark transition-colors">Book</a>
+                </div>
+            </div>
+        </div>
+        <!-- Room 2: Deluxe -->
+        <div class="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group">
+            <div class="relative h-56 overflow-hidden">
+                <img alt="Deluxe Room" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="images/lounge.jpeg"/>
+                <div class="absolute top-4 left-4 bg-accent-gold text-white text-xs font-bold px-3 py-1.5 rounded-full">Best Value</div>
+            </div>
+            <div class="p-6">
+                <h3 class="text-xl font-bold text-slate-900 mb-2">Deluxe Room</h3>
+                <p class="text-slate-500 text-sm mb-4">Spacious room with king-size bed, work desk, mini fridge, flat-screen TV, and private balcony views.</p>
+                <div class="flex items-center gap-4 text-slate-400 text-xs mb-5">
+                    <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">king_bed</span> King</span>
+                    <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">balcony</span> Balcony</span>
+                    <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">kitchen</span> Mini Bar</span>
+                </div>
+                <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                    <div>
+                        <span class="text-xs text-slate-400">From</span>
+                        <p class="text-2xl font-bold text-accent-gold">KES 5,500<span class="text-sm font-normal text-slate-400">/night</span></p>
+                    </div>
+                    <a href="room-booking.html" class="px-5 py-2.5 bg-primary text-white text-sm font-semibold rounded-xl hover:bg-primary-dark transition-colors">Book</a>
+                </div>
+            </div>
+        </div>
+        <!-- Room 3: Executive Suite -->
+        <div class="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group">
+            <div class="relative h-56 overflow-hidden">
+                <img alt="Executive Suite" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="images/courtyard.jpeg"/>
+                <div class="absolute top-4 left-4 bg-slate-900 text-white text-xs font-bold px-3 py-1.5 rounded-full">Premium</div>
+            </div>
+            <div class="p-6">
+                <h3 class="text-xl font-bold text-slate-900 mb-2">Executive Suite</h3>
+                <p class="text-slate-500 text-sm mb-4">Our finest accommodation with separate living area, jacuzzi bath, premium amenities, and VIP service.</p>
+                <div class="flex items-center gap-4 text-slate-400 text-xs mb-5">
+                    <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">bathtub</span> Jacuzzi</span>
+                    <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">living</span> Lounge</span>
+                    <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">room_service</span> VIP</span>
+                </div>
+                <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                    <div>
+                        <span class="text-xs text-slate-400">From</span>
+                        <p class="text-2xl font-bold text-accent-gold">KES 9,000<span class="text-sm font-normal text-slate-400">/night</span></p>
+                    </div>
+                    <a href="room-booking.html" class="px-5 py-2.5 bg-primary text-white text-sm font-semibold rounded-xl hover:bg-primary-dark transition-colors">Book</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center mt-10">
+        <a href="room-booking.html" class="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all">
+            View All Rooms &amp; Book Online
+            <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+    </div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- DINING & MENU SECTION                          -->
+<!-- ═══════════════════════════════════════════════ -->
+<section id="dining" class="py-20 bg-slate-900 text-white">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="text-center mb-14">
+        <p class="text-primary font-semibold text-sm uppercase tracking-[0.2em] mb-3">Restaurant &amp; Bar</p>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold mb-4">Our Menu</h2>
+        <p class="text-slate-400 max-w-2xl mx-auto">Savor authentic Kenyan flavors and continental favorites prepared fresh daily by our talented chefs.</p>
+    </div>
+
+    <!-- Menu Category Tabs -->
+    <div class="flex flex-wrap justify-center gap-3 mb-12">
+        <button class="menu-tab px-6 py-2.5 rounded-full text-sm font-semibold bg-primary text-white" data-cat="all">All</button>
+        <button class="menu-tab px-6 py-2.5 rounded-full text-sm font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition-colors" data-cat="breakfast">Breakfast</button>
+        <button class="menu-tab px-6 py-2.5 rounded-full text-sm font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition-colors" data-cat="mains">Main Course</button>
+        <button class="menu-tab px-6 py-2.5 rounded-full text-sm font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition-colors" data-cat="drinks">Drinks</button>
+        <button class="menu-tab px-6 py-2.5 rounded-full text-sm font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition-colors" data-cat="desserts">Desserts</button>
+    </div>
+
+    <!-- Menu Grid -->
+    <div id="menu-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <!-- Breakfast Items -->
+        <div class="menu-card relative rounded-2xl overflow-hidden bg-slate-800 group cursor-pointer" data-category="breakfast">
+            <img alt="Full Kenyan Breakfast" class="w-full h-52 object-cover transition-transform duration-500" src="images/restaurant.jpeg"/>
+            <div class="menu-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-70 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-5">
+                <span class="text-xs font-bold text-primary uppercase tracking-wider mb-1">Breakfast</span>
+                <h4 class="text-white font-bold text-lg">Full Kenyan Breakfast</h4>
+                <p class="text-slate-300 text-xs mt-1">Eggs, sausage, beans, toast, fresh juice</p>
+                <p class="text-accent-gold font-bold text-xl mt-2">KES 650</p>
+            </div>
+        </div>
+
+        <div class="menu-card relative rounded-2xl overflow-hidden bg-slate-800 group cursor-pointer" data-category="breakfast">
+            <img alt="Chapati & Stew" class="w-full h-52 object-cover transition-transform duration-500" src="images/restaurant.jpeg"/>
+            <div class="menu-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-70 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-5">
+                <span class="text-xs font-bold text-primary uppercase tracking-wider mb-1">Breakfast</span>
+                <h4 class="text-white font-bold text-lg">Chapati &amp; Beef Stew</h4>
+                <p class="text-slate-300 text-xs mt-1">Soft chapati with rich beef stew</p>
+                <p class="text-accent-gold font-bold text-xl mt-2">KES 450</p>
+            </div>
+        </div>
+
+        <!-- Main Course Items -->
+        <div class="menu-card relative rounded-2xl overflow-hidden bg-slate-800 group cursor-pointer" data-category="mains">
+            <img alt="Nyama Choma" class="w-full h-52 object-cover transition-transform duration-500" src="images/restaurant.jpeg"/>
+            <div class="menu-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-70 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-5">
+                <span class="text-xs font-bold text-primary uppercase tracking-wider mb-1">Main Course</span>
+                <h4 class="text-white font-bold text-lg">Nyama Choma</h4>
+                <p class="text-slate-300 text-xs mt-1">Grilled goat ribs with kachumbari &amp; ugali</p>
+                <p class="text-accent-gold font-bold text-xl mt-2">KES 1,200</p>
+            </div>
+        </div>
+
+        <div class="menu-card relative rounded-2xl overflow-hidden bg-slate-800 group cursor-pointer" data-category="mains">
+            <img alt="Pilau Rice" class="w-full h-52 object-cover transition-transform duration-500" src="images/restaurant.jpeg"/>
+            <div class="menu-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-70 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-5">
+                <span class="text-xs font-bold text-primary uppercase tracking-wider mb-1">Main Course</span>
+                <h4 class="text-white font-bold text-lg">Swahili Pilau</h4>
+                <p class="text-slate-300 text-xs mt-1">Aromatic spiced rice with tender beef</p>
+                <p class="text-accent-gold font-bold text-xl mt-2">KES 850</p>
+            </div>
+        </div>
+
+        <div class="menu-card relative rounded-2xl overflow-hidden bg-slate-800 group cursor-pointer" data-category="mains">
+            <img alt="Grilled Tilapia" class="w-full h-52 object-cover transition-transform duration-500" src="images/restaurant.jpeg"/>
+            <div class="menu-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-70 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-5">
+                <span class="text-xs font-bold text-primary uppercase tracking-wider mb-1">Main Course</span>
+                <h4 class="text-white font-bold text-lg">Grilled Tilapia</h4>
+                <p class="text-slate-300 text-xs mt-1">Fresh Lake Victoria tilapia with chips</p>
+                <p class="text-accent-gold font-bold text-xl mt-2">KES 950</p>
+            </div>
+        </div>
+
+        <div class="menu-card relative rounded-2xl overflow-hidden bg-slate-800 group cursor-pointer" data-category="mains">
+            <img alt="Chicken Biryani" class="w-full h-52 object-cover transition-transform duration-500" src="images/restaurant.jpeg"/>
+            <div class="menu-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-70 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-5">
+                <span class="text-xs font-bold text-primary uppercase tracking-wider mb-1">Main Course</span>
+                <h4 class="text-white font-bold text-lg">Chicken Biryani</h4>
+                <p class="text-slate-300 text-xs mt-1">Coastal-style biryani with salad</p>
+                <p class="text-accent-gold font-bold text-xl mt-2">KES 900</p>
+            </div>
+        </div>
+
+        <!-- Drinks -->
+        <div class="menu-card relative rounded-2xl overflow-hidden bg-slate-800 group cursor-pointer" data-category="drinks">
+            <img alt="Fresh Juices" class="w-full h-52 object-cover transition-transform duration-500" src="images/restaurant.jpeg"/>
+            <div class="menu-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-70 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-5">
+                <span class="text-xs font-bold text-primary uppercase tracking-wider mb-1">Drinks</span>
+                <h4 class="text-white font-bold text-lg">Fresh Tropical Juice</h4>
+                <p class="text-slate-300 text-xs mt-1">Mango, passion, watermelon, or mixed</p>
+                <p class="text-accent-gold font-bold text-xl mt-2">KES 250</p>
+            </div>
+        </div>
+
+        <!-- Desserts -->
+        <div class="menu-card relative rounded-2xl overflow-hidden bg-slate-800 group cursor-pointer" data-category="desserts">
+            <img alt="Mandazi" class="w-full h-52 object-cover transition-transform duration-500" src="images/restaurant.jpeg"/>
+            <div class="menu-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-70 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-5">
+                <span class="text-xs font-bold text-primary uppercase tracking-wider mb-1">Desserts</span>
+                <h4 class="text-white font-bold text-lg">Mandazi &amp; Chai</h4>
+                <p class="text-slate-300 text-xs mt-1">Traditional fried dough with spiced tea</p>
+                <p class="text-accent-gold font-bold text-xl mt-2">KES 200</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="text-center mt-12">
+        <a href="guest-dashboard.html" class="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white font-semibold rounded-full hover:bg-primary-dark transition-all shadow-lg shadow-primary/20">
+            View Full Menu &amp; Order Catering
+            <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+    </div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- EVENT HALL SECTION                             -->
+<!-- ═══════════════════════════════════════════════ -->
+<section id="events" class="py-20 bg-background-warm">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+            <img alt="The Mmakwany Event Hall" class="w-full h-[500px] object-cover" src="images/conference.jpeg"/>
+            <div class="absolute top-6 left-6 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-xl shadow-md flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">groups</span>
+                <span class="text-sm font-bold text-slate-900">Up to 500 Guests</span>
+            </div>
+        </div>
+        <div>
+            <p class="text-primary font-semibold text-sm uppercase tracking-[0.2em] mb-3">Events &amp; Functions</p>
+            <h2 class="font-serif text-4xl md:text-5xl font-bold text-slate-900 mb-6 leading-tight">The Mmakwany Event Hall</h2>
+            <p class="text-slate-600 text-lg leading-relaxed mb-6">
+                Host your dream event in our versatile hall — from elegant weddings and birthday celebrations to corporate conferences and community gatherings.
+            </p>
+            <div class="grid grid-cols-2 gap-4 mb-8">
+                <div class="flex items-center gap-3 p-3 bg-white rounded-xl border border-gray-100">
+                    <span class="material-symbols-outlined text-primary">theater_comedy</span>
+                    <span class="text-sm font-medium">Theater Layout</span>
+                </div>
+                <div class="flex items-center gap-3 p-3 bg-white rounded-xl border border-gray-100">
+                    <span class="material-symbols-outlined text-primary">restaurant</span>
+                    <span class="text-sm font-medium">Banquet Setup</span>
+                </div>
+                <div class="flex items-center gap-3 p-3 bg-white rounded-xl border border-gray-100">
+                    <span class="material-symbols-outlined text-primary">surround_sound</span>
+                    <span class="text-sm font-medium">Pro Audio/AV</span>
+                </div>
+                <div class="flex items-center gap-3 p-3 bg-white rounded-xl border border-gray-100">
+                    <span class="material-symbols-outlined text-primary">restaurant_menu</span>
+                    <span class="text-sm font-medium">Full Catering</span>
+                </div>
+            </div>
+            <div class="flex items-center gap-4 mb-8 p-5 bg-white rounded-xl border border-gray-100">
+                <div>
+                    <span class="text-xs text-slate-400">Starting from</span>
+                    <p class="text-3xl font-bold text-accent-gold">KES 45,000<span class="text-base font-normal text-slate-400">/day</span></p>
+                </div>
+            </div>
+            <div class="flex gap-4">
+                <a href="hall-configurator.html" class="px-8 py-4 bg-primary text-white font-semibold rounded-full hover:bg-primary-dark transition-all shadow-lg shadow-primary/20">
+                    Configure &amp; Get Quote
+                </a>
+                <a href="event-halls.html" class="px-8 py-4 border-2 border-primary text-primary font-semibold rounded-full hover:bg-primary hover:text-white transition-all">
+                    Learn More
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- AMENITIES SECTION                              -->
+<!-- ═══════════════════════════════════════════════ -->
+<section id="amenities" class="py-20 bg-white">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="text-center mb-14">
+        <p class="text-primary font-semibold text-sm uppercase tracking-[0.2em] mb-3">What We Offer</p>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold text-slate-900 mb-4">Amenities &amp; Services</h2>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+        <div class="flex flex-col items-center text-center gap-3 p-6 rounded-2xl bg-slate-50 hover:bg-primary/5 hover:shadow-md transition-all cursor-pointer group">
+            <div class="w-14 h-14 rounded-2xl bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center transition-colors">
+                <span class="material-symbols-outlined text-primary text-2xl">wifi</span>
+            </div>
+            <p class="text-sm font-semibold">Free Wi-Fi</p>
+        </div>
+        <div class="flex flex-col items-center text-center gap-3 p-6 rounded-2xl bg-slate-50 hover:bg-primary/5 hover:shadow-md transition-all cursor-pointer group">
+            <div class="w-14 h-14 rounded-2xl bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center transition-colors">
+                <span class="material-symbols-outlined text-primary text-2xl">local_parking</span>
+            </div>
+            <p class="text-sm font-semibold">Free Parking</p>
+        </div>
+        <div class="flex flex-col items-center text-center gap-3 p-6 rounded-2xl bg-slate-50 hover:bg-primary/5 hover:shadow-md transition-all cursor-pointer group">
+            <div class="w-14 h-14 rounded-2xl bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center transition-colors">
+                <span class="material-symbols-outlined text-primary text-2xl">security</span>
+            </div>
+            <p class="text-sm font-semibold">24/7 Security</p>
+        </div>
+        <div class="flex flex-col items-center text-center gap-3 p-6 rounded-2xl bg-slate-50 hover:bg-primary/5 hover:shadow-md transition-all cursor-pointer group">
+            <div class="w-14 h-14 rounded-2xl bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center transition-colors">
+                <span class="material-symbols-outlined text-primary text-2xl">ac_unit</span>
+            </div>
+            <p class="text-sm font-semibold">Air Conditioning</p>
+        </div>
+        <div class="flex flex-col items-center text-center gap-3 p-6 rounded-2xl bg-slate-50 hover:bg-primary/5 hover:shadow-md transition-all cursor-pointer group">
+            <div class="w-14 h-14 rounded-2xl bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center transition-colors">
+                <span class="material-symbols-outlined text-primary text-2xl">local_laundry_service</span>
+            </div>
+            <p class="text-sm font-semibold">Laundry</p>
+        </div>
+        <div class="flex flex-col items-center text-center gap-3 p-6 rounded-2xl bg-slate-50 hover:bg-primary/5 hover:shadow-md transition-all cursor-pointer group">
+            <div class="w-14 h-14 rounded-2xl bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center transition-colors">
+                <span class="material-symbols-outlined text-primary text-2xl">room_service</span>
+            </div>
+            <p class="text-sm font-semibold">Room Service</p>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- TESTIMONIALS                                   -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="py-20 bg-background-warm">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="text-center mb-14">
+        <p class="text-primary font-semibold text-sm uppercase tracking-[0.2em] mb-3">Testimonials</p>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold text-slate-900 mb-4">What Our Guests Say</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow">
+            <div class="flex items-center gap-1 mb-4">
+                <span class="material-symbols-outlined text-accent-gold text-lg" style="font-variation-settings: 'FILL' 1">star</span>
+                <span class="material-symbols-outlined text-accent-gold text-lg" style="font-variation-settings: 'FILL' 1">star</span>
+                <span class="material-symbols-outlined text-accent-gold text-lg" style="font-variation-settings: 'FILL' 1">star</span>
+                <span class="material-symbols-outlined text-accent-gold text-lg" style="font-variation-settings: 'FILL' 1">star</span>
+                <span class="material-symbols-outlined text-accent-gold text-lg" style="font-variation-settings: 'FILL' 1">star</span>
+            </div>
+            <p class="text-slate-600 leading-relaxed mb-6">"The rooms were spotless and the staff went above and beyond. The nyama choma at the restaurant was the best I've ever had. Will definitely come again!"</p>
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-sm">JK</div>
+                <div>
+                    <p class="font-semibold text-sm">James Kariuki</p>
+                    <p class="text-xs text-slate-400">Business Traveler</p>
+                </div>
+            </div>
+        </div>
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow">
+            <div class="flex items-center gap-1 mb-4">
+                <span class="material-symbols-outlined text-accent-gold text-lg" style="font-variation-settings: 'FILL' 1">star</span>
+                <span class="material-symbols-outlined text-accent-gold text-lg" style="font-variation-settings: 'FILL' 1">star</span>
+                <span class="material-symbols-outlined text-accent-gold text-lg" style="font-variation-settings: 'FILL' 1">star</span>
+                <span class="material-symbols-outlined text-accent-gold text-lg" style="font-variation-settings: 'FILL' 1">star</span>
+                <span class="material-symbols-outlined text-accent-gold text-lg" style="font-variation-settings: 'FILL' 1">star</span>
+            </div>
+            <p class="text-slate-600 leading-relaxed mb-6">"We hosted our wedding reception at the Mmakwany Event Hall. Everything was perfect — the catering, the setup, and the coordination. Highly recommend!"</p>
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-accent-gold/10 flex items-center justify-center text-accent-gold font-bold text-sm">AW</div>
+                <div>
+                    <p class="font-semibold text-sm">Amina Wanjiku</p>
+                    <p class="text-xs text-slate-400">Wedding Guest</p>
+                </div>
+            </div>
+        </div>
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow">
+            <div class="flex items-center gap-1 mb-4">
+                <span class="material-symbols-outlined text-accent-gold text-lg" style="font-variation-settings: 'FILL' 1">star</span>
+                <span class="material-symbols-outlined text-accent-gold text-lg" style="font-variation-settings: 'FILL' 1">star</span>
+                <span class="material-symbols-outlined text-accent-gold text-lg" style="font-variation-settings: 'FILL' 1">star</span>
+                <span class="material-symbols-outlined text-accent-gold text-lg" style="font-variation-settings: 'FILL' 1">star</span>
+                <span class="material-symbols-outlined text-accent-gold text-lg">star</span>
+            </div>
+            <p class="text-slate-600 leading-relaxed mb-6">"Great value for money. The breakfast spread is amazing and the location is very convenient. The free parking is a huge plus for us."</p>
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-sm">DO</div>
+                <div>
+                    <p class="font-semibold text-sm">David Ochieng</p>
+                    <p class="text-xs text-slate-400">Family Trip</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- CTA BANNER                                     -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="relative py-24 overflow-hidden">
+    <img alt="Guest House" class="absolute inset-0 w-full h-full object-cover" src="images/restaurant.jpeg"/>
+    <div class="absolute inset-0 bg-primary/85"></div>
+    <div class="relative z-10 max-w-4xl mx-auto text-center px-6">
+        <h2 class="font-serif text-4xl md:text-5xl font-bold text-white mb-6">Ready to Experience Mmakwany?</h2>
+        <p class="text-white/80 text-lg mb-10 max-w-2xl mx-auto">Book your room, plan your event, or reserve a table at our restaurant today. We can't wait to welcome you.</p>
+        <div class="flex flex-wrap justify-center gap-4">
+            <a href="room-booking.html" class="px-10 py-4 bg-white text-primary font-bold rounded-full hover:bg-slate-50 transition-all shadow-xl hover:scale-105">
+                Book a Room
+            </a>
+            <a href="hall-configurator.html" class="px-10 py-4 bg-transparent border-2 border-white text-white font-bold rounded-full hover:bg-white/10 transition-all hover:scale-105">
+                Plan an Event
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- CONTACT / FOOTER                               -->
+<!-- ═══════════════════════════════════════════════ -->
+<footer id="contact" class="bg-slate-900 text-white pt-16 pb-8">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <!-- Brand -->
+        <div>
+            <div class="flex items-center gap-2 mb-6">
+                <div class="w-8 h-8 text-primary">
+                    <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"></path>
+                    </svg>
+                </div>
+                <span class="text-xl font-bold">Mmakwany Guest House</span>
+            </div>
+            <p class="text-slate-400 text-sm leading-relaxed mb-6">Your home away from home. Premium accommodation, exquisite dining, and a perfect event venue in Kenya.</p>
+            <div class="flex gap-3">
+                <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:text-primary hover:bg-slate-700 transition-colors">
+                    <span class="material-symbols-outlined text-lg">public</span>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:text-primary hover:bg-slate-700 transition-colors">
+                    <span class="material-symbols-outlined text-lg">mail</span>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:text-primary hover:bg-slate-700 transition-colors">
+                    <span class="material-symbols-outlined text-lg">call</span>
+                </a>
+            </div>
+        </div>
+        <!-- Quick Links -->
+        <div>
+            <h4 class="text-sm font-bold uppercase tracking-wider mb-6">Quick Links</h4>
+            <ul class="space-y-3 text-sm text-slate-400">
+                <li><a class="hover:text-primary transition-colors" href="room-booking.html">Room Booking</a></li>
+                <li><a class="hover:text-primary transition-colors" href="guest-dashboard.html">Catering Menu</a></li>
+                <li><a class="hover:text-primary transition-colors" href="event-halls.html">Event Hall</a></li>
+                <li><a class="hover:text-primary transition-colors" href="hall-configurator.html">Hall Configurator</a></li>
+                <li><a class="hover:text-primary transition-colors" href="points-shop.html">Rewards Shop</a></li>
+            </ul>
+        </div>
+        <!-- Contact Info -->
+        <div>
+            <h4 class="text-sm font-bold uppercase tracking-wider mb-6">Contact Us</h4>
+            <ul class="space-y-4 text-sm text-slate-400">
+                <li class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-primary text-lg">location_on</span>
+                    Mmakwany Guest House, Kenya
+                </li>
+                <li class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-primary text-lg">call</span>
+                    +254 700 000 000
+                </li>
+                <li class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-primary text-lg">mail</span>
+                    info@mmakwany.co.ke
+                </li>
+                <li class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-primary text-lg">schedule</span>
+                    Open 24/7
+                </li>
+            </ul>
+        </div>
+        <!-- Newsletter -->
+        <div>
+            <h4 class="text-sm font-bold uppercase tracking-wider mb-6">Newsletter</h4>
+            <p class="text-slate-400 text-sm mb-4">Subscribe for special offers and updates.</p>
+            <form class="flex gap-2" onsubmit="event.preventDefault();">
+                <input class="flex-1 px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm placeholder-slate-500 focus:outline-none focus:border-primary" placeholder="Your email" type="email"/>
+                <button class="px-5 py-3 bg-primary text-white rounded-xl font-semibold text-sm hover:bg-primary-dark transition-colors" type="submit">
+                    <span class="material-symbols-outlined text-lg">send</span>
+                </button>
+            </form>
+        </div>
+    </div>
+    <!-- Bottom -->
+    <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-xs text-slate-500">© 2024 Mmakwany Guest House. All rights reserved.</p>
+        <div class="flex gap-6 text-xs text-slate-500">
+            <a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+            <a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+            <a class="hover:text-primary transition-colors" href="#">Cookie Settings</a>
+        </div>
+    </div>
+</div>
+</footer>
+
+<!-- Menu Tab Filtering Script -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const tabs = document.querySelectorAll('.menu-tab');
+    const cards = document.querySelectorAll('.menu-card');
+    
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            // Update active tab
+            tabs.forEach(t => {
+                t.classList.remove('bg-primary', 'text-white');
+                t.classList.add('bg-slate-800', 'text-slate-300');
+            });
+            tab.classList.remove('bg-slate-800', 'text-slate-300');
+            tab.classList.add('bg-primary', 'text-white');
+            
+            // Filter cards
+            const cat = tab.dataset.cat;
+            cards.forEach(card => {
+                if (cat === 'all' || card.dataset.category === cat) {
+                    card.style.display = '';
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 50);
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+});
+</script>
+
+<script src="components.js"></script>
+<script src="site-logic.js"></script>
+</body></html>

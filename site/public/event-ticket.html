@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mmakwany Guest House Mobile Entry Pass V2</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0d968b",
+                        "accent-gold": "#D97706",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#0F172A",
+                        "card-dark": "#1e293b",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .qr-gradient {
+            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-display">
+<!-- Header Navigation -->
+<header class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-4 py-3">
+<div class="flex items-center justify-between max-w-md mx-auto">
+<button class="flex items-center justify-center p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined text-2xl">arrow_back_ios_new</span>
+</button>
+<div class="text-center">
+<h1 class="text-sm font-bold uppercase tracking-widest text-primary">Mmakwany Guest House</h1>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Event Pass</p>
+</div>
+<button class="flex items-center justify-center p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined text-2xl">more_horiz</span>
+</button>
+</div>
+</header>
+<main class="flex-1 w-full max-w-md mx-auto px-4 py-6 space-y-6">
+<!-- Featured Event Card -->
+<div class="relative overflow-hidden rounded-2xl shadow-xl aspect-[16/9] group">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Luxurious grand ballroom with crystal chandeliers and gala setup" style="background-image: linear-gradient(to top, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0)), url('https://lh3.googleusercontent.com/aida-public/AB6AXuAWW5MEiVs7NVOwsZpeeKu0ve2j-wlSvrNodBo6dGasJvinn3-S7KH90avYLPECtbS5J3hYyZAGAE8x6ttsnsUsT5sa5PhtxBsO_Up5Smlu4pRy7FC46sIYdv2zBj9P_9Xa83dMdLO0mNjQuE7AQgrHGDzKVBX-xEkHoYUm3XCnB_lX1ssZVweMNvDax8-fMRb2V-ZNjAXU3lE7LUWMJj5XT-D1uFlTtI_btJAt__DMXkdVWReboRn9m_txOs53xCz5yeSKZLRN8Bc');">
+</div>
+<div class="absolute bottom-0 left-0 right-0 p-5">
+<div class="flex items-center gap-2 mb-1">
+<span class="px-2 py-0.5 rounded bg-accent-gold text-[10px] font-bold text-white uppercase tracking-tighter">Premium Event</span>
+</div>
+<h2 class="text-2xl font-bold text-white leading-tight">Grand Ballroom Gala</h2>
+<div class="flex items-center gap-4 mt-2 text-slate-200 text-sm">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+<span>Dec 15, 2026</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span>18:00</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Scannable QR Section -->
+<div class="bg-slate-100 dark:bg-card-dark rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-lg relative">
+<div class="flex flex-col items-center">
+<!-- Status Badge -->
+<div class="absolute -top-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-[#10b981] text-white px-4 py-1 rounded-full text-xs font-bold shadow-lg ring-4 ring-background-light dark:ring-background-dark">
+<span class="material-symbols-outlined text-sm leading-none">check_circle</span>
+                    VALID / PAID
+                </div>
+<!-- QR Code Container -->
+<div class="mt-4 p-4 qr-gradient rounded-xl shadow-inner border border-white">
+<img alt="Entry QR Code" class="w-48 h-48 mix-blend-multiply" data-alt="Central high contrast QR code for event entry" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUQNT26YDROS4fjr9HTderIPnN30WdPMMltzIPtwnqdAhZLUKrHis8t1w2ilXR7ssCJpOUDQ8MdyL2ufvbUvckodlNaX4p_gA7_IglBkVR_VLyK9D7wRBL87ZZSAc7PobFWoQt6JWMSFT3OUwk64zHanix-oYhE_ryUAJN7X2cl3eMJFnOvbAxxTKAAkN9M6UJHuWS5ka1GvgcExXJ6vEOfY6Ij0ZW0nvl05IznJqYxS8x702Gy7jJzbAYtuaPowDiBc1Sw2dniKY"/>
+</div>
+<p class="mt-4 text-[10px] font-medium text-slate-500 dark:text-slate-400 uppercase tracking-[0.2em]">Hold near scanner at entrance</p>
+</div>
+<!-- Guest Details Grid -->
+<div class="mt-8 grid grid-cols-2 gap-y-6 border-t border-slate-200 dark:border-slate-700/50 pt-6">
+<div>
+<p class="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">Guest Name</p>
+<p class="text-base font-semibold text-slate-900 dark:text-white">John Doe</p>
+</div>
+<div class="text-right">
+<p class="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">Pass Type</p>
+<p class="text-base font-semibold text-accent-gold flex items-center justify-end gap-1">
+                        VIP Experience
+                        <span class="material-symbols-outlined text-sm">stars</span>
+</p>
+</div>
+<div>
+<p class="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">Seating</p>
+<p class="text-base font-semibold text-slate-900 dark:text-white">Table 5, Seat A2</p>
+</div>
+<div class="text-right">
+<p class="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">Confirmation</p>
+<p class="text-base font-mono font-medium text-slate-900 dark:text-white">#NX-88219</p>
+</div>
+</div>
+</div>
+<!-- Action Stack -->
+<div class="flex flex-col gap-3 pb-8">
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-3 transition-all shadow-lg active:scale-[0.98]">
+<svg class="w-6 h-6" fill="currentColor" viewbox="0 0 512 512">
+<path d="M416 192c-17.7 0-32 14.3-32 32v128c0 17.7 14.3 32 32 32s32-14.3 32-32V224c0-17.7-14.3-32-32-32zM320 128c-17.7 0-32 14.3-32 32v192c0 17.7 14.3 32 32 32s32-14.3 32-32V160c0-17.7-14.3-32-32-32zM224 224c-17.7 0-32 14.3-32 32v96c0 17.7 14.3 32 32 32s32-14.3 32-32V256c0-17.7-14.3-32-32-32zM128 288c-17.7 0-32 14.3-32 32v32c0 17.7 14.3 32 32 32s32-14.3 32-32V320c0-17.7-14.3-32-32-32z"></path>
+</svg>
+                Add to Apple Wallet
+            </button>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex-1 border border-primary/30 dark:border-primary/50 text-primary font-semibold py-3.5 rounded-xl flex items-center justify-center gap-2 hover:bg-primary/5 transition-colors">
+<span class="material-symbols-outlined">download</span>
+                    PDF
+                </button>
+<button class="flex-1 border border-primary/30 dark:border-primary/50 text-primary font-semibold py-3.5 rounded-xl flex items-center justify-center gap-2 hover:bg-primary/5 transition-colors">
+<span class="material-symbols-outlined">map</span>
+                    Directions
+                </button>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 right-0 bg-white/90 dark:bg-card-dark/90 backdrop-blur-xl border-t border-slate-200 dark:border-slate-800 px-6 py-3 pb-6 safe-area-bottom">
+<div class="flex items-center justify-between mb-8">
+<div class="text-primary font-black tracking-tighter text-2xl flex items-center gap-2">
+<a href="index.html" class="flex items-center gap-2">
+<span class="material-symbols-outlined">diamond</span>
+<span>Mmakwany Guest House</span>
+</a>
+</div>
+<span class="bg-white/10 px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase">Event Pass</span>
+</div>
+<div class="flex items-center justify-between max-w-md mx-auto">
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-medium">Stay</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">confirmation_number</span>
+<span class="text-[10px] font-bold">Passes</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="text-[10px] font-medium">Explore</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</a>
+</div>
+</nav>
+<!-- Spacer for bottom nav -->
+<div class="h-24"></div>
+<script src="components.js"></script>
+<script src="site-logic.js"></script>
+</body></html>

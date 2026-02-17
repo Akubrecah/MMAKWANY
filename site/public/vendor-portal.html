@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mmakwany Guest House Vendor Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0d968b",
+                        "primary-dark": "#0b7a71",
+                        "accent-gold": "#D97706",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#102220",
+                        "surface-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"]
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar for tables */
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 6px;
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-background-light text-slate-900 antialiased font-display">
+<!-- View 1: Split Screen Login (Demonstration Purpose) -->
+<div class="min-h-screen w-full flex flex-col lg:flex-row overflow-hidden bg-white">
+<!-- Left Side: Branding/Image -->
+<div class="relative w-full lg:w-1/2 h-64 lg:h-auto bg-slate-900">
+<div class="absolute inset-0 bg-cover bg-center opacity-60" data-alt="Modern logistics warehouse with workers and packages" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBDBtjvaJ0SLSWGRIElVt77YwW6Ow-IxVwuCFmXunfJ2sfxz7KVCVJZsPS5XTUuWxowuoUVV5o0M7o2L0ufr6AUelm0lWIBEWGmESNS3o3srtVPRlRIbccOlC09prynBAmOAWJ_SfKu76lChUQhE98y8sz1q_7CM1I9SeGabAtade1kKpdIfofnwQXM4frP16JMICVHqL6GulOLL-EiKUemfZg4dC5Avhr8j5btHc5taM0ampeUuXTdQSmzFqDn3Pd8FiZJzpOl8wI');"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent lg:bg-gradient-to-r lg:from-black/80 lg:via-black/50 lg:to-transparent"></div>
+<div class="relative h-full flex flex-col justify-end p-8 lg:p-16 text-white z-10">
+<div class="mb-6">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-4xl text-primary">inventory_2</span>
+<span class="text-2xl font-bold tracking-tight">Mmakwany Guest House</span>
+</div>
+<h1 class="text-3xl lg:text-5xl font-bold leading-tight mb-4">Partner with the world's leading hospitality network.</h1>
+<p class="text-lg text-slate-300 max-w-md">Streamline your supply chain operations, manage orders in real-time, and grow your business with our vendor ecosystem.</p>
+</div>
+<div class="flex gap-4 text-sm text-slate-400">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">verified_user</span> Secure Portal</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">language</span> Global Access</span>
+</div>
+</div>
+</div>
+<!-- Right Side: Login Form -->
+<div class="w-full lg:w-1/2 flex items-center justify-center p-8 bg-white lg:min-h-screen">
+<div class="w-full max-w-md space-y-8">
+<div class="text-center lg:text-left">
+<h2 class="text-3xl font-bold text-slate-900">Vendor Portal</h2>
+<p class="mt-2 text-sm text-slate-600">Access your dashboard to manage orders and payments.</p>
+</div>
+<!-- Tabs -->
+<div class="border-b border-slate-200">
+<nav aria-label="Tabs" class="-mb-px flex space-x-8">
+<a aria-current="page" class="border-primary text-primary whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium" href="#">
+                            Vendor Sign In
+                        </a>
+<a class="border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-700 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium" href="#">
+                            Register as Supplier
+                        </a>
+</nav>
+</div>
+<!-- Form -->
+<form class="space-y-6">
+<div>
+<label class="block text-sm font-medium leading-6 text-slate-900" for="vendor-id">Vendor ID or Email</label>
+<div class="mt-2 relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-400 text-[20px]">badge</span>
+</div>
+<input autocomplete="email" class="block w-full rounded-lg border-0 py-3 pl-10 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6" id="vendor-id" name="vendor-id" placeholder="vendor@company.com" required="" type="email"/>
+</div>
+</div>
+<div>
+<div class="flex items-center justify-between">
+<label class="block text-sm font-medium leading-6 text-slate-900" for="password">Password</label>
+<div class="text-sm">
+<a class="font-semibold text-primary hover:text-primary-dark" href="#">Forgot password?</a>
+</div>
+</div>
+<div class="mt-2 relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-400 text-[20px]">lock</span>
+</div>
+<input autocomplete="current-password" class="block w-full rounded-lg border-0 py-3 pl-10 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+</div>
+</div>
+<div>
+<button class="flex w-full justify-center rounded-lg bg-primary px-3 py-3 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-primary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-colors" onclick="document.getElementById('dashboard-view').scrollIntoView({behavior: 'smooth'})" type="button">
+                            Sign in securely
+                        </button>
+</div>
+</form>
+<div class="mt-6 text-center text-sm text-slate-500">
+                    Need help? <a class="font-semibold text-primary hover:text-primary-dark" href="#">Contact Vendor Support</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Divider for presentation purposes -->
+<div class="w-full h-2 bg-slate-200" id="dashboard-view"></div>
+<!-- View 2: Post-login Dashboard -->
+<div class="min-h-screen bg-background-light flex flex-col">
+<!-- Top Navigation -->
+<header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between h-16">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-3xl text-primary">inventory_2</span>
+<span class="text-xl font-bold text-slate-900 tracking-tight">Mmakwany Guest House <span class="text-slate-400 font-normal">Vendor Portal</span></span>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-400 hover:text-slate-500 relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 block h-2 w-2 rounded-full bg-red-500 ring-2 ring-white"></span>
+</button>
+<div class="h-8 w-px bg-slate-200 mx-2"></div>
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-medium text-slate-900">Logistics Co Ltd</p>
+<p class="text-xs text-slate-500">ID: VND-8922</p>
+</div>
+<img alt="Profile" class="h-9 w-9 rounded-full bg-slate-100 object-cover ring-2 ring-white" data-alt="Vendor profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEXLpYdJ9kWiKR-2eHx3AMlQUk1OxNzCyzHPf4ScDWsC8lYaZWVkbezlir3_91Gi5ingzm27V1XS8e7_9zTogC4i9i3MvuMf8vHJrjd4Or9qIty0ES3JFruGfEIMRvyuxrJyFXPmtzgxe1C4D84mWIJKpvWcI2YzDvnYdComjWI5wP0xe4kvwZ3Y9rdomc8i6shcEikYjl-zQ5mS3Cbq88cCDIu1JU40TXJg8ooFEPEAVur3qipsvhKir3KB4D2KFazHK636-blLI"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1 py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+<!-- Welcome Header -->
+<div class="md:flex md:items-center md:justify-between mb-8">
+<div class="min-w-0 flex-1">
+<h2 class="text-2xl font-bold leading-7 text-slate-900 sm:truncate sm:text-3xl sm:tracking-tight">Welcome back, Logistics Co Ltd</h2>
+<p class="mt-1 text-sm text-slate-500">Here's what's happening with your account today.</p>
+</div>
+<div class="mt-4 flex md:ml-4 md:mt-0">
+<span class="inline-flex items-center rounded-full bg-green-50 px-3 py-1 text-sm font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
+<span class="material-symbols-outlined text-[16px] mr-1">check_circle</span>
+                        Contract Active
+                    </span>
+</div>
+</div>
+<!-- KPI Cards -->
+<div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 mb-8">
+<!-- Card 1 -->
+<div class="overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-slate-900/5 hover:shadow-md transition-shadow">
+<div class="p-5">
+<div class="flex items-center">
+<div class="flex-shrink-0">
+<div class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
+<span class="material-symbols-outlined text-primary">local_shipping</span>
+</div>
+</div>
+<div class="ml-5 w-0 flex-1">
+<dl>
+<dt class="truncate text-sm font-medium text-slate-500">Fulfillment Rate</dt>
+<dd>
+<div class="text-lg font-bold text-slate-900">98%</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="bg-slate-50 px-5 py-3">
+<div class="text-sm">
+<span class="text-green-600 font-medium flex items-center">
+<span class="material-symbols-outlined text-[16px] mr-1">trending_up</span> 2.5%
+                            </span>
+<span class="text-slate-500 ml-1">from last month</span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-slate-900/5 hover:shadow-md transition-shadow">
+<div class="p-5">
+<div class="flex items-center">
+<div class="flex-shrink-0">
+<div class="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50">
+<span class="material-symbols-outlined text-blue-600">shopping_cart</span>
+</div>
+</div>
+<div class="ml-5 w-0 flex-1">
+<dl>
+<dt class="truncate text-sm font-medium text-slate-500">Active POs</dt>
+<dd>
+<div class="text-lg font-bold text-slate-900">4</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="bg-slate-50 px-5 py-3">
+<div class="text-sm">
+<a class="font-medium text-primary hover:text-primary-dark" href="#">View all orders</a>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-slate-900/5 hover:shadow-md transition-shadow">
+<div class="p-5">
+<div class="flex items-center">
+<div class="flex-shrink-0">
+<div class="flex h-10 w-10 items-center justify-center rounded-lg bg-purple-50">
+<span class="material-symbols-outlined text-purple-600">payments</span>
+</div>
+</div>
+<div class="ml-5 w-0 flex-1">
+<dl>
+<dt class="truncate text-sm font-medium text-slate-500">Payments Pending</dt>
+<dd>
+<div class="text-lg font-bold text-slate-900">KES 150k</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="bg-slate-50 px-5 py-3">
+<div class="text-sm">
+<span class="text-slate-500">Next payout: </span>
+<span class="text-slate-900 font-medium">Oct 25</span>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-slate-900/5 hover:shadow-md transition-shadow">
+<div class="p-5">
+<div class="flex items-center">
+<div class="flex-shrink-0">
+<div class="flex h-10 w-10 items-center justify-center rounded-lg bg-yellow-50">
+<span class="material-symbols-outlined text-accent-gold">star</span>
+</div>
+</div>
+<div class="ml-5 w-0 flex-1">
+<dl>
+<dt class="truncate text-sm font-medium text-slate-500">Quality Rating</dt>
+<dd>
+<div class="text-lg font-bold text-slate-900">4.9/5</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="bg-slate-50 px-5 py-3">
+<div class="text-sm">
+<span class="text-accent-gold font-medium">Top Rated Vendor</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Layout Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Main Content: Active Orders Table -->
+<div class="lg:col-span-2 space-y-6">
+<div class="bg-white shadow-sm ring-1 ring-slate-900/5 rounded-xl overflow-hidden">
+<div class="border-b border-slate-200 bg-white px-6 py-5 flex items-center justify-between">
+<h3 class="text-base font-semibold leading-6 text-slate-900">Your Active Orders</h3>
+<div class="flex gap-2">
+<button class="inline-flex items-center rounded bg-white px-2 py-1 text-xs font-semibold text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 hover:bg-slate-50" type="button">Filter</button>
+<button class="inline-flex items-center rounded bg-white px-2 py-1 text-xs font-semibold text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 hover:bg-slate-50" type="button">Export</button>
+</div>
+</div>
+<div class="overflow-x-auto custom-scrollbar">
+<table class="min-w-full divide-y divide-slate-200">
+<thead class="bg-slate-50">
+<tr>
+<th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider" scope="col">PO Number</th>
+<th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider" scope="col">Date</th>
+<th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider" scope="col">Item / Desc</th>
+<th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider" scope="col">Status</th>
+<th class="px-6 py-3 text-right text-xs font-medium text-slate-500 uppercase tracking-wider" scope="col">Actions</th>
+</tr>
+</thead>
+<tbody class="bg-white divide-y divide-slate-200">
+<tr>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-primary">#PO-8821</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500">Oct 12, 2023</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-900">Hotel Linens (Bulk)</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20">Processing</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<button class="text-primary hover:text-primary-dark mr-3 font-semibold">Update Status</button>
+</td>
+</tr>
+<tr>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-primary">#PO-8824</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500">Oct 14, 2023</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-900">Cleaning Supplies</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">Awaiting Acknowledge</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<button class="text-primary hover:text-primary-dark mr-3 font-semibold">Acknowledge</button>
+</td>
+</tr>
+<tr>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-primary">#PO-8819</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500">Oct 10, 2023</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-900">Premium Toiletries</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Shipped</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<button class="text-slate-400 hover:text-slate-600">Track</button>
+</td>
+</tr>
+<tr>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-primary">#PO-8810</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500">Oct 05, 2023</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-900">F&amp;B Supplies</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Delivered</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<button class="text-slate-400 hover:text-slate-600">Details</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="bg-slate-50 px-6 py-3 border-t border-slate-200 text-center">
+<a class="text-sm font-semibold text-primary hover:text-primary-dark" href="#">View all past orders</a>
+</div>
+</div>
+</div>
+<!-- Right Sidebar: Documents & Actions -->
+<div class="space-y-6">
+<!-- Quick Actions -->
+<div class="bg-white shadow-sm ring-1 ring-slate-900/5 rounded-xl overflow-hidden p-6">
+<h3 class="text-base font-semibold leading-6 text-slate-900 mb-4">Quick Actions</h3>
+<div class="space-y-3">
+<a class="group flex items-center p-3 text-sm font-medium text-slate-700 rounded-lg bg-slate-50 hover:bg-primary/5 hover:text-primary transition-colors border border-transparent hover:border-primary/20" href="#">
+<span class="flex h-8 w-8 items-center justify-center rounded bg-white shadow-sm ring-1 ring-slate-200 mr-3 group-hover:ring-primary/30">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary">upload_file</span>
+</span>
+                                Submit Invoices
+                            </a>
+<a class="group flex items-center p-3 text-sm font-medium text-slate-700 rounded-lg bg-slate-50 hover:bg-primary/5 hover:text-primary transition-colors border border-transparent hover:border-primary/20" href="#">
+<span class="flex h-8 w-8 items-center justify-center rounded bg-white shadow-sm ring-1 ring-slate-200 mr-3 group-hover:ring-primary/30">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary">shield</span>
+</span>
+                                Update Compliance Docs
+                                <span class="ml-auto inline-block h-2 w-2 rounded-full bg-accent-gold"></span>
+</a>
+<a class="group flex items-center p-3 text-sm font-medium text-slate-700 rounded-lg bg-slate-50 hover:bg-primary/5 hover:text-primary transition-colors border border-transparent hover:border-primary/20" href="#">
+<span class="flex h-8 w-8 items-center justify-center rounded bg-white shadow-sm ring-1 ring-slate-200 mr-3 group-hover:ring-primary/30">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary">description</span>
+</span>
+                                View Contracts
+                            </a>
+</div>
+</div>
+<!-- Vendor News / Notice -->
+<div class="bg-primary/5 rounded-xl overflow-hidden p-6 border border-primary/10">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-0.5">campaign</span>
+<div>
+<h4 class="text-sm font-bold text-slate-900">Holiday Schedule Update</h4>
+<p class="text-xs text-slate-600 mt-1">Please note updated delivery windows for the upcoming holiday season. Ensure all POs are acknowledged by Nov 15th.</p>
+<a class="text-xs font-semibold text-primary hover:text-primary-dark mt-2 inline-block" href="#">Read full policy →</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<script src="site-logic.js"></script>
+</body></html>
