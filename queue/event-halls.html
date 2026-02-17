@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NexusStay Event Venue Explorer Refined</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0D9488",
+                        "accent-gold": "#D97706",
+                        "background-warm": "#FAFAFA",
+                    },
+                    fontFamily: {
+                        "sans": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "pill": "9999px",
+                        "card": "1rem"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer base {
+            body {
+                @apply bg-background-warm text-slate-900;
+            }
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="antialiased">
+<header class="sticky top-0 z-50 w-full bg-white border-b border-gray-100 px-6 lg:px-12 py-4">
+<div class="max-w-7xl mx-auto flex items-center justify-between">
+<div class="flex items-center gap-2 text-primary cursor-pointer">
+<div class="w-8 h-8">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"></path>
+</svg>
+</div>
+<span class="text-xl font-bold tracking-tight text-slate-900">NexusStay</span>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium text-slate-600 hover:text-primary transition-colors" href="#">Stays</a>
+<a class="text-sm font-semibold text-primary relative after:absolute after:bottom-[-20px] after:left-0 after:w-full after:h-0.5 after:bg-primary" href="#">Events</a>
+<a class="text-sm font-medium text-slate-600 hover:text-primary transition-colors" href="#">Dining</a>
+</nav>
+<div class="flex items-center gap-3">
+<button class="hidden lg:block text-sm font-medium text-slate-600 hover:text-primary transition-colors mr-2">List your venue</button>
+<div class="flex items-center gap-2 p-1.5 pr-1.5 pl-3 border border-gray-200 rounded-full bg-white hover:shadow-md transition-shadow cursor-pointer">
+<span class="material-symbols-outlined text-gray-500 !text-xl">menu</span>
+<div class="w-8 h-8 rounded-full overflow-hidden">
+<img alt="User" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmAktypfkCcwzJuY5WfnlMqN3QE1NwxKuQqNdJoHQXD0yCG5ee-iWmD5fQQV7SSSdxpjRGNopiFR1eI72fUeNO1sHAlbjKPZyyZ7sGUYPfNVpV1DdxOqjq_q92m4O_fX1KXnbOGQVsB9NshlSnWewlAcOIonFZC-B5uqgEBHDuS8tjnHKvPAZnMoqZWOI_QyIdGOdts-Es_4eIFdkDvBI5BhRohok47qSm3wK8-MbOW4GGQpDYnzRL7Zd3WvbAegk5LoBpYVENIoA"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-6 lg:px-12">
+<div class="flex justify-center -mt-8 relative z-10 py-12">
+<div class="flex flex-wrap items-center bg-white rounded-pill border border-gray-100 shadow-xl p-2 gap-1 md:gap-0">
+<button class="flex flex-col items-start px-8 py-2 hover:bg-gray-50 rounded-full transition-colors">
+<span class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Date</span>
+<span class="text-sm font-medium text-slate-800">Add dates</span>
+</button>
+<div class="w-px h-8 bg-gray-100 hidden md:block"></div>
+<button class="flex flex-col items-start px-8 py-2 hover:bg-gray-50 rounded-full transition-colors">
+<span class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Guests</span>
+<span class="text-sm font-medium text-slate-800">Add guests</span>
+</button>
+<div class="w-px h-8 bg-gray-100 hidden md:block"></div>
+<button class="flex flex-col items-start px-8 py-2 hover:bg-gray-50 rounded-full transition-colors">
+<span class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Hall Type</span>
+<span class="text-sm font-medium text-slate-800">Search type</span>
+</button>
+<button class="bg-primary text-white p-4 rounded-full flex items-center justify-center hover:bg-teal-700 transition-colors shadow-lg shadow-teal-900/10 ml-2">
+<span class="material-symbols-outlined">search</span>
+</button>
+</div>
+</div>
+<section class="mb-16">
+<div class="relative h-[500px] w-full overflow-hidden rounded-3xl group">
+<img alt="Venue Banner" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCPgyTpp6bOcEFMOKJZNWTVDj91LcPhlH5xvwLZOF49uKSM3vi9PNyM_sbXFKZmMj3qB6867Ksj84pldSoBP3Qoanvkh6kJYVu0G2ss0e0dQEYqDw5Tt_jAmPjWBMeB5iQPNNhJQ2AT1ly2t6tgaMaXxshjHhmgzUw5lFkpI5n8m0thPca2LR2ugVueELo8mywyfrLcOkcY-v_Pjj1XFPkGDRWLlSYqcbmSfYyOdkEpBqft81o-mGGiEim_McJ95GzX2Z4L-3kxVU"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex flex-col items-center justify-center text-center px-6">
+<h2 class="text-white text-4xl md:text-6xl font-extrabold max-w-3xl leading-tight mb-8">
+                        Find the Perfect Venue for Your Next Event
+                    </h2>
+<button class="bg-primary text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-primary transition-all duration-300">
+                        Explore Halls
+                    </button>
+</div>
+</div>
+</section>
+<section class="mb-20">
+<div class="flex items-center justify-between mb-8">
+<h3 class="text-2xl font-bold text-slate-900">Featured Venues in Kenya</h3>
+<a class="text-sm font-semibold text-primary flex items-center gap-1 hover:underline" href="#">
+                    See all 142 venues <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="bg-white rounded-card overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg transition-shadow group">
+<div class="relative aspect-[16/9] overflow-hidden">
+<img alt="Venue 1" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1vy2EjpTlIHYWxXZWjMXLeAh5H-Omx2bHC9d9EF9lcLrnql9jWoTRgrydch67D8_y32mYFk-rl_uhj_tRxQB9gQUkoiqONyB_jar64J8FOm0w8mui_yryd7YwopEctyRD4uO2BUJP0zBmSm8tV2GN3Jn3rEXmLeEFBVq5bz3I2Y9jsmAJkky43rDo4GXY1VW32ITwEJBvb1phi75BVs2QcFNfMgMCNJb0B-uRmj_L-8umrYxfAO7IEO8A6tDkmoXYVUrjJUskX0s"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<h4 class="text-lg font-bold text-slate-900">Grand Royal Ballroom</h4>
+<span class="bg-teal-50 text-primary text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Up to 500 guests</span>
+</div>
+<div class="flex gap-4 mb-6">
+<div class="flex items-center gap-1.5 text-slate-500">
+<span class="material-symbols-outlined text-lg">theater_comedy</span>
+<span class="text-xs">Theater</span>
+</div>
+<div class="flex items-center gap-1.5 text-slate-500">
+<span class="material-symbols-outlined text-lg">schema</span>
+<span class="text-xs">U-Shape</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-5 border-t border-gray-50">
+<div>
+<span class="text-xs text-slate-400 block mb-0.5">Starting from</span>
+<span class="text-xl font-bold text-accent-gold">KES 45,000<span class="text-sm font-normal text-slate-400">/day</span></span>
+</div>
+<button class="bg-primary text-white px-5 py-2.5 rounded-lg font-bold text-sm hover:bg-teal-700 transition-colors">Configure &amp; Quote</button>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-card overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg transition-shadow group">
+<div class="relative aspect-[16/9] overflow-hidden">
+<img alt="Venue 2" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAIuH07J-whTzfN5d-1BHVaGOlZrjL-8HTCGRONqEEnuBDOVABP1dm4RWrqBrtplT1l-cTPb1rSRQ0VcBkOx_pQfNnXCViSYRobGrtu8vzgKW5iysok12O4fYLZ9qYHP736XWISaBVBNX-diiR2EXiowYGx-RApBXRK0SlDcwmjwjTtSqwllHdt50KWUZ1QJq3wGY6ZOjkNmU0wjDFNLMBgS02aH2TV4qFSIXeUzYXRDYla6Ksw5adxUydiBKtExmssrtRMQMfpPI"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<h4 class="text-lg font-bold text-slate-900">Skyline Tech Center</h4>
+<span class="bg-teal-50 text-primary text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Up to 150 guests</span>
+</div>
+<div class="flex gap-4 mb-6">
+<div class="flex items-center gap-1.5 text-slate-500">
+<span class="material-symbols-outlined text-lg">meeting_room</span>
+<span class="text-xs">Boardroom</span>
+</div>
+<div class="flex items-center gap-1.5 text-slate-500">
+<span class="material-symbols-outlined text-lg">laptop_chromebook</span>
+<span class="text-xs">Workshops</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-5 border-t border-gray-50">
+<div>
+<span class="text-xs text-slate-400 block mb-0.5">Starting from</span>
+<span class="text-xl font-bold text-accent-gold">KES 25,000<span class="text-sm font-normal text-slate-400">/day</span></span>
+</div>
+<button class="bg-primary text-white px-5 py-2.5 rounded-lg font-bold text-sm hover:bg-teal-700 transition-colors">Configure &amp; Quote</button>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-card overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg transition-shadow group">
+<div class="relative aspect-[16/9] overflow-hidden">
+<img alt="Venue 3" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpCv2zF3p9Au-dlSpXcdzuvEZqJazVOoqf1Qtm2SujvmlL-IjLWAr21aBPWF7LmgKcyjGJhO95SphVUKeI-5PLo-6uOMeiFBIBcQwl6V23GNPv8YTLEI_9X0SMW3SKWUcKM5htR6-UgqOfhyJ3feMBMVGi1Nl2itV9QTYzCHJeAsJHzZEhNM-_8oiwaP0E7oHPV6LBQ96ryth6_LUw4oEjqRyYoMpdkn44MwPFGBfLYWiAAwqO2t1M04GCbCOniMFiJu7YrvaJyOg"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<h4 class="text-lg font-bold text-slate-900">Azure Garden Terrace</h4>
+<span class="bg-teal-50 text-primary text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Up to 1000 guests</span>
+</div>
+<div class="flex gap-4 mb-6">
+<div class="flex items-center gap-1.5 text-slate-500">
+<span class="material-symbols-outlined text-lg">celebration</span>
+<span class="text-xs">Outdoor</span>
+</div>
+<div class="flex items-center gap-1.5 text-slate-500">
+<span class="material-symbols-outlined text-lg">local_florist</span>
+<span class="text-xs">Garden</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-5 border-t border-gray-50">
+<div>
+<span class="text-xs text-slate-400 block mb-0.5">Starting from</span>
+<span class="text-xl font-bold text-accent-gold">KES 60,000<span class="text-sm font-normal text-slate-400">/day</span></span>
+</div>
+<button class="bg-primary text-white px-5 py-2.5 rounded-lg font-bold text-sm hover:bg-teal-700 transition-colors">Configure &amp; Quote</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="grid grid-cols-2 md:grid-cols-4 gap-8 py-16 border-t border-gray-200 mb-12">
+<div class="flex flex-col items-center text-center gap-3">
+<div class="w-12 h-12 rounded-full bg-teal-50 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">receipt_long</span>
+</div>
+<div>
+<h5 class="font-bold text-sm text-slate-900">Instant Quotes</h5>
+<p class="text-xs text-slate-500 mt-1">Book your space in seconds</p>
+</div>
+</div>
+<div class="flex flex-col items-center text-center gap-3">
+<div class="w-12 h-12 rounded-full bg-teal-50 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">dashboard_customize</span>
+</div>
+<div>
+<h5 class="font-bold text-sm text-slate-900">Flexible Layouts</h5>
+<p class="text-xs text-slate-500 mt-1">Tailored to your needs</p>
+</div>
+</div>
+<div class="flex flex-col items-center text-center gap-3">
+<div class="w-12 h-12 rounded-full bg-teal-50 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">restaurant</span>
+</div>
+<div>
+<h5 class="font-bold text-sm text-slate-900">Catering</h5>
+<p class="text-xs text-slate-500 mt-1">Top-tier dining options</p>
+</div>
+</div>
+<div class="flex flex-col items-center text-center gap-3">
+<div class="w-12 h-12 rounded-full bg-teal-50 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">qr_code_2</span>
+</div>
+<div>
+<h5 class="font-bold text-sm text-slate-900">QR Tickets</h5>
+<p class="text-xs text-slate-500 mt-1">Seamless guest check-in</p>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-white border-t border-gray-100 py-12 px-6 lg:px-12">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex items-center gap-2 text-primary grayscale opacity-70">
+<div class="w-6 h-6">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"></path>
+</svg>
+</div>
+<span class="text-lg font-bold tracking-tight text-slate-900">NexusStay</span>
+</div>
+<div class="flex gap-8 text-sm text-slate-500">
+<a class="hover:text-primary" href="#">About</a>
+<a class="hover:text-primary" href="#">Privacy</a>
+<a class="hover:text-primary" href="#">Terms</a>
+<a class="hover:text-primary" href="#">Support</a>
+</div>
+<div class="flex gap-4">
+<a class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-50 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined !text-lg">public</span>
+</a>
+<a class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-50 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined !text-lg">mail</span>
+</a>
+</div>
+</div>
+<div class="mt-8 pt-8 border-t border-gray-50 text-center text-[10px] uppercase tracking-widest text-slate-400 font-medium">
+                © 2024 NexusStay Hospitality Group. All rights reserved.
+            </div>
+</div>
+</footer>
+
+</body></html>

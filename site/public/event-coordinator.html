@@ -326,30 +326,98 @@
 
             <!-- 3. CATERING ORDERS -->
             <div id="catering-orders" class="tab-content">
+                <!-- Header -->
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2 bg-yellow-500/10 rounded-lg text-yellow-500">
+                            <span class="material-symbols-outlined">restaurant_menu</span>
+                        </div>
+                        <div>
+                            <h3 class="text-white text-xl font-bold">Catering & Kitchen Orders</h3>
+                            <p class="text-xs text-gray-400">Manage food orders, kitchen queue, and inventory</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span id="order-count-badge" class="px-3 py-1 bg-surface-highlight rounded-full text-xs font-semibold text-white">2 Orders</span>
+                        <button id="add-order-toggle" class="flex items-center gap-2 px-4 py-2 bg-yellow-600 hover:bg-yellow-700 text-white text-xs font-bold rounded-lg transition-colors">
+                            <span class="material-symbols-outlined text-[16px]">add_shopping_cart</span>
+                            New Order
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Add Order Form (hidden) -->
+                <div id="add-order-form" class="hidden mb-6 p-5 bg-background-dark border border-surface-highlight rounded-xl" style="animation: fadeIn 0.3s ease-out;">
+                    <h4 class="text-white font-bold text-sm mb-4 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-yellow-500 text-[18px]">receipt_long</span>
+                        New Kitchen Order
+                    </h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+                        <div>
+                            <label class="text-xs text-gray-400 font-semibold uppercase tracking-wider block mb-1.5">Destination *</label>
+                            <input type="text" id="order-destination" placeholder="e.g. VIP Table 3" class="w-full bg-surface-dark border border-surface-highlight rounded-lg px-3 py-2.5 text-sm text-white placeholder-gray-600 focus:border-primary focus:ring-0"/>
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="text-xs text-gray-400 font-semibold uppercase tracking-wider block mb-1.5">Items *</label>
+                            <input type="text" id="order-items" placeholder="e.g. 2x Grilled Tilapia, 1x Tusker" class="w-full bg-surface-dark border border-surface-highlight rounded-lg px-3 py-2.5 text-sm text-white placeholder-gray-600 focus:border-primary focus:ring-0"/>
+                        </div>
+                        <div>
+                            <label class="text-xs text-gray-400 font-semibold uppercase tracking-wider block mb-1.5">Priority</label>
+                            <select id="order-priority" class="w-full bg-surface-dark border border-surface-highlight rounded-lg px-3 py-2.5 text-sm text-white focus:border-primary focus:ring-0 appearance-none cursor-pointer">
+                                <option value="Queued">Queued</option>
+                                <option value="Prep">Prep Now</option>
+                                <option value="Rush">Rush / VIP</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="flex gap-3">
+                        <button id="save-order-btn" class="px-5 py-2.5 bg-yellow-600 text-white text-sm font-bold rounded-lg hover:bg-yellow-700 transition-colors">
+                            <span class="material-symbols-outlined text-[16px] align-middle mr-1">send</span> Submit Order
+                        </button>
+                        <button id="cancel-order-btn" class="px-5 py-2.5 border border-surface-highlight text-gray-400 text-sm font-medium rounded-lg hover:bg-surface-highlight hover:text-white transition-colors">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <!-- Live Orders -->
                     <div class="bg-surface-dark border border-surface-highlight rounded-xl p-6">
                         <h3 class="text-white text-lg font-bold mb-4 flex items-center gap-2">
-                            <span class="material-symbols-outlined text-accent-gold">cooking</span> Live Kitchen Queue
+                            <span class="material-symbols-outlined text-yellow-500">cooking</span> Live Kitchen Queue
                         </h3>
-                        <div class="space-y-4">
-                            <div class="p-4 bg-surface-highlight/20 border border-surface-highlight rounded-lg flex justify-between items-center">
+                        <div class="space-y-4" id="orders-list">
+                            <div class="order-card p-4 bg-surface-highlight/20 border border-surface-highlight rounded-lg flex justify-between items-center group">
                                 <div>
-                                    <h4 class="text-white font-semibold text-sm">Order #1024 - VIP Table 2</h4>
+                                    <h4 class="text-white font-semibold text-sm">Order #1024 — VIP Table 2</h4>
                                     <p class="text-xs text-gray-400">3x Lobster Thermidor, 1x Vintage Red</p>
                                 </div>
-                                <span class="px-2 py-1 bg-yellow-500/20 text-yellow-500 text-xs font-bold rounded uppercase">Prep</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="px-2 py-1 bg-yellow-500/20 text-yellow-500 text-xs font-bold rounded uppercase">Prep</span>
+                                    <button class="remove-order-btn opacity-0 group-hover:opacity-100 text-gray-500 hover:text-red-400 p-1 rounded hover:bg-red-900/20 transition-all" title="Remove order">
+                                        <span class="material-symbols-outlined text-[16px]">close</span>
+                                    </button>
+                                </div>
                             </div>
-                            <div class="p-4 bg-surface-highlight/20 border border-surface-highlight rounded-lg flex justify-between items-center">
+                            <div class="order-card p-4 bg-surface-highlight/20 border border-surface-highlight rounded-lg flex justify-between items-center group">
                                 <div>
-                                    <h4 class="text-white font-semibold text-sm">Order #1025 - Garden</h4>
+                                    <h4 class="text-white font-semibold text-sm">Order #1025 — Garden</h4>
                                     <p class="text-xs text-gray-400">50x Mini Burgers Platter</p>
                                 </div>
-                                <span class="px-2 py-1 bg-blue-500/20 text-blue-500 text-xs font-bold rounded uppercase">Queued</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="px-2 py-1 bg-blue-500/20 text-blue-500 text-xs font-bold rounded uppercase">Queued</span>
+                                    <button class="remove-order-btn opacity-0 group-hover:opacity-100 text-gray-500 hover:text-red-400 p-1 rounded hover:bg-red-900/20 transition-all" title="Remove order">
+                                        <span class="material-symbols-outlined text-[16px]">close</span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
+                        <div id="orders-empty" class="hidden py-8 text-center">
+                            <span class="material-symbols-outlined text-gray-600 text-[36px]">no_meals</span>
+                            <p class="text-gray-500 text-sm mt-2">No orders in queue</p>
+                        </div>
                     </div>
-                    <!-- Menu Shortages -->
+                    <!-- Inventory Alerts -->
                     <div class="bg-surface-dark border border-surface-highlight rounded-xl p-6">
                         <h3 class="text-white text-lg font-bold mb-4 flex items-center gap-2">
                             <span class="material-symbols-outlined text-red-400">inventory</span> Inventory Alerts
@@ -363,6 +431,10 @@
                                 <span class="text-gray-300">Napkins (Linen)</span>
                                 <span class="text-red-400 font-bold">Critical (10 left)</span>
                             </div>
+                            <div class="flex items-center justify-between text-sm p-3 bg-yellow-900/10 border border-yellow-900/20 rounded">
+                                <span class="text-gray-300">Red Wine (House)</span>
+                                <span class="text-yellow-400 font-bold">Low (8 bottles)</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -371,100 +443,300 @@
             <!-- 4. STAFFING -->
             <div id="staffing" class="tab-content">
                 <div class="bg-surface-dark border border-surface-highlight rounded-xl p-6">
-                    <div class="flex justify-between items-center mb-6">
-                        <h3 class="text-white text-xl font-bold">Staff Deployment Roster</h3>
-                        <div class="flex gap-2">
-                            <button class="px-3 py-1.5 text-xs font-medium bg-surface-highlight rounded-lg text-white">All (12)</button>
-                            <button class="px-3 py-1.5 text-xs font-medium hover:bg-surface-highlight rounded-lg text-gray-400">Waiters (6)</button>
-                            <button class="px-3 py-1.5 text-xs font-medium hover:bg-surface-highlight rounded-lg text-gray-400">Security (4)</button>
+                    <!-- Header -->
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                        <div class="flex items-center gap-3">
+                            <div class="p-2 bg-primary/10 rounded-lg text-primary">
+                                <span class="material-symbols-outlined">groups</span>
+                            </div>
+                            <div>
+                                <h3 class="text-white text-xl font-bold">Staff Deployment Roster</h3>
+                                <p class="text-xs text-gray-400">Manage on-site team members and assignments</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span id="staff-count-badge" class="px-3 py-1 bg-surface-highlight rounded-full text-xs font-semibold text-white">3 Members</span>
+                            <button id="add-staff-toggle" class="flex items-center gap-2 px-4 py-2 bg-primary hover:bg-primary-dark text-white text-xs font-bold rounded-lg transition-colors shadow-[0_0_12px_rgba(16,183,72,0.25)]">
+                                <span class="material-symbols-outlined text-[16px]">person_add</span>
+                                Add Staff
+                            </button>
                         </div>
                     </div>
+
+                    <!-- Add Staff Form (hidden by default) -->
+                    <div id="add-staff-form" class="hidden mb-6 p-5 bg-background-dark border border-surface-highlight rounded-xl" style="animation: fadeIn 0.3s ease-out;">
+                        <h4 class="text-white font-bold text-sm mb-4 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary text-[18px]">person_add</span>
+                            New Staff Member
+                        </h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+                            <div>
+                                <label class="text-xs text-gray-400 font-semibold uppercase tracking-wider block mb-1.5">Full Name *</label>
+                                <input type="text" id="staff-name" placeholder="e.g. John Kamau" class="w-full bg-surface-dark border border-surface-highlight rounded-lg px-3 py-2.5 text-sm text-white placeholder-gray-600 focus:border-primary focus:ring-0 transition-colors"/>
+                            </div>
+                            <div>
+                                <label class="text-xs text-gray-400 font-semibold uppercase tracking-wider block mb-1.5">Role *</label>
+                                <select id="staff-role" class="w-full bg-surface-dark border border-surface-highlight rounded-lg px-3 py-2.5 text-sm text-white focus:border-primary focus:ring-0 transition-colors appearance-none cursor-pointer">
+                                    <option value="">Select role...</option>
+                                    <option value="Waiter">Waiter</option>
+                                    <option value="Security">Security</option>
+                                    <option value="AV Specialist">AV Specialist</option>
+                                    <option value="Catering Lead">Catering Lead</option>
+                                    <option value="Housekeeper">Housekeeper</option>
+                                    <option value="Bartender">Bartender</option>
+                                    <option value="DJ / Entertainer">DJ / Entertainer</option>
+                                    <option value="Event Usher">Event Usher</option>
+                                    <option value="Chef">Chef</option>
+                                    <option value="Driver">Driver</option>
+                                    <option value="Supervisor">Supervisor</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-xs text-gray-400 font-semibold uppercase tracking-wider block mb-1.5">Location</label>
+                                <input type="text" id="staff-location" placeholder="e.g. Main Hall" class="w-full bg-surface-dark border border-surface-highlight rounded-lg px-3 py-2.5 text-sm text-white placeholder-gray-600 focus:border-primary focus:ring-0 transition-colors"/>
+                            </div>
+                            <div>
+                                <label class="text-xs text-gray-400 font-semibold uppercase tracking-wider block mb-1.5">Phone Number</label>
+                                <input type="tel" id="staff-phone" placeholder="e.g. 0712 345 678" class="w-full bg-surface-dark border border-surface-highlight rounded-lg px-3 py-2.5 text-sm text-white placeholder-gray-600 focus:border-primary focus:ring-0 transition-colors"/>
+                            </div>
+                            <div>
+                                <label class="text-xs text-gray-400 font-semibold uppercase tracking-wider block mb-1.5">Status</label>
+                                <select id="staff-status" class="w-full bg-surface-dark border border-surface-highlight rounded-lg px-3 py-2.5 text-sm text-white focus:border-primary focus:ring-0 transition-colors appearance-none cursor-pointer">
+                                    <option value="Active">Active</option>
+                                    <option value="Standby">Standby</option>
+                                    <option value="On Break">On Break</option>
+                                    <option value="Off Duty">Off Duty</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <button id="save-staff-btn" class="px-5 py-2.5 bg-primary text-white text-sm font-bold rounded-lg hover:bg-primary-dark transition-colors">
+                                <span class="material-symbols-outlined text-[16px] align-middle mr-1">save</span> Save Member
+                            </button>
+                            <button id="cancel-staff-btn" class="px-5 py-2.5 border border-surface-highlight text-gray-400 text-sm font-medium rounded-lg hover:bg-surface-highlight hover:text-white transition-colors">
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Role Filter Tabs -->
+                    <div class="flex flex-wrap gap-2 mb-6" id="staff-role-filters">
+                        <button class="staff-filter-btn px-4 py-2 text-xs font-semibold bg-surface-highlight text-white rounded-lg transition-colors" data-role="all">All</button>
+                        <button class="staff-filter-btn px-4 py-2 text-xs font-medium hover:bg-surface-highlight/50 text-gray-400 rounded-lg transition-colors" data-role="Waiter">Waiters</button>
+                        <button class="staff-filter-btn px-4 py-2 text-xs font-medium hover:bg-surface-highlight/50 text-gray-400 rounded-lg transition-colors" data-role="Security">Security</button>
+                        <button class="staff-filter-btn px-4 py-2 text-xs font-medium hover:bg-surface-highlight/50 text-gray-400 rounded-lg transition-colors" data-role="AV Specialist">AV/Tech</button>
+                        <button class="staff-filter-btn px-4 py-2 text-xs font-medium hover:bg-surface-highlight/50 text-gray-400 rounded-lg transition-colors" data-role="Catering Lead">Catering</button>
+                        <button class="staff-filter-btn px-4 py-2 text-xs font-medium hover:bg-surface-highlight/50 text-gray-400 rounded-lg transition-colors" data-role="Chef">Kitchen</button>
+                    </div>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Staff Cards Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="staff-grid">
                         <!-- Staff Card 1 -->
-                        <div class="p-4 bg-surface-highlight/30 border border-surface-highlight rounded-xl hover:border-primary/50 transition-colors">
-                            <div class="flex items-center gap-3 mb-3">
-                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvP-BeRzJBfgsL3S7RQQ7k01yjUXonfsk8xuDtiluu5V5yt15kROF6zYfREoYU2A5sM5WWz1YtsmkPCTTl8ggX9NrOewR__hz2m-8jtmPHQV-RaFaePtzfrGQD8qHe3ctK6GKVCt1r2e7zNrTFH99WZdrLTQurcYDoP4L-JcMFy2LcYN0Yr6lwucqM2cAm1kjP3Xif3bLqbMSWK0GfWLTIWAyC1qo4SAd-WKzO06hZPpruXL1Ykl_PVCVnv-3r4B8XSJdv7k5d8So" class="w-10 h-10 rounded-full object-cover">
-                                <div>
-                                    <h4 class="text-white font-bold text-sm">Mike T.</h4>
-                                    <p class="text-xs text-primary">AV Specialist</p>
+                        <div class="staff-card p-4 bg-surface-highlight/30 border border-surface-highlight rounded-xl hover:border-primary/50 transition-all group" data-role="AV Specialist" data-status="Active">
+                            <div class="flex items-start justify-between mb-3">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-11 h-11 rounded-full bg-gradient-to-br from-emerald-600 to-teal-800 flex items-center justify-center text-white text-xs font-bold shrink-0">MT</div>
+                                    <div>
+                                        <h4 class="text-white font-bold text-sm">Mike T.</h4>
+                                        <p class="text-xs text-primary font-medium">AV Specialist</p>
+                                    </div>
+                                </div>
+                                <button class="remove-staff-btn opacity-0 group-hover:opacity-100 text-gray-500 hover:text-red-400 transition-all p-1 rounded hover:bg-red-900/20" title="Remove staff">
+                                    <span class="material-symbols-outlined text-[16px]">close</span>
+                                </button>
+                            </div>
+                            <div class="space-y-2 text-xs">
+                                <div class="flex items-center gap-2 text-gray-400">
+                                    <span class="material-symbols-outlined text-[14px]">location_on</span>
+                                    <span>Main Hall</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-gray-400">
+                                    <span class="material-symbols-outlined text-[14px]">call</span>
+                                    <span>0722 111 222</span>
                                 </div>
                             </div>
-                            <div class="flex justify-between items-center text-xs">
-                                <span class="text-gray-400">Location: <span class="text-white">Main Hall</span></span>
-                                <span class="text-emerald-400 font-bold">Active</span>
+                            <div class="mt-3 pt-3 border-t border-surface-highlight/50 flex justify-between items-center">
+                                <span class="flex items-center gap-1.5 text-xs font-bold text-emerald-400">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Active
+                                </span>
+                                <span class="text-[10px] text-gray-500 uppercase tracking-wider">Since 08:00</span>
                             </div>
                         </div>
 
                         <!-- Staff Card 2 -->
-                        <div class="p-4 bg-surface-highlight/30 border border-surface-highlight rounded-xl hover:border-primary/50 transition-colors">
-                            <div class="flex items-center gap-3 mb-3">
-                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeSsDaWRrZ-KgwUra-rVI14pKrDyagu_OYSvf9a73kaLOQekjcSek71ajt1GtFVw5KlZZz5DVW53sZxC9pCfUj8foQdoZCrBQdsmJmi5gOW84aAnO5IGE6wFcQyFDsqw62gcP_prDd0z3zZus12Sp9OGduGJKLNKyZyJZuqGeFIuh_7Pz4CWrptMgm53Pm8NofhA2L5r1I6hxHsj3T-5eEX4A59diB0U47oHNoAOqww5EFABgOv-wffH5XFN0m7XYlaJYyvfv1RwI" class="w-10 h-10 rounded-full object-cover">
-                                <div>
-                                    <h4 class="text-white font-bold text-sm">Sarah J.</h4>
-                                    <p class="text-xs text-orange-400">Catering Lead</p>
+                        <div class="staff-card p-4 bg-surface-highlight/30 border border-surface-highlight rounded-xl hover:border-primary/50 transition-all group" data-role="Catering Lead" data-status="Active">
+                            <div class="flex items-start justify-between mb-3">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-11 h-11 rounded-full bg-gradient-to-br from-orange-600 to-amber-800 flex items-center justify-center text-white text-xs font-bold shrink-0">SJ</div>
+                                    <div>
+                                        <h4 class="text-white font-bold text-sm">Sarah J.</h4>
+                                        <p class="text-xs text-orange-400 font-medium">Catering Lead</p>
+                                    </div>
+                                </div>
+                                <button class="remove-staff-btn opacity-0 group-hover:opacity-100 text-gray-500 hover:text-red-400 transition-all p-1 rounded hover:bg-red-900/20" title="Remove staff">
+                                    <span class="material-symbols-outlined text-[16px]">close</span>
+                                </button>
+                            </div>
+                            <div class="space-y-2 text-xs">
+                                <div class="flex items-center gap-2 text-gray-400">
+                                    <span class="material-symbols-outlined text-[14px]">location_on</span>
+                                    <span>Garden Wing</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-gray-400">
+                                    <span class="material-symbols-outlined text-[14px]">call</span>
+                                    <span>0733 444 555</span>
                                 </div>
                             </div>
-                            <div class="flex justify-between items-center text-xs">
-                                <span class="text-gray-400">Location: <span class="text-white">Garden</span></span>
-                                <span class="text-orange-400 font-bold">Busy</span>
+                            <div class="mt-3 pt-3 border-t border-surface-highlight/50 flex justify-between items-center">
+                                <span class="flex items-center gap-1.5 text-xs font-bold text-orange-400">
+                                    <span class="w-2 h-2 rounded-full bg-orange-400"></span> Busy
+                                </span>
+                                <span class="text-[10px] text-gray-500 uppercase tracking-wider">Since 07:30</span>
                             </div>
                         </div>
 
-                         <!-- Staff Card 3 -->
-                        <div class="p-4 bg-surface-highlight/30 border border-surface-highlight rounded-xl hover:border-primary/50 transition-colors">
-                            <div class="flex items-center gap-3 mb-3">
-                                <div class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center text-xs font-bold">DP</div>
-                                <div>
-                                    <h4 class="text-white font-bold text-sm">David P.</h4>
-                                    <p class="text-xs text-blue-400">Security</p>
+                        <!-- Staff Card 3 -->
+                        <div class="staff-card p-4 bg-surface-highlight/30 border border-surface-highlight rounded-xl hover:border-primary/50 transition-all group" data-role="Security" data-status="Active">
+                            <div class="flex items-start justify-between mb-3">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-11 h-11 rounded-full bg-gradient-to-br from-blue-600 to-indigo-800 flex items-center justify-center text-white text-xs font-bold shrink-0">DP</div>
+                                    <div>
+                                        <h4 class="text-white font-bold text-sm">David P.</h4>
+                                        <p class="text-xs text-blue-400 font-medium">Security</p>
+                                    </div>
+                                </div>
+                                <button class="remove-staff-btn opacity-0 group-hover:opacity-100 text-gray-500 hover:text-red-400 transition-all p-1 rounded hover:bg-red-900/20" title="Remove staff">
+                                    <span class="material-symbols-outlined text-[16px]">close</span>
+                                </button>
+                            </div>
+                            <div class="space-y-2 text-xs">
+                                <div class="flex items-center gap-2 text-gray-400">
+                                    <span class="material-symbols-outlined text-[14px]">location_on</span>
+                                    <span>Gate B</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-gray-400">
+                                    <span class="material-symbols-outlined text-[14px]">call</span>
+                                    <span>0711 666 777</span>
                                 </div>
                             </div>
-                            <div class="flex justify-between items-center text-xs">
-                                <span class="text-gray-400">Location: <span class="text-white">Gate B</span></span>
-                                <span class="text-blue-400 font-bold">Patrol</span>
+                            <div class="mt-3 pt-3 border-t border-surface-highlight/50 flex justify-between items-center">
+                                <span class="flex items-center gap-1.5 text-xs font-bold text-blue-400">
+                                    <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span> Patrol
+                                </span>
+                                <span class="text-[10px] text-gray-500 uppercase tracking-wider">Since 06:00</span>
                             </div>
                         </div>
+                    </div>
+
+                    <!-- Empty State (shown when filtered to 0) -->
+                    <div id="staff-empty-state" class="hidden flex flex-col items-center justify-center py-12 text-center">
+                        <span class="material-symbols-outlined text-gray-600 text-[48px] mb-3">person_off</span>
+                        <p class="text-gray-400 font-semibold">No staff found for this filter</p>
+                        <p class="text-gray-500 text-xs mt-1">Try selecting a different role or add new staff</p>
                     </div>
                 </div>
             </div>
 
             <!-- 5. VENDOR PORTAL -->
             <div id="vendor-portal" class="tab-content">
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                     <!-- Vendor List -->
-                    <div class="lg:col-span-2 bg-surface-dark border border-surface-highlight rounded-xl p-6">
-                        <h3 class="text-white text-lg font-bold mb-4">External Vendor Status</h3>
-                        <table class="w-full text-left border-collapse">
-                            <thead>
-                                <tr class="text-xs text-gray-400 border-b border-surface-highlight">
-                                    <th class="py-3 font-medium">Vendor</th>
-                                    <th class="py-3 font-medium">Service</th>
-                                    <th class="py-3 font-medium">Status</th>
-                                    <th class="py-3 font-medium">Contact</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-sm">
-                                <tr class="border-b border-surface-highlight/50">
-                                    <td class="py-3 text-white font-semibold">SoundPro KE</td>
-                                    <td class="py-3 text-gray-400">Audio/Visual</td>
-                                    <td class="py-3"><span class="px-2 py-0.5 bg-emerald-500/20 text-emerald-500 rounded text-xs">On Site</span></td>
-                                    <td class="py-3 text-primary cursor-pointer hover:underline">Call</td>
-                                </tr> 
-                                <tr class="border-b border-surface-highlight/50">
-                                    <td class="py-3 text-white font-semibold">FreshBlooms</td>
-                                    <td class="py-3 text-gray-400">Florist</td>
-                                    <td class="py-3"><span class="px-2 py-0.5 bg-emerald-500/20 text-emerald-500 rounded text-xs">Completed</span></td>
-                                    <td class="py-3 text-primary cursor-pointer hover:underline">Msg</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-3 text-white font-semibold">SecureEvents Ltd</td>
-                                    <td class="py-3 text-gray-400">Extra Security</td>
-                                    <td class="py-3"><span class="px-2 py-0.5 bg-blue-500/20 text-blue-500 rounded text-xs">Patrolling</span></td>
-                                    <td class="py-3 text-primary cursor-pointer hover:underline">Radio</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                <!-- Header -->
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2 bg-purple-500/10 rounded-lg text-purple-400">
+                            <span class="material-symbols-outlined">storefront</span>
+                        </div>
+                        <div>
+                            <h3 class="text-white text-xl font-bold">Vendor Portal</h3>
+                            <p class="text-xs text-gray-400">Track and manage external service providers</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span id="vendor-count-badge" class="px-3 py-1 bg-surface-highlight rounded-full text-xs font-semibold text-white">3 Vendors</span>
+                        <button id="add-vendor-toggle" class="flex items-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold rounded-lg transition-colors">
+                            <span class="material-symbols-outlined text-[16px]">group_add</span>
+                            Add Vendor
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Add Vendor Form (hidden) -->
+                <div id="add-vendor-form" class="hidden mb-6 p-5 bg-background-dark border border-surface-highlight rounded-xl" style="animation: fadeIn 0.3s ease-out;">
+                    <h4 class="text-white font-bold text-sm mb-4 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-purple-400 text-[18px]">store</span>
+                        New Vendor
+                    </h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+                        <div>
+                            <label class="text-xs text-gray-400 font-semibold uppercase tracking-wider block mb-1.5">Vendor Name *</label>
+                            <input type="text" id="vendor-name" placeholder="e.g. SoundPro KE" class="w-full bg-surface-dark border border-surface-highlight rounded-lg px-3 py-2.5 text-sm text-white placeholder-gray-600 focus:border-primary focus:ring-0"/>
+                        </div>
+                        <div>
+                            <label class="text-xs text-gray-400 font-semibold uppercase tracking-wider block mb-1.5">Service *</label>
+                            <input type="text" id="vendor-service" placeholder="e.g. Audio/Visual" class="w-full bg-surface-dark border border-surface-highlight rounded-lg px-3 py-2.5 text-sm text-white placeholder-gray-600 focus:border-primary focus:ring-0"/>
+                        </div>
+                        <div>
+                            <label class="text-xs text-gray-400 font-semibold uppercase tracking-wider block mb-1.5">Contact</label>
+                            <input type="text" id="vendor-contact" placeholder="e.g. 0722 000 111" class="w-full bg-surface-dark border border-surface-highlight rounded-lg px-3 py-2.5 text-sm text-white placeholder-gray-600 focus:border-primary focus:ring-0"/>
+                        </div>
+                        <div>
+                            <label class="text-xs text-gray-400 font-semibold uppercase tracking-wider block mb-1.5">Status</label>
+                            <select id="vendor-status" class="w-full bg-surface-dark border border-surface-highlight rounded-lg px-3 py-2.5 text-sm text-white focus:border-primary focus:ring-0 appearance-none cursor-pointer">
+                                <option value="On Site">On Site</option>
+                                <option value="En Route">En Route</option>
+                                <option value="Completed">Completed</option>
+                                <option value="Pending">Pending</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="flex gap-3">
+                        <button id="save-vendor-btn" class="px-5 py-2.5 bg-purple-600 text-white text-sm font-bold rounded-lg hover:bg-purple-700 transition-colors">
+                            <span class="material-symbols-outlined text-[16px] align-middle mr-1">save</span> Save Vendor
+                        </button>
+                        <button id="cancel-vendor-btn" class="px-5 py-2.5 border border-surface-highlight text-gray-400 text-sm font-medium rounded-lg hover:bg-surface-highlight hover:text-white transition-colors">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-surface-dark border border-surface-highlight rounded-xl p-6">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="text-xs text-gray-400 border-b border-surface-highlight">
+                                <th class="py-3 font-medium">Vendor</th>
+                                <th class="py-3 font-medium">Service</th>
+                                <th class="py-3 font-medium">Status</th>
+                                <th class="py-3 font-medium">Contact</th>
+                                <th class="py-3 font-medium w-10"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm" id="vendor-table-body">
+                            <tr class="vendor-row border-b border-surface-highlight/50 group">
+                                <td class="py-3 text-white font-semibold">SoundPro KE</td>
+                                <td class="py-3 text-gray-400">Audio/Visual</td>
+                                <td class="py-3"><span class="px-2 py-0.5 bg-emerald-500/20 text-emerald-500 rounded text-xs">On Site</span></td>
+                                <td class="py-3 text-primary">0722 333 444</td>
+                                <td class="py-3"><button class="remove-vendor-btn opacity-0 group-hover:opacity-100 text-gray-500 hover:text-red-400 p-1 rounded hover:bg-red-900/20 transition-all" title="Remove"><span class="material-symbols-outlined text-[16px]">delete</span></button></td>
+                            </tr>
+                            <tr class="vendor-row border-b border-surface-highlight/50 group">
+                                <td class="py-3 text-white font-semibold">FreshBlooms</td>
+                                <td class="py-3 text-gray-400">Florist</td>
+                                <td class="py-3"><span class="px-2 py-0.5 bg-emerald-500/20 text-emerald-500 rounded text-xs">Completed</span></td>
+                                <td class="py-3 text-primary">0733 555 666</td>
+                                <td class="py-3"><button class="remove-vendor-btn opacity-0 group-hover:opacity-100 text-gray-500 hover:text-red-400 p-1 rounded hover:bg-red-900/20 transition-all" title="Remove"><span class="material-symbols-outlined text-[16px]">delete</span></button></td>
+                            </tr>
+                            <tr class="vendor-row group">
+                                <td class="py-3 text-white font-semibold">SecureEvents Ltd</td>
+                                <td class="py-3 text-gray-400">Extra Security</td>
+                                <td class="py-3"><span class="px-2 py-0.5 bg-blue-500/20 text-blue-500 rounded text-xs">Patrolling</span></td>
+                                <td class="py-3 text-primary">0711 777 888</td>
+                                <td class="py-3"><button class="remove-vendor-btn opacity-0 group-hover:opacity-100 text-gray-500 hover:text-red-400 p-1 rounded hover:bg-red-900/20 transition-all" title="Remove"><span class="material-symbols-outlined text-[16px]">delete</span></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div id="vendor-empty" class="hidden py-8 text-center">
+                        <span class="material-symbols-outlined text-gray-600 text-[36px]">store</span>
+                        <p class="text-gray-500 text-sm mt-2">No vendors registered</p>
                     </div>
                 </div>
             </div>
@@ -493,14 +765,63 @@
 <!-- SCRIPTS -->
 <script src="site-logic.js"></script>
 <script>
-    // Inline script for Tab Switching logic
     document.addEventListener('DOMContentLoaded', () => {
+        // ══════════════════════════════════════════════════════
+        // UTILITIES
+        // ══════════════════════════════════════════════════════
+        function toast(msg, type) { if (window.showToast) window.showToast(msg, type || 'info'); }
+
+        const roleColors = {
+            'Waiter': ['from-cyan-600','to-cyan-800','text-cyan-400'],
+            'Security': ['from-blue-600','to-indigo-800','text-blue-400'],
+            'AV Specialist': ['from-emerald-600','to-teal-800','text-primary'],
+            'Catering Lead': ['from-orange-600','to-amber-800','text-orange-400'],
+            'Housekeeper': ['from-pink-600','to-rose-800','text-pink-400'],
+            'Bartender': ['from-violet-600','to-purple-800','text-violet-400'],
+            'DJ / Entertainer': ['from-fuchsia-600','to-pink-800','text-fuchsia-400'],
+            'Event Usher': ['from-lime-600','to-green-800','text-lime-400'],
+            'Chef': ['from-red-600','to-orange-800','text-red-400'],
+            'Driver': ['from-slate-600','to-gray-800','text-slate-400'],
+            'Supervisor': ['from-amber-600','to-yellow-800','text-amber-400'],
+            'Other': ['from-gray-600','to-slate-800','text-gray-400'],
+        };
+        const statusColors = {
+            'Active': ['text-emerald-400','bg-emerald-400'],
+            'Standby': ['text-yellow-400','bg-yellow-400'],
+            'On Break': ['text-orange-400','bg-orange-400'],
+            'Off Duty': ['text-gray-500','bg-gray-500'],
+            'Busy': ['text-orange-400','bg-orange-400'],
+            'Patrol': ['text-blue-400','bg-blue-400'],
+        };
+        const orderStatusColors = {
+            'Queued': ['bg-blue-500/20','text-blue-500'],
+            'Prep': ['bg-yellow-500/20','text-yellow-500'],
+            'Rush': ['bg-red-500/20','text-red-500'],
+        };
+        const vendorStatusColors = {
+            'On Site': ['bg-emerald-500/20','text-emerald-500'],
+            'En Route': ['bg-yellow-500/20','text-yellow-500'],
+            'Completed': ['bg-emerald-500/20','text-emerald-500'],
+            'Pending': ['bg-gray-500/20','text-gray-400'],
+            'Patrolling': ['bg-blue-500/20','text-blue-500'],
+        };
+
+        function getInitials(name) {
+            return name.split(' ').map(w => w[0]).join('').toUpperCase().substring(0,2);
+        }
+        function now() {
+            const d = new Date();
+            return d.getHours().toString().padStart(2,'0') + ':' + d.getMinutes().toString().padStart(2,'0');
+        }
+        let orderCounter = 1025;
+
+        // ══════════════════════════════════════════════════════
+        // TAB SWITCHING
+        // ══════════════════════════════════════════════════════
         const navBtns = document.querySelectorAll('.nav-btn');
         const contents = document.querySelectorAll('.tab-content');
-        
-        // Function to switch tabs
+
         function switchTab(targetId) {
-            // Update buttons
             navBtns.forEach(btn => {
                 const isActive = btn.dataset.target === targetId;
                 if (isActive) {
@@ -515,30 +836,15 @@
                     btn.querySelector('.material-symbols-outlined').classList.add('text-gray-400');
                 }
             });
-
-            // Update content visibility
-            contents.forEach(content => {
-                if (content.id === targetId) {
-                    content.classList.add('active');
-                } else {
-                    content.classList.remove('active');
-                }
-            });
-            
-            // Show toast
+            contents.forEach(c => c.id === targetId ? c.classList.add('active') : c.classList.remove('active'));
             const title = targetId.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-            if (window.showToast) window.showToast(`Switched to ${title}`, 'info');
+            toast('Switched to ' + title);
         }
+        navBtns.forEach(btn => btn.addEventListener('click', () => switchTab(btn.dataset.target)));
 
-        // Add event listeners
-        navBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                switchTab(btn.dataset.target);
-            });
-        });
-
-        // Initialize Logistics Logic (Counter & Add Task)
-        const checkboxes = document.querySelectorAll('#logistics-list input[type="checkbox"]');
+        // ══════════════════════════════════════════════════════
+        // LOGISTICS (Checklist)
+        // ══════════════════════════════════════════════════════
         const counterSpan = document.getElementById('checklist-counter');
         const addTaskBtn = document.getElementById('add-task-btn');
         const taskInputContainer = document.getElementById('new-task-input-container');
@@ -549,21 +855,16 @@
         function updateCounter() {
             const total = document.querySelectorAll('#logistics-list input[type="checkbox"]').length;
             const checked = document.querySelectorAll('#logistics-list input[type="checkbox"]:checked').length;
-            if (counterSpan) counterSpan.textContent = `${checked}/${total} Completed`;
+            if (counterSpan) counterSpan.textContent = checked + '/' + total + ' Completed';
         }
-        
-        // Checkbox listeners
         function attachCheckboxListeners() {
             document.querySelectorAll('#logistics-list input[type="checkbox"]').forEach(cb => {
-                // Remove old listeners to avoid dupes (simple way is re-querying or just adding to new ones)
-                // For this simple script, we'll just ensure onchange calls update
                 cb.onchange = function() {
                     const label = this.closest('label');
                     const textSpan = label.querySelector('.task-text') || label.querySelector('span.text-gray-500, span.text-white');
                     if (this.checked) {
                         textSpan.classList.add('line-through', 'text-gray-500');
                         textSpan.classList.remove('text-white', 'font-medium');
-                        // Remove urgent styling if present
                         if (label.classList.contains('bg-orange-900/10')) {
                             label.classList.remove('bg-orange-900/10', 'border-orange-900/30');
                             label.classList.add('bg-surface-highlight/10');
@@ -575,44 +876,227 @@
                         textSpan.classList.add('text-white', 'font-medium');
                     }
                     updateCounter();
+                    toast(this.checked ? 'Task completed ✓' : 'Task reopened');
                 }
             });
         }
-        
         attachCheckboxListeners();
-
-        // Add Task Logic
-        if (addTaskBtn) {
-            addTaskBtn.addEventListener('click', () => {
-                taskInputContainer.classList.remove('hidden');
-                taskInput.focus();
-            });
-        }
-        
-        if (saveTaskBtn) {
-            saveTaskBtn.addEventListener('click', () => {
-                const text = taskInput.value.trim();
-                if (text) {
-                    const newLabel = document.createElement('label');
-                    newLabel.className = "group flex items-center gap-3 p-3 rounded-lg bg-surface-highlight/10 hover:bg-surface-highlight/30 cursor-pointer transition-colors border border-transparent hover:border-surface-highlight animate-pulse";
-                    newLabel.innerHTML = `
-                        <div class="relative flex items-center justify-center">
-                            <input class="peer h-5 w-5 cursor-pointer appearance-none rounded border border-gray-500 bg-transparent checked:border-primary checked:bg-primary transition-all" type="checkbox"/>
-                            <span class="material-symbols-outlined absolute pointer-events-none opacity-0 peer-checked:opacity-100 text-white text-[16px]">check</span>
-                        </div>
-                        <span class="text-white text-sm font-medium flex-1 task-text">\${text}</span>
-                    `;
-                    listContainer.appendChild(newLabel);
-                    taskInput.value = '';
-                    taskInputContainer.classList.add('hidden');
-                    attachCheckboxListeners();
-                    updateCounter();
-                }
-            });
-        }
-
-        // Initialize counter on load
+        if (addTaskBtn) addTaskBtn.addEventListener('click', () => { taskInputContainer.classList.remove('hidden'); taskInput.focus(); });
+        if (saveTaskBtn) saveTaskBtn.addEventListener('click', () => {
+            const text = taskInput.value.trim();
+            if (!text) return;
+            const newLabel = document.createElement('label');
+            newLabel.className = 'group flex items-center gap-3 p-3 rounded-lg bg-surface-highlight/10 hover:bg-surface-highlight/30 cursor-pointer transition-colors border border-transparent hover:border-surface-highlight';
+            newLabel.innerHTML = '<div class="relative flex items-center justify-center"><input class="peer h-5 w-5 cursor-pointer appearance-none rounded border border-gray-500 bg-transparent checked:border-primary checked:bg-primary transition-all" type="checkbox"/><span class="material-symbols-outlined absolute pointer-events-none opacity-0 peer-checked:opacity-100 text-white text-[16px]">check</span></div><span class="text-white text-sm font-medium flex-1 task-text">' + text + '</span>';
+            listContainer.appendChild(newLabel);
+            taskInput.value = ''; taskInputContainer.classList.add('hidden');
+            attachCheckboxListeners(); updateCounter();
+            toast('Task added: ' + text);
+        });
         updateCounter();
+
+        // ══════════════════════════════════════════════════════
+        // STAFFING
+        // ══════════════════════════════════════════════════════
+        const staffGrid = document.getElementById('staff-grid');
+        const staffCountBadge = document.getElementById('staff-count-badge');
+        const staffEmptyState = document.getElementById('staff-empty-state');
+        const addStaffToggle = document.getElementById('add-staff-toggle');
+        const addStaffForm = document.getElementById('add-staff-form');
+        const saveStaffBtn = document.getElementById('save-staff-btn');
+        const cancelStaffBtn = document.getElementById('cancel-staff-btn');
+
+        function updateStaffCount() {
+            const count = staffGrid.querySelectorAll('.staff-card').length;
+            staffCountBadge.textContent = count + ' Member' + (count !== 1 ? 's' : '');
+        }
+        function checkStaffEmpty(activeFilter) {
+            const visible = staffGrid.querySelectorAll('.staff-card:not([style*="display: none"])');
+            staffEmptyState.classList.toggle('hidden', visible.length > 0);
+            staffGrid.classList.toggle('hidden', visible.length === 0);
+        }
+        function attachRemoveStaff() {
+            staffGrid.querySelectorAll('.remove-staff-btn').forEach(btn => {
+                btn.onclick = function() {
+                    const card = this.closest('.staff-card');
+                    const name = card.querySelector('h4').textContent;
+                    card.style.transition = 'all 0.3s'; card.style.opacity = '0'; card.style.transform = 'scale(0.9)';
+                    setTimeout(() => { card.remove(); updateStaffCount(); checkStaffEmpty(); toast(name + ' removed'); }, 300);
+                };
+            });
+        }
+        attachRemoveStaff();
+        updateStaffCount();
+
+        // Add Staff toggle
+        addStaffToggle.addEventListener('click', () => { addStaffForm.classList.toggle('hidden'); });
+        cancelStaffBtn.addEventListener('click', () => { addStaffForm.classList.add('hidden'); });
+
+        // Save Staff
+        saveStaffBtn.addEventListener('click', () => {
+            const name = document.getElementById('staff-name').value.trim();
+            const role = document.getElementById('staff-role').value;
+            const location = document.getElementById('staff-location').value.trim() || 'Unassigned';
+            const phone = document.getElementById('staff-phone').value.trim() || '—';
+            const status = document.getElementById('staff-status').value;
+            if (!name || !role) { toast('Please fill in Name and Role', 'warning'); return; }
+
+            const colors = roleColors[role] || roleColors['Other'];
+            const sColors = statusColors[status] || statusColors['Active'];
+            const initials = getInitials(name);
+
+            const card = document.createElement('div');
+            card.className = 'staff-card p-4 bg-surface-highlight/30 border border-surface-highlight rounded-xl hover:border-primary/50 transition-all group';
+            card.dataset.role = role;
+            card.dataset.status = status;
+            card.style.animation = 'fadeIn 0.3s ease-out';
+            card.innerHTML = '<div class="flex items-start justify-between mb-3"><div class="flex items-center gap-3"><div class="w-11 h-11 rounded-full bg-gradient-to-br ' + colors[0] + ' ' + colors[1] + ' flex items-center justify-center text-white text-xs font-bold shrink-0">' + initials + '</div><div><h4 class="text-white font-bold text-sm">' + name + '</h4><p class="text-xs ' + colors[2] + ' font-medium">' + role + '</p></div></div><button class="remove-staff-btn opacity-0 group-hover:opacity-100 text-gray-500 hover:text-red-400 transition-all p-1 rounded hover:bg-red-900/20" title="Remove staff"><span class="material-symbols-outlined text-[16px]">close</span></button></div><div class="space-y-2 text-xs"><div class="flex items-center gap-2 text-gray-400"><span class="material-symbols-outlined text-[14px]">location_on</span><span>' + location + '</span></div><div class="flex items-center gap-2 text-gray-400"><span class="material-symbols-outlined text-[14px]">call</span><span>' + phone + '</span></div></div><div class="mt-3 pt-3 border-t border-surface-highlight/50 flex justify-between items-center"><span class="flex items-center gap-1.5 text-xs font-bold ' + sColors[0] + '"><span class="w-2 h-2 rounded-full ' + sColors[1] + '"></span> ' + status + '</span><span class="text-[10px] text-gray-500 uppercase tracking-wider">Since ' + now() + '</span></div>';
+            staffGrid.appendChild(card);
+            attachRemoveStaff();
+            updateStaffCount();
+            checkStaffEmpty();
+
+            // Reset form
+            document.getElementById('staff-name').value = '';
+            document.getElementById('staff-role').value = '';
+            document.getElementById('staff-location').value = '';
+            document.getElementById('staff-phone').value = '';
+            document.getElementById('staff-status').value = 'Active';
+            addStaffForm.classList.add('hidden');
+            toast(name + ' added as ' + role, 'info');
+        });
+
+        // Staff role filters
+        document.querySelectorAll('.staff-filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.staff-filter-btn').forEach(b => {
+                    b.classList.remove('bg-surface-highlight', 'text-white', 'font-semibold');
+                    b.classList.add('text-gray-400', 'font-medium');
+                });
+                btn.classList.add('bg-surface-highlight', 'text-white', 'font-semibold');
+                btn.classList.remove('text-gray-400', 'font-medium');
+
+                const role = btn.dataset.role;
+                staffGrid.querySelectorAll('.staff-card').forEach(card => {
+                    if (role === 'all' || card.dataset.role === role) {
+                        card.style.display = '';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                checkStaffEmpty();
+            });
+        });
+
+        // ══════════════════════════════════════════════════════
+        // CATERING ORDERS
+        // ══════════════════════════════════════════════════════
+        const ordersList = document.getElementById('orders-list');
+        const ordersEmpty = document.getElementById('orders-empty');
+        const orderCountBadge = document.getElementById('order-count-badge');
+        const addOrderToggle = document.getElementById('add-order-toggle');
+        const addOrderForm = document.getElementById('add-order-form');
+        const saveOrderBtn = document.getElementById('save-order-btn');
+        const cancelOrderBtn = document.getElementById('cancel-order-btn');
+
+        function updateOrderCount() {
+            const count = ordersList.querySelectorAll('.order-card').length;
+            orderCountBadge.textContent = count + ' Order' + (count !== 1 ? 's' : '');
+            ordersEmpty.classList.toggle('hidden', count > 0);
+            ordersList.classList.toggle('hidden', count === 0);
+        }
+        function attachRemoveOrder() {
+            ordersList.querySelectorAll('.remove-order-btn').forEach(btn => {
+                btn.onclick = function() {
+                    const card = this.closest('.order-card');
+                    card.style.transition = 'all 0.3s'; card.style.opacity = '0'; card.style.transform = 'translateX(20px)';
+                    setTimeout(() => { card.remove(); updateOrderCount(); toast('Order removed'); }, 300);
+                };
+            });
+        }
+        attachRemoveOrder();
+        updateOrderCount();
+
+        addOrderToggle.addEventListener('click', () => addOrderForm.classList.toggle('hidden'));
+        cancelOrderBtn.addEventListener('click', () => addOrderForm.classList.add('hidden'));
+
+        saveOrderBtn.addEventListener('click', () => {
+            const dest = document.getElementById('order-destination').value.trim();
+            const items = document.getElementById('order-items').value.trim();
+            const priority = document.getElementById('order-priority').value;
+            if (!dest || !items) { toast('Please fill Destination and Items', 'warning'); return; }
+
+            orderCounter++;
+            const colors = orderStatusColors[priority] || orderStatusColors['Queued'];
+            const card = document.createElement('div');
+            card.className = 'order-card p-4 bg-surface-highlight/20 border border-surface-highlight rounded-lg flex justify-between items-center group';
+            card.style.animation = 'fadeIn 0.3s ease-out';
+            card.innerHTML = '<div><h4 class="text-white font-semibold text-sm">Order #' + orderCounter + ' — ' + dest + '</h4><p class="text-xs text-gray-400">' + items + '</p></div><div class="flex items-center gap-2"><span class="px-2 py-1 ' + colors[0] + ' ' + colors[1] + ' text-xs font-bold rounded uppercase">' + priority + '</span><button class="remove-order-btn opacity-0 group-hover:opacity-100 text-gray-500 hover:text-red-400 p-1 rounded hover:bg-red-900/20 transition-all" title="Remove order"><span class="material-symbols-outlined text-[16px]">close</span></button></div>';
+            ordersList.appendChild(card);
+            attachRemoveOrder();
+            updateOrderCount();
+
+            document.getElementById('order-destination').value = '';
+            document.getElementById('order-items').value = '';
+            document.getElementById('order-priority').value = 'Queued';
+            addOrderForm.classList.add('hidden');
+            toast('Order #' + orderCounter + ' submitted for ' + dest);
+        });
+
+        // ══════════════════════════════════════════════════════
+        // VENDOR PORTAL
+        // ══════════════════════════════════════════════════════
+        const vendorBody = document.getElementById('vendor-table-body');
+        const vendorEmpty = document.getElementById('vendor-empty');
+        const vendorCountBadge = document.getElementById('vendor-count-badge');
+        const addVendorToggle = document.getElementById('add-vendor-toggle');
+        const addVendorForm = document.getElementById('add-vendor-form');
+        const saveVendorBtn = document.getElementById('save-vendor-btn');
+        const cancelVendorBtn = document.getElementById('cancel-vendor-btn');
+
+        function updateVendorCount() {
+            const count = vendorBody.querySelectorAll('.vendor-row').length;
+            vendorCountBadge.textContent = count + ' Vendor' + (count !== 1 ? 's' : '');
+            vendorEmpty.classList.toggle('hidden', count > 0);
+        }
+        function attachRemoveVendor() {
+            vendorBody.querySelectorAll('.remove-vendor-btn').forEach(btn => {
+                btn.onclick = function() {
+                    const row = this.closest('.vendor-row');
+                    row.style.transition = 'all 0.3s'; row.style.opacity = '0';
+                    setTimeout(() => { row.remove(); updateVendorCount(); toast('Vendor removed'); }, 300);
+                };
+            });
+        }
+        attachRemoveVendor();
+        updateVendorCount();
+
+        addVendorToggle.addEventListener('click', () => addVendorForm.classList.toggle('hidden'));
+        cancelVendorBtn.addEventListener('click', () => addVendorForm.classList.add('hidden'));
+
+        saveVendorBtn.addEventListener('click', () => {
+            const name = document.getElementById('vendor-name').value.trim();
+            const service = document.getElementById('vendor-service').value.trim();
+            const contact = document.getElementById('vendor-contact').value.trim() || '—';
+            const status = document.getElementById('vendor-status').value;
+            if (!name || !service) { toast('Please fill Vendor Name and Service', 'warning'); return; }
+
+            const colors = vendorStatusColors[status] || vendorStatusColors['Pending'];
+            const row = document.createElement('tr');
+            row.className = 'vendor-row border-b border-surface-highlight/50 group';
+            row.style.animation = 'fadeIn 0.3s ease-out';
+            row.innerHTML = '<td class="py-3 text-white font-semibold">' + name + '</td><td class="py-3 text-gray-400">' + service + '</td><td class="py-3"><span class="px-2 py-0.5 ' + colors[0] + ' ' + colors[1] + ' rounded text-xs">' + status + '</span></td><td class="py-3 text-primary">' + contact + '</td><td class="py-3"><button class="remove-vendor-btn opacity-0 group-hover:opacity-100 text-gray-500 hover:text-red-400 p-1 rounded hover:bg-red-900/20 transition-all" title="Remove"><span class="material-symbols-outlined text-[16px]">delete</span></button></td>';
+            vendorBody.appendChild(row);
+            attachRemoveVendor();
+            updateVendorCount();
+
+            document.getElementById('vendor-name').value = '';
+            document.getElementById('vendor-service').value = '';
+            document.getElementById('vendor-contact').value = '';
+            document.getElementById('vendor-status').value = 'On Site';
+            addVendorForm.classList.add('hidden');
+            toast(name + ' added as vendor');
+        });
 
     });
 </script>
